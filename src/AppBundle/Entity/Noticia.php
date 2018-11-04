@@ -56,6 +56,12 @@ class Noticia
      */
     private $firmante;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="noticias")
+     * @ORM\JoinColumn(name="usuario_noticia", referencedColumnName="id")
+     */
+    private $usuarioNoticia;
+
 
     /**
      * Get id
@@ -186,5 +192,28 @@ class Noticia
     {
         return $this->firmante;
     }
-}
 
+    /**
+     * Set usuarioNoticia
+     *
+     * @param \AppBundle\Entity\Usuario $usuarioNoticia
+     *
+     * @return Noticia
+     */
+    public function setUsuarioNoticia(\AppBundle\Entity\Usuario $usuarioNoticia = null)
+    {
+        $this->usuarioNoticia = $usuarioNoticia;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioNoticia
+     *
+     * @return \AppBundle\Entity\Usuario
+     */
+    public function getUsuarioNoticia()
+    {
+        return $this->usuarioNoticia;
+    }
+}

@@ -84,6 +84,23 @@ class Publicacion
      */
     private $links;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Etiqueta", inversedBy="publicaciones")
+     * @ORM\JoinColumn(name="etiqueta_id", referencedColumnName="id")
+     */
+    private $etiqueta;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="publicaciones")
+     * @ORM\JoinColumn(name="usuario_publicacion", referencedColumnName="id")
+     */
+    private $usuarioPublicacion;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Modificacion", mappedBy="publicacionModificada")
+     */
+    private $modificaciones;
+
 
     /**
      * Get id
@@ -310,5 +327,93 @@ class Publicacion
     {
         return $this->links;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->modificaciones = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Set etiqueta
+     *
+     * @param \AppBundle\Entity\Etiqueta $etiqueta
+     *
+     * @return Publicacion
+     */
+    public function setEtiqueta(\AppBundle\Entity\Etiqueta $etiqueta = null)
+    {
+        $this->etiqueta = $etiqueta;
+
+        return $this;
+    }
+
+    /**
+     * Get etiqueta
+     *
+     * @return \AppBundle\Entity\Etiqueta
+     */
+    public function getEtiqueta()
+    {
+        return $this->etiqueta;
+    }
+
+    /**
+     * Set usuarioPublicacion
+     *
+     * @param \AppBundle\Entity\Usuario $usuarioPublicacion
+     *
+     * @return Publicacion
+     */
+    public function setUsuarioPublicacion(\AppBundle\Entity\Usuario $usuarioPublicacion = null)
+    {
+        $this->usuarioPublicacion = $usuarioPublicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioPublicacion
+     *
+     * @return \AppBundle\Entity\Usuario
+     */
+    public function getUsuarioPublicacion()
+    {
+        return $this->usuarioPublicacion;
+    }
+
+    /**
+     * Add modificacione
+     *
+     * @param \AppBundle\Entity\Modificacion $modificacione
+     *
+     * @return Publicacion
+     */
+    public function addModificacione(\AppBundle\Entity\Modificacion $modificacione)
+    {
+        $this->modificaciones[] = $modificacione;
+
+        return $this;
+    }
+
+    /**
+     * Remove modificacione
+     *
+     * @param \AppBundle\Entity\Modificacion $modificacione
+     */
+    public function removeModificacione(\AppBundle\Entity\Modificacion $modificacione)
+    {
+        $this->modificaciones->removeElement($modificacione);
+    }
+
+    /**
+     * Get modificaciones
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getModificaciones()
+    {
+        return $this->modificaciones;
+    }
+}

@@ -49,6 +49,12 @@ class Catedra
      */
     private $telefonoContacto;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="catedras")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    private $usuarioResponsable;
+
 
     /**
      * Get id
@@ -155,5 +161,28 @@ class Catedra
     {
         return $this->telefonoContacto;
     }
-}
 
+    /**
+     * Set usuarioResponsable
+     *
+     * @param \AppBundle\Entity\Usuario $usuarioResponsable
+     *
+     * @return Catedra
+     */
+    public function setUsuarioResponsable(\AppBundle\Entity\Usuario $usuarioResponsable = null)
+    {
+        $this->usuarioResponsable = $usuarioResponsable;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioResponsable
+     *
+     * @return \AppBundle\Entity\Usuario
+     */
+    public function getUsuarioResponsable()
+    {
+        return $this->usuarioResponsable;
+    }
+}

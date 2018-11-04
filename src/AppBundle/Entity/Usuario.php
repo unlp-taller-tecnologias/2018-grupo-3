@@ -63,6 +63,27 @@ class Usuario
      */
     private $telefonoContacto;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Catedra", mappedBy="usuarioResponsable")
+     */
+    private $catedras;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Publicacion", mappedBy="usuarioPublicacion")
+     */
+    private $publicaciones;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Noticia", mappedBy="usuarioNoticia")
+     */
+    private $noticias;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Rol", inversedBy="usuarios")
+     * @ORM\JoinColumn(name="rol_id", referencedColumnName="id")
+     */
+    private $rol;
+
 
     /**
      * Get id
@@ -217,5 +238,137 @@ class Usuario
     {
         return $this->telefonoContacto;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->catedras = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add catedra
+     *
+     * @param \AppBundle\Entity\Catedra $catedra
+     *
+     * @return Usuario
+     */
+    public function addCatedra(\AppBundle\Entity\Catedra $catedra)
+    {
+        $this->catedras[] = $catedra;
+
+        return $this;
+    }
+
+    /**
+     * Remove catedra
+     *
+     * @param \AppBundle\Entity\Catedra $catedra
+     */
+    public function removeCatedra(\AppBundle\Entity\Catedra $catedra)
+    {
+        $this->catedras->removeElement($catedra);
+    }
+
+    /**
+     * Get catedras
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCatedras()
+    {
+        return $this->catedras;
+    }
+
+    /**
+     * Add publicacione
+     *
+     * @param \AppBundle\Entity\Publicacion $publicacione
+     *
+     * @return Usuario
+     */
+    public function addPublicacione(\AppBundle\Entity\Publicacion $publicacione)
+    {
+        $this->publicaciones[] = $publicacione;
+
+        return $this;
+    }
+
+    /**
+     * Remove publicacione
+     *
+     * @param \AppBundle\Entity\Publicacion $publicacione
+     */
+    public function removePublicacione(\AppBundle\Entity\Publicacion $publicacione)
+    {
+        $this->publicaciones->removeElement($publicacione);
+    }
+
+    /**
+     * Get publicaciones
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublicaciones()
+    {
+        return $this->publicaciones;
+    }
+
+    /**
+     * Add noticia
+     *
+     * @param \AppBundle\Entity\Noticia $noticia
+     *
+     * @return Usuario
+     */
+    public function addNoticia(\AppBundle\Entity\Noticia $noticia)
+    {
+        $this->noticias[] = $noticia;
+
+        return $this;
+    }
+
+    /**
+     * Remove noticia
+     *
+     * @param \AppBundle\Entity\Noticia $noticia
+     */
+    public function removeNoticia(\AppBundle\Entity\Noticia $noticia)
+    {
+        $this->noticias->removeElement($noticia);
+    }
+
+    /**
+     * Get noticias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNoticias()
+    {
+        return $this->noticias;
+    }
+
+    /**
+     * Set rol
+     *
+     * @param \AppBundle\Entity\Rol $rol
+     *
+     * @return Usuario
+     */
+    public function setRol(\AppBundle\Entity\Rol $rol = null)
+    {
+        $this->rol = $rol;
+
+        return $this;
+    }
+
+    /**
+     * Get rol
+     *
+     * @return \AppBundle\Entity\Rol
+     */
+    public function getRol()
+    {
+        return $this->rol;
+    }
+}
