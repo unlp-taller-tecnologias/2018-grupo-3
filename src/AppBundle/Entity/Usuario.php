@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="usuario")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository")
  */
-class Usuario
+class Usuario extends BaseUser
 {
     /**
      * @var int
@@ -19,7 +20,7 @@ class Usuario
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -35,12 +36,12 @@ class Usuario
      */
     private $apellido;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
-     */
-    private $email;
+    // *
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="email", type="string", length=255, unique=true)
+     
+    // private $email;
 
     /**
      * @var bool
@@ -143,29 +144,29 @@ class Usuario
         return $this->apellido;
     }
 
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Usuario
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
+    // /**
+    //  * Set email
+    //  *
+    //  * @param string $email
+    //  *
+    //  * @return Usuario
+    //  */
+    // public function setEmail($email)
+    // {
+    //     $this->email = $email;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
+    // /**
+    //  * Get email
+    //  *
+    //  * @return string
+    //  */
+    // public function getEmail()
+    // {
+    //     return $this->email;
+    // }
 
     /**
      * Set visado
@@ -243,6 +244,7 @@ class Usuario
      */
     public function __construct()
     {
+        parent::__construct();
         $this->catedras = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
