@@ -50,12 +50,12 @@ class Usuario extends BaseUser
      */
     private $visado;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="contraseña", type="string", length=255)
-     */
-    private $contraseña;
+    // *
+    //  * @var string
+    //  *
+    //  * @ORM\Column(name="contraseña", type="string", length=255)
+     
+    // private $contraseña;
 
     /**
      * @var int
@@ -192,29 +192,29 @@ class Usuario extends BaseUser
         return $this->visado;
     }
 
-    /**
-     * Set contraseña
-     *
-     * @param string $contraseña
-     *
-     * @return Usuario
-     */
-    public function setContraseña($contraseña)
-    {
-        $this->contraseña = $contraseña;
+    // /**
+    //  * Set contraseña
+    //  *
+    //  * @param string $contraseña
+    //  *
+    //  * @return Usuario
+    //  */
+    // public function setContraseña($contraseña)
+    // {
+    //     $this->contraseña = $contraseña;
 
-        return $this;
-    }
+    //     return $this;
+    // }
 
-    /**
-     * Get contraseña
-     *
-     * @return string
-     */
-    public function getContraseña()
-    {
-        return $this->contraseña;
-    }
+    // /**
+    //  * Get contraseña
+    //  *
+    //  * @return string
+    //  */
+    // public function getContraseña()
+    // {
+    //     return $this->contraseña;
+    // }
 
     /**
      * Set telefonoContacto
