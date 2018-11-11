@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Catedra</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ catedra.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ catedra.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Emailcontacto</th>
+                <td>{{ catedra.emailContacto }}</td>
+            </tr>
+            <tr>
+                <th>Horarioatencion</th>
+                <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Telefonocontacto</th>
+                <td>{{ catedra.telefonoContacto }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('catedra_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('catedra_edit', { 'id': catedra.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

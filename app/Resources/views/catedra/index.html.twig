@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Catedras list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Emailcontacto</th>
+                <th>Horarioatencion</th>
+                <th>Telefonocontacto</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for catedra in catedras %}
+            <tr>
+                <td><a href="{{ path('catedra_show', { 'id': catedra.id }) }}">{{ catedra.id }}</a></td>
+                <td>{{ catedra.nombre }}</td>
+                <td>{{ catedra.emailContacto }}</td>
+                <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ catedra.telefonoContacto }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('catedra_show', { 'id': catedra.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('catedra_edit', { 'id': catedra.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('catedra_new') }}">Create a new catedra</a>
+        </li>
+    </ul>
+{% endblock %}

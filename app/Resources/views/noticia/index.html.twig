@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Noticias list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titulo</th>
+                <th>Bajada</th>
+                <th>Fechapublicacion</th>
+                <th>Contenido</th>
+                <th>Firmante</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for noticia in noticias %}
+            <tr>
+                <td><a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.id }}</a></td>
+                <td>{{ noticia.titulo }}</td>
+                <td>{{ noticia.bajada }}</td>
+                <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ noticia.contenido }}</td>
+                <td>{{ noticia.firmante }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('noticia_show', { 'id': noticia.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('noticia_edit', { 'id': noticia.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('noticia_new') }}">Create a new noticia</a>
+        </li>
+    </ul>
+{% endblock %}

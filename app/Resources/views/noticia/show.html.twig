@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>noticia</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ noticia.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ noticia.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Bajada</th>
+                <td>{{ noticia.bajada }}</td>
+            </tr>
+            <tr>
+                <th>Fechapublicacion</th>
+                <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Contenido</th>
+                <td>{{ noticia.contenido }}</td>
+            </tr>
+            <tr>
+                <th>Firmante</th>
+                <td>{{ noticia.firmante }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('noticia_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('noticia_edit', { 'id': noticia.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
