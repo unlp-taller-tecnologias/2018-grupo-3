@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Publicacion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ publicacion.id }}</td>
+            </tr>
+            <tr>
+                <th>Titulo</th>
+                <td>{{ publicacion.titulo }}</td>
+            </tr>
+            <tr>
+                <th>Bajada</th>
+                <td>{{ publicacion.bajada }}</td>
+            </tr>
+            <tr>
+                <th>Nombreautor</th>
+                <td>{{ publicacion.nombreAutor }}</td>
+            </tr>
+            <tr>
+                <th>Fechapublicacion</th>
+                <td>{% if publicacion.fechaPublicacion %}{{ publicacion.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Contenido</th>
+                <td>{{ publicacion.contenido }}</td>
+            </tr>
+            <tr>
+                <th>Fechacaducidad</th>
+                <td>{% if publicacion.fechaCaducidad %}{{ publicacion.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Firmante</th>
+                <td>{{ publicacion.firmante }}</td>
+            </tr>
+            <tr>
+                <th>Archivo</th>
+                <td>{{ publicacion.archivo }}</td>
+            </tr>
+            <tr>
+                <th>Links</th>
+                <td>{{ publicacion.links }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('publicacion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
