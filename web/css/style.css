@@ -1,0 +1,25 @@
+body{
+	background-color: #eee;
+}
+#cabecera{
+	background-color: #191F2E;
+	height: 90px;
+	color: #fff;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+.jumbotron{
+	margin: 5%;
+}
+.titulo-noticias-home, .titulo-catedras-home{
+	margin: 5%;
+	border-bottom: solid 5px black;
+}
+.titulo-catedras-home{
+	padding-top: 5%;
+}
+.titulo-noticia{
+	font-weight: bold;
+}
