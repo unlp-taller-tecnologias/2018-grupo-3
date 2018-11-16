@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
 body{
 	background-color: #eee;
+	font-family: 'Montserrat', sans-serif;
 }
 #cabecera{
 	background-color: #191F2E;
@@ -22,4 +25,14 @@ body{
 }
 .titulo-noticia{
 	font-weight: bold;
+}
+.formularios{
+	margin: 5% 20% 5% 20%;
+	width: 60%;
+}
+.formularios .form-control{
+	width: 40%;
+}
+.titulo-form{
+    width: max-content;
 }

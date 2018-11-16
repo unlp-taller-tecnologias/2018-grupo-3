@@ -36,9 +36,9 @@ class Noticia
     private $bajada;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="fecha_publicacion", type="datetime")
+     * @ORM\Column(name="fecha_publicacion", type="date")
      */
     private $fechaPublicacion;
 

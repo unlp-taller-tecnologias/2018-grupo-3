@@ -1,16 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Nueva noticia institucional</h1>
+    <section class="formularios">
+        <div class="titulo-form">
+            <h2><i class="fas fa-plus"></i>Nueva noticia</h2>
+        </div>
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+        {{ form_start(form) }}  
+            {{ form_widget(form) }}
+            <input type="submit" value="Create" />
+        {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('noticia_index') }}">Back to the list</a>
-        </li>
-    </ul>
+        <ul>
+            <li>
+                <a href="{{ path('noticia_index') }}">Back to the list</a>
+            </li>
+        </ul>
+    </section>
 {% endblock %}

@@ -43,7 +43,7 @@ class Publicacion
     private $nombreAutor;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="fecha_publicacion", type="date")
      */
@@ -57,7 +57,7 @@ class Publicacion
     private $contenido;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
      * @ORM\Column(name="fecha_caducidad", type="date", nullable=true)
      */
