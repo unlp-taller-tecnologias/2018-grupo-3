@@ -5,9 +5,9 @@
 		<div class="col-md-4">
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
 			{% for catedra in catedras %}
-				<ul class="list-group list-group-flush">
-				  <li class="list-group-item">{{catedra.nombre}}</li>
-				</ul>
+				<div class="list-group">
+				  <a href="#" class="list-group-item disabled">{{catedra.nombre}}</a>
+				</div>
 			{% endfor %}
 	    </div>
 	    <div class="col-md-8">
@@ -17,7 +17,9 @@
 				<section class="jumbotron">
 		            <h6 class="titulo-noticia">{{ noticia.titulo }}</h6>
 		            {{ noticia.bajada }}
-		            {{ noticia.contenido }}
+		            <div>
+		            	{{ noticia.contenido }}
+		            </div>
 		            {{ noticia.firmante }}	    
 		        </section>
 		    {% endfor %}

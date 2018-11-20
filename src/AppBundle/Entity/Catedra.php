@@ -36,9 +36,9 @@ class Catedra
     private $emailContacto;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="horario_atencion", type="datetime")
+     * @ORM\Column(name="horario_atencion", type="string", length=255)
      */
     private $horarioAtencion;
 

@@ -15,6 +15,8 @@ body{
 }
 .jumbotron{
 	margin: 5%;
+	background-color: #fff;
+	padding: 2rem 2rem;
 }
 .titulo-noticias-home, .titulo-catedras-home{
 	margin: 5%;
@@ -24,6 +26,7 @@ body{
 	padding-top: 5%;
 }
 .titulo-noticia{
+	font-size: 25px;
 	font-weight: bold;
 }
 .formularios{
@@ -35,4 +38,7 @@ body{
 }
 .titulo-form{
     width: max-content;
+}
+.list-group{
+	margin: 0 5% 2% 5%;
 }

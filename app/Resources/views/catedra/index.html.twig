@@ -20,7 +20,7 @@
                 <td><a href="{{ path('catedra_show', { 'id': catedra.id }) }}">{{ catedra.id }}</a></td>
                 <td>{{ catedra.nombre }}</td>
                 <td>{{ catedra.emailContacto }}</td>
-                <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}</td>
                 <td>{{ catedra.telefonoContacto }}</td>
                 <td>
                     <ul>
