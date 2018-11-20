@@ -4,16 +4,21 @@
 	<div class="row">
 		<div class="col-md-4">
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
+			{% for catedra in catedras %}
+				<ul class="list-group list-group-flush">
+				  <li class="list-group-item">{{catedra.nombre}}</li>
+				</ul>
+			{% endfor %}
 	    </div>
 	    <div class="col-md-8">
 	    	<h2 class="titulo-noticias-home">Noticias institucionales <i class="fas fa-bullhorn"></i></h2>
 
 			{% for noticia in noticias %}
 				<section class="jumbotron">
-			            <h6 class="titulo-noticia">{{ noticia.titulo }}</h6>
-			            {{ noticia.bajada }}
-			            {{ noticia.contenido }}
-			            {{ noticia.firmante }}	    
+		            <h6 class="titulo-noticia">{{ noticia.titulo }}</h6>
+		            {{ noticia.bajada }}
+		            {{ noticia.contenido }}
+		            {{ noticia.firmante }}	    
 		        </section>
 		    {% endfor %}
 	    </div>

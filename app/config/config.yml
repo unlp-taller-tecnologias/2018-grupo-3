@@ -83,3 +83,10 @@ fos_user:
     registration:
         form:
             type: AppBundle\Form\RegistrationType
+
+# fos_ck_editor:
+#     configs:
+#         my_config:
+#             toolbar: [ ["Source", "-", "Save"], "/", ["Anchor"], "/", ["Maximize"] ]
+#             uiColor: "#ffffff"
+#             extraPlugins: "wordcount"

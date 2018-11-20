@@ -15,7 +15,7 @@ class NoticiaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titulo')->add('bajada')->add('fechaPublicacion', DateType::class, array('widget' => 'single_text'))->add('contenido', CKEditorType::class, array('config' => array( 'uiColor' => '#ffffff' ) ))->add('firmante')->add('usuarioNoticia');
+        $builder->add('titulo')->add('bajada')->add('fechaPublicacion', DateType::class, array('widget' => 'single_text'))->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))->add('firmante')->add('usuarioNoticia');
     }/**
      * {@inheritdoc}
      */
