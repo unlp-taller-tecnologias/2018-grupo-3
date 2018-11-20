@@ -18,7 +18,7 @@
 		            <h6 class="titulo-noticia">{{ noticia.titulo }}</h6>
 		            {{ noticia.bajada }}
 		            <div>
-		            	{{ noticia.contenido }}
+		            	{{ noticia.contenido|raw }}
 		            </div>
 		            {{ noticia.firmante }}	    
 		        </section>

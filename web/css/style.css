@@ -7,11 +7,14 @@ body{
 #cabecera{
 	background-color: #191F2E;
 	height: 90px;
-	color: #fff;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
+}
+#cabecera a{
+	text-decoration: none;
+	color: #fff;
 }
 .jumbotron{
 	margin: 5%;
