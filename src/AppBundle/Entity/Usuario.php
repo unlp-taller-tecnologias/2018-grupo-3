@@ -40,7 +40,7 @@ class Usuario extends BaseUser
     //  * @var string
     //  *
     //  * @ORM\Column(name="email", type="string", length=255, unique=true)
-     
+
     // private $email;
 
     /**
@@ -54,7 +54,7 @@ class Usuario extends BaseUser
     //  * @var string
     //  *
     //  * @ORM\Column(name="contraseña", type="string", length=255)
-     
+
     // private $contraseña;
 
     /**
@@ -65,9 +65,10 @@ class Usuario extends BaseUser
     private $telefonoContacto;
 
     /**
-     * @ORM\OneToMany(targetEntity="Catedra", mappedBy="usuarioResponsable")
+     * @ORM\ManyToOne(targetEntity="Catedra", inversedBy="usuariosResponsables")
+     * @ORM\JoinColumn(name="catedra_id", referencedColumnName="id")
      */
-    private $catedras;
+    private $catedra;
 
     /**
      * @ORM\OneToMany(targetEntity="Publicacion", mappedBy="usuarioPublicacion")
@@ -372,5 +373,55 @@ class Usuario extends BaseUser
     public function getRol()
     {
         return $this->rol;
+    }
+
+    /**
+     * Set catedra.
+     *
+     * @param \AppBundle\Entity\Catedra|null $catedra
+     *
+     * @return Usuario
+     */
+    public function setCatedra(\AppBundle\Entity\Catedra $catedra = null)
+    {
+        $this->catedra = $catedra;
+
+        return $this;
+    }
+
+    /**
+     * Get catedra.
+     *
+     * @return \AppBundle\Entity\Catedra|null
+     */
+    public function getCatedra()
+    {
+        return $this->catedra;
+    }
+
+    /**
+     * Add publicacione.
+     *
+     * @param \AppBundle\Entity\Publicacion $publicacione
+     *
+     * @return Usuario
+     */
+    public function addPublicacione(\AppBundle\Entity\Publicacion $publicacione)
+    {
+        $this->publicaciones[] = $publicacione;
+
+        return $this;
+    }
+
+    /**
+     * Remove publicacione.
+     *
+     * @param \AppBundle\Entity\Publicacion $publicacione
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePublicacione(\AppBundle\Entity\Publicacion $publicacione)
+    {
+        return $this->publicaciones->removeElement($publicacione);
     }
 }

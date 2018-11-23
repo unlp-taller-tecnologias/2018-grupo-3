@@ -50,10 +50,9 @@ class Catedra
     private $telefonoContacto;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="catedras")
-     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Usuario", mappedBy="catedra")
      */
-    private $usuarioResponsable;
+    private $usuariosResponsables;
 
 
     /**
@@ -189,5 +188,48 @@ class Catedra
     public function getPublicacionesCatedra()
     {
         return $this->usuarioResponsable->getPublicaciones();
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->usuariosResponsables = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add usuariosResponsable.
+     *
+     * @param \AppBundle\Entity\Usuario $usuariosResponsable
+     *
+     * @return Catedra
+     */
+    public function addUsuariosResponsable(\AppBundle\Entity\Usuario $usuariosResponsable)
+    {
+        $this->usuariosResponsables[] = $usuariosResponsable;
+
+        return $this;
+    }
+
+    /**
+     * Remove usuariosResponsable.
+     *
+     * @param \AppBundle\Entity\Usuario $usuariosResponsable
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUsuariosResponsable(\AppBundle\Entity\Usuario $usuariosResponsable)
+    {
+        return $this->usuariosResponsables->removeElement($usuariosResponsable);
+    }
+
+    /**
+     * Get usuariosResponsables.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsuariosResponsables()
+    {
+        return $this->usuariosResponsables;
     }
 }
