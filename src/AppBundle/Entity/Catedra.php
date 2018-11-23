@@ -185,4 +185,9 @@ class Catedra
     {
         return $this->usuarioResponsable;
     }
+
+    public function getPublicacionesCatedra()
+    {
+        return $this->usuarioResponsable->getPublicaciones();
+    }
 }

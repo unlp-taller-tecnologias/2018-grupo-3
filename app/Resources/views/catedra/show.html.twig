@@ -1,44 +1,49 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Catedra</h1>
+    <div>
+        <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
+        <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i>Edit</a>
+    </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ catedra.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ catedra.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Emailcontacto</th>
-                <td>{{ catedra.emailContacto }}</td>
-            </tr>
-            <tr>
-                <th>Horarioatencion</th>
-                <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Telefonocontacto</th>
-                <td>{{ catedra.telefonoContacto }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
+    <div class="container-fluid info-catedra">
+        <div><i class="fas fa-envelope"></i>
+            {{ catedra.emailContacto }}
+        </div> 
+        <i class="fas fa-phone"></i>
+            {{ catedra.telefonoContacto }}
+        <div><i class="fas fa-user-alt"></i>    
+            {% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}
+        </div>
+    </div>
+<!-- 
+    <ul class="nav">
+        <li class="nav item">
             <a href="{{ path('catedra_index') }}">Back to the list</a>
         </li>
-        <li>
+        <li class="nav item">
             <a href="{{ path('catedra_edit', { 'id': catedra.id }) }}">Edit</a>
         </li>
-        <li>
+         <li class="nav item">
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul> -->
+
+    <div class="row publicaciones">
+    {% for publicacion in publicaciones %}
+            <div class="col-md-4">
+                <div class="jumbotron">
+                    <i class="fas fa-paperclip"></i>
+                    {{ publicacion.etiqueta }}
+                    <div>
+                        {{ publicacion.contenido|raw }}
+                        {{ publicacion.firmante }}
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+    </div>
+
 {% endblock %}

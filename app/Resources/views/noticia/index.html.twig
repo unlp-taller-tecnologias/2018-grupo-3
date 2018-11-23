@@ -21,8 +21,8 @@
                 <td><a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.id }}</a></td>
                 <td>{{ noticia.titulo }}</td>
                 <td>{{ noticia.bajada }}</td>
-                <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ noticia.contenido }}</td>
+                <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ noticia.contenido|raw }}</td>
                 <td>{{ noticia.firmante }}</td>
                 <td>
                     <ul>

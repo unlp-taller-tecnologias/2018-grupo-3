@@ -78,25 +78,25 @@ class Etiqueta
     /**
      * Add publicacione
      *
-     * @param \AppBundle\Entity\Publicacion $publicacione
+     * @param \AppBundle\Entity\Publicacion $publicaciones
      *
      * @return Etiqueta
      */
-    public function addPublicacione(\AppBundle\Entity\Publicacion $publicacione)
+    public function addPublicacione(\AppBundle\Entity\Publicacion $publicaciones)
     {
-        $this->publicaciones[] = $publicacione;
+        $this->publicaciones[] = $publicaciones;
 
         return $this;
     }
 
     /**
-     * Remove publicacione
+     * Remove publicaciones
      *
-     * @param \AppBundle\Entity\Publicacion $publicacione
+     * @param \AppBundle\Entity\Publicacion $publicaciones
      */
-    public function removePublicacione(\AppBundle\Entity\Publicacion $publicacione)
+    public function removePublicacione(\AppBundle\Entity\Publicacion $publicaciones)
     {
-        $this->publicaciones->removeElement($publicacione);
+        $this->publicaciones->removeElement($publicaciones);
     }
 
     /**
@@ -107,5 +107,9 @@ class Etiqueta
     public function getPublicaciones()
     {
         return $this->publicaciones;
+    }
+
+    public function __toString() {
+    return $this->nombre;
     }
 }

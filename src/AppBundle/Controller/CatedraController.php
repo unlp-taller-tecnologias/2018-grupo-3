@@ -66,9 +66,11 @@ class CatedraController extends Controller
     public function showAction(Catedra $catedra)
     {
         $deleteForm = $this->createDeleteForm($catedra);
+        $publicaciones = $catedra->getPublicacionesCatedra();
 
         return $this->render('catedra/show.html.twig', array(
             'catedra' => $catedra,
+            'publicaciones' => $publicaciones,
             'delete_form' => $deleteForm->createView(),
         ));
     }
