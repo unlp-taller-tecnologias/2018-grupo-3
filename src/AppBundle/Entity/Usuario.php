@@ -98,7 +98,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Set nombre
+     * Set nombre.
      *
      * @param string $nombre
      *
@@ -112,7 +112,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get nombre
+     * Get nombre.
      *
      * @return string
      */
@@ -122,7 +122,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Set apellido
+     * Set apellido.
      *
      * @param string $apellido
      *
@@ -136,7 +136,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get apellido
+     * Get apellido.
      *
      * @return string
      */
@@ -145,34 +145,10 @@ class Usuario extends BaseUser
         return $this->apellido;
     }
 
-    // /**
-    //  * Set email
-    //  *
-    //  * @param string $email
-    //  *
-    //  * @return Usuario
-    //  */
-    // public function setEmail($email)
-    // {
-    //     $this->email = $email;
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * Get email
-    //  *
-    //  * @return string
-    //  */
-    // public function getEmail()
-    // {
-    //     return $this->email;
-    // }
-
     /**
-     * Set visado
+     * Set visado.
      *
-     * @param boolean $visado
+     * @param bool $visado
      *
      * @return Usuario
      */
@@ -184,7 +160,7 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get visado
+     * Get visado.
      *
      * @return bool
      */
@@ -193,38 +169,14 @@ class Usuario extends BaseUser
         return $this->visado;
     }
 
-    // /**
-    //  * Set contraseña
-    //  *
-    //  * @param string $contraseña
-    //  *
-    //  * @return Usuario
-    //  */
-    // public function setContraseña($contraseña)
-    // {
-    //     $this->contraseña = $contraseña;
-
-    //     return $this;
-    // }
-
-    // /**
-    //  * Get contraseña
-    //  *
-    //  * @return string
-    //  */
-    // public function getContraseña()
-    // {
-    //     return $this->contraseña;
-    // }
-
     /**
-     * Set telefonoContacto
+     * Set telefonoContacto.
      *
-     * @param integer $telefonoContacto
+     * @param int|null $telefonoContacto
      *
      * @return Usuario
      */
-    public function setTelefonoContacto($telefonoContacto)
+    public function setTelefonoContacto($telefonoContacto = null)
     {
         $this->telefonoContacto = $telefonoContacto;
 
@@ -232,147 +184,13 @@ class Usuario extends BaseUser
     }
 
     /**
-     * Get telefonoContacto
+     * Get telefonoContacto.
      *
-     * @return int
+     * @return int|null
      */
     public function getTelefonoContacto()
     {
         return $this->telefonoContacto;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        parent::__construct();
-        $this->catedras = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add catedra
-     *
-     * @param \AppBundle\Entity\Catedra $catedra
-     *
-     * @return Usuario
-     */
-    public function addCatedra(\AppBundle\Entity\Catedra $catedra)
-    {
-        $this->catedras[] = $catedra;
-
-        return $this;
-    }
-
-    /**
-     * Remove catedra
-     *
-     * @param \AppBundle\Entity\Catedra $catedra
-     */
-    public function removeCatedra(\AppBundle\Entity\Catedra $catedra)
-    {
-        $this->catedras->removeElement($catedra);
-    }
-
-    /**
-     * Get catedras
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCatedras()
-    {
-        return $this->catedras;
-    }
-
-    /**
-     * Add publicaciones
-     *
-     * @param \AppBundle\Entity\Publicacion $publicaciones
-     *
-     * @return Usuario
-     */
-    public function addpublicaciones(\AppBundle\Entity\Publicacion $publicaciones)
-    {
-        $this->publicaciones[] = $publicaciones;
-
-        return $this;
-    }
-
-    /**
-     * Remove publicaciones
-     *
-     * @param \AppBundle\Entity\Publicacion $publicaciones
-     */
-    public function removePublicaciones(\AppBundle\Entity\Publicacion $publicaciones)
-    {
-        $this->publicaciones->removeElement($publicaciones);
-    }
-
-    /**
-     * Get publicaciones
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPublicaciones()
-    {
-        return $this->publicaciones;
-    }
-
-    /**
-     * Add noticia
-     *
-     * @param \AppBundle\Entity\Noticia $noticia
-     *
-     * @return Usuario
-     */
-    public function addNoticia(\AppBundle\Entity\Noticia $noticia)
-    {
-        $this->noticias[] = $noticia;
-
-        return $this;
-    }
-
-    /**
-     * Remove noticia
-     *
-     * @param \AppBundle\Entity\Noticia $noticia
-     */
-    public function removeNoticia(\AppBundle\Entity\Noticia $noticia)
-    {
-        $this->noticias->removeElement($noticia);
-    }
-
-    /**
-     * Get noticias
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getNoticias()
-    {
-        return $this->noticias;
-    }
-
-    /**
-     * Set rol
-     *
-     * @param \AppBundle\Entity\Rol $rol
-     *
-     * @return Usuario
-     */
-    public function setRol(\AppBundle\Entity\Rol $rol = null)
-    {
-        $this->rol = $rol;
-
-        return $this;
-    }
-
-    /**
-     * Get rol
-     *
-     * @return \AppBundle\Entity\Rol
-     */
-    public function getRol()
-    {
-        return $this->rol;
     }
 
     /**
@@ -423,5 +241,79 @@ class Usuario extends BaseUser
     public function removePublicacione(\AppBundle\Entity\Publicacion $publicacione)
     {
         return $this->publicaciones->removeElement($publicacione);
+    }
+
+    /**
+     * Get publicaciones.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublicaciones()
+    {
+        return $this->publicaciones;
+    }
+
+    /**
+     * Add noticia.
+     *
+     * @param \AppBundle\Entity\Noticia $noticia
+     *
+     * @return Usuario
+     */
+    public function addNoticia(\AppBundle\Entity\Noticia $noticia)
+    {
+        $this->noticias[] = $noticia;
+
+        return $this;
+    }
+
+    /**
+     * Remove noticia.
+     *
+     * @param \AppBundle\Entity\Noticia $noticia
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeNoticia(\AppBundle\Entity\Noticia $noticia)
+    {
+        return $this->noticias->removeElement($noticia);
+    }
+
+    /**
+     * Get noticias.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getNoticias()
+    {
+        return $this->noticias;
+    }
+
+    /**
+     * Set rol.
+     *
+     * @param \AppBundle\Entity\Rol|null $rol
+     *
+     * @return Usuario
+     */
+    public function setRol(\AppBundle\Entity\Rol $rol = null)
+    {
+        $this->rol = $rol;
+
+        return $this;
+    }
+
+    /**
+     * Get rol.
+     *
+     * @return \AppBundle\Entity\Rol|null
+     */
+    public function getRol()
+    {
+        return $this->rol;
+    }
+
+    public function __toString() {
+        return $this->nombre;
     }
 }

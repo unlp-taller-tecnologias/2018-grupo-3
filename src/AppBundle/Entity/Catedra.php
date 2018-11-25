@@ -54,6 +54,11 @@ class Catedra
      */
     private $usuariosResponsables;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Publicacion", mappedBy="catedra")
+     */
+    private $publicacionesCatedra;
+
 
     /**
      * Get id
@@ -66,7 +71,15 @@ class Catedra
     }
 
     /**
-     * Set nombre
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->usuariosResponsables = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set nombre.
      *
      * @param string $nombre
      *
@@ -80,7 +93,7 @@ class Catedra
     }
 
     /**
-     * Get nombre
+     * Get nombre.
      *
      * @return string
      */
@@ -90,7 +103,7 @@ class Catedra
     }
 
     /**
-     * Set emailContacto
+     * Set emailContacto.
      *
      * @param string $emailContacto
      *
@@ -104,7 +117,7 @@ class Catedra
     }
 
     /**
-     * Get emailContacto
+     * Get emailContacto.
      *
      * @return string
      */
@@ -114,9 +127,9 @@ class Catedra
     }
 
     /**
-     * Set horarioAtencion
+     * Set horarioAtencion.
      *
-     * @param \DateTime $horarioAtencion
+     * @param string $horarioAtencion
      *
      * @return Catedra
      */
@@ -128,9 +141,9 @@ class Catedra
     }
 
     /**
-     * Get horarioAtencion
+     * Get horarioAtencion.
      *
-     * @return \DateTime
+     * @return string
      */
     public function getHorarioAtencion()
     {
@@ -138,13 +151,13 @@ class Catedra
     }
 
     /**
-     * Set telefonoContacto
+     * Set telefonoContacto.
      *
-     * @param integer $telefonoContacto
+     * @param int|null $telefonoContacto
      *
      * @return Catedra
      */
-    public function setTelefonoContacto($telefonoContacto)
+    public function setTelefonoContacto($telefonoContacto = null)
     {
         $this->telefonoContacto = $telefonoContacto;
 
@@ -152,49 +165,13 @@ class Catedra
     }
 
     /**
-     * Get telefonoContacto
+     * Get telefonoContacto.
      *
-     * @return int
+     * @return int|null
      */
     public function getTelefonoContacto()
     {
         return $this->telefonoContacto;
-    }
-
-    /**
-     * Set usuarioResponsable
-     *
-     * @param \AppBundle\Entity\Usuario $usuarioResponsable
-     *
-     * @return Catedra
-     */
-    public function setUsuarioResponsable(\AppBundle\Entity\Usuario $usuarioResponsable = null)
-    {
-        $this->usuarioResponsable = $usuarioResponsable;
-
-        return $this;
-    }
-
-    /**
-     * Get usuarioResponsable
-     *
-     * @return \AppBundle\Entity\Usuario
-     */
-    public function getUsuarioResponsable()
-    {
-        return $this->usuarioResponsable;
-    }
-
-    public function getPublicacionesCatedra()
-    {
-        return $this->usuarioResponsable->getPublicaciones();
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->usuariosResponsables = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -231,5 +208,46 @@ class Catedra
     public function getUsuariosResponsables()
     {
         return $this->usuariosResponsables;
+    }
+
+
+    /**
+     * Add publicacionesCatedra.
+     *
+     * @param \AppBundle\Entity\Publicacion $publicacionesCatedra
+     *
+     * @return Catedra
+     */
+    public function addPublicacionesCatedra(\AppBundle\Entity\Publicacion $publicacionesCatedra)
+    {
+        $this->publicacionesCatedra[] = $publicacionesCatedra;
+
+        return $this;
+    }
+
+    /**
+     * Remove publicacionesCatedra.
+     *
+     * @param \AppBundle\Entity\Publicacion $publicacionesCatedra
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePublicacionesCatedra(\AppBundle\Entity\Publicacion $publicacionesCatedra)
+    {
+        return $this->publicacionesCatedra->removeElement($publicacionesCatedra);
+    }
+
+    /**
+     * Get publicacionesCatedra.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPublicacionesCatedra()
+    {
+        return $this->publicacionesCatedra;
+    }
+
+    public function __toString() {
+        return $this->nombre;
     }
 }

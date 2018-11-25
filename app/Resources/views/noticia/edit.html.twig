@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Noticia edit</h1>
+<section class="formularios">
+    <h2 class="titulo-form">Editar noticia:</h2>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+        <input class="btn" type="submit" value="Editar noticia" />
     {{ form_end(edit_form) }}
+</section>
 
-    <ul>
+<!--     <ul>
         <li>
             <a href="{{ path('noticia_index') }}">Back to the list</a>
         </li>
@@ -17,5 +19,5 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul> -->
 {% endblock %}

@@ -6,7 +6,7 @@
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
 			{% for catedra in catedras %}
 				<div class="list-group">
-				  <a href="#" class="list-group-item disabled">{{catedra.nombre}}</a>
+				  <a target="blank" href="/catedra/{{catedra.id}}" class="list-group-item disabled">{{catedra.nombre}}</a>
 				</div>
 			{% endfor %}
 	    </div>

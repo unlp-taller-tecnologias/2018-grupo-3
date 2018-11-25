@@ -27,7 +27,8 @@ class PublicacionType extends AbstractType
         ->add('archivo', FileType::class)
         ->add('links')
         ->add('etiqueta')
-        ->add('usuarioPublicacion');
+        ->add('usuarioPublicacion')
+        ->add('catedra');
     }/**
      * {@inheritdoc}
      */

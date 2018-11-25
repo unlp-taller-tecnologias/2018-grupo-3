@@ -1,14 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Publicacion edit</h1>
+    <section class="formularios">
+        <h1>Editar publicación</h1>
 
-    {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input class="btn" type="submit" value="Edit" />
+        {{ form_end(edit_form) }}
+    </section>
 
-    <ul>
+<!--     <ul>
         <li>
             <a href="{{ path('publicacion_index') }}">Back to the list</a>
         </li>
@@ -17,5 +19,5 @@
                 <input type="submit" value="Delete">
             {{ form_end(delete_form) }}
         </li>
-    </ul>
+    </ul> -->
 {% endblock %}

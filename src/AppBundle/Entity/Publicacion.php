@@ -97,6 +97,12 @@ class Publicacion
     private $usuarioPublicacion;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Catedra", inversedBy="publicacionesCatedra")
+     * @ORM\JoinColumn(name="catedra", referencedColumnName="id")
+     */
+    private $catedra;
+
+    /**
      * @ORM\OneToMany(targetEntity="Modificacion", mappedBy="publicacionModificada")
      */
     private $modificaciones;
@@ -415,5 +421,29 @@ class Publicacion
     public function getModificaciones()
     {
         return $this->modificaciones;
+    }
+
+    /**
+     * Set catedra.
+     *
+     * @param \AppBundle\Entity\Catedra|null $catedra
+     *
+     * @return Publicacion
+     */
+    public function setCatedra(\AppBundle\Entity\Catedra $catedra = null)
+    {
+        $this->catedra = $catedra;
+
+        return $this;
+    }
+
+    /**
+     * Get catedra.
+     *
+     * @return \AppBundle\Entity\Catedra|null
+     */
+    public function getCatedra()
+    {
+        return $this->catedra;
     }
 }

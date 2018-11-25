@@ -13,7 +13,11 @@ class CatedraType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('nombre')->add('emailContacto')->add('horarioAtencion')->add('telefonoContacto')->add('usuarioResponsable');
+        $builder->add('nombre')
+        ->add('emailContacto')
+        ->add('horarioAtencion')
+        ->add('telefonoContacto')
+        ->add('usuariosResponsables');
     }/**
      * {@inheritdoc}
      */
