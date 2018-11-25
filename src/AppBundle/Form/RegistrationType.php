@@ -12,6 +12,7 @@ class RegistrationType extends AbstractType
     {
         $builder->add('nombre')
         ->add('apellido')
+        ->add('catedra')
         ->add('visado');
     }
 

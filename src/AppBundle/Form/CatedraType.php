@@ -16,8 +16,7 @@ class CatedraType extends AbstractType
         $builder->add('nombre')
         ->add('emailContacto')
         ->add('horarioAtencion')
-        ->add('telefonoContacto')
-        ->add('usuariosResponsables');
+        ->add('telefonoContacto');
     }/**
      * {@inheritdoc}
      */
