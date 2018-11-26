@@ -5,9 +5,14 @@
 		<div class="col-md-4 col-sm-12 col-xs-12">
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
 			{% for catedra in catedras %}
-				<div class="list-group">
+				<!-- <div class="list-group">
 				  <a target="blank" href="/catedra/{{catedra.id}}" class="list-group-item disabled">{{catedra.nombre}}</a>
-				</div>
+				</div> -->
+				<table class="table table-striped">
+					<td>
+						<i class="fas fa-angle-right"></i><a target="blank" href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
+					</td>
+				</table>
 			{% endfor %}
 	    </div>
 	    <div class="col-md-8 col-sm-12 col-xs-12">
