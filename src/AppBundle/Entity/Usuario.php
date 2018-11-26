@@ -97,6 +97,14 @@ class Usuario extends BaseUser
         return $this->id;
     }
 
+    public function __construct()
+    {
+        parent::__construct();
+        
+        // Add role
+        $this->addRole("ROLE_ADMIN");
+    }
+
     /**
      * Set nombre.
      *
