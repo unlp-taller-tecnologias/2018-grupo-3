@@ -38,6 +38,13 @@ class Catedra
     /**
      * @var string
      *
+     * @ORM\Column(name="secretario", type="string", length=255)
+     */
+    private $secretario;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="horario_atencion", type="string", length=255)
      */
     private $horarioAtencion;
@@ -249,5 +256,29 @@ class Catedra
 
     public function __toString() {
         return $this->nombre;
+    }
+
+    /**
+     * Set secretario.
+     *
+     * @param string $secretario
+     *
+     * @return Catedra
+     */
+    public function setSecretario($secretario)
+    {
+        $this->secretario = $secretario;
+
+        return $this;
+    }
+
+    /**
+     * Get secretario.
+     *
+     * @return string
+     */
+    public function getSecretario()
+    {
+        return $this->secretario;
     }
 }

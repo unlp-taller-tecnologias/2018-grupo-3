@@ -3,7 +3,7 @@
 body{
 	background-color: #eee;
 	font-family: 'Montserrat', sans-serif;
-	background-image: url("../static/fondo4.jpg");
+	background-image: url("../fondo4.jpg");
 }
 header{
 	background-color: #191F2E;
@@ -98,6 +98,7 @@ input.btn:hover{
 .publicaciones .jumbotron{
 	border-radius: 0;
 	padding: 3%;
+	background-color: rgb(248, 248, 255);
 }
 .publicaciones .jumbotron div{
 	padding: 3%;

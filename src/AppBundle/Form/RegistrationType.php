@@ -5,7 +5,6 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationType extends AbstractType
 {
@@ -14,12 +13,7 @@ class RegistrationType extends AbstractType
         $builder->add('nombre')
         ->add('apellido')
         ->add('catedra')
-        ->add('visado')
-        ->add('rol', ChoiceType::class, array(
-                'label' => 'Rol',
-                'required' => true,
-                'choices' => array('rol_admin' => 'admin', 'rol_moderador' => 'moderador' ),
-                'multiple' => true));
+        ->add('visado');
     }
 
     public function getParent()

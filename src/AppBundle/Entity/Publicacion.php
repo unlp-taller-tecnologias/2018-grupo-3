@@ -107,6 +107,13 @@ class Publicacion
      */
     private $modificaciones;
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="visada", type="boolean")
+     */
+    private $visada;
+
 
     /**
      * Get id
@@ -445,5 +452,29 @@ class Publicacion
     public function getCatedra()
     {
         return $this->catedra;
+    }
+
+    /**
+     * Set visada.
+     *
+     * @param bool $visada
+     *
+     * @return Publicacion
+     */
+    public function setVisada($visada)
+    {
+        $this->visada = $visada;
+
+        return $this;
+    }
+
+    /**
+     * Get visada.
+     *
+     * @return bool
+     */
+    public function getVisada()
+    {
+        return $this->visada;
     }
 }

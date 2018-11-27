@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 class CatedraType extends AbstractType
 {
@@ -16,7 +17,8 @@ class CatedraType extends AbstractType
         $builder->add('nombre')
         ->add('emailContacto')
         ->add('horarioAtencion')
-        ->add('telefonoContacto');
+        ->add('telefonoContacto')
+        ->add('secretario');
     }/**
      * {@inheritdoc}
      */

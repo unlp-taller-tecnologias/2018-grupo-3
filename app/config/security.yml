@@ -33,6 +33,7 @@ security:
     access_control:
         # - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: ROLE_ADMIN }
-        # - { path: ^/*, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/catedra/new, role: ROLE_ADMIN }
+        #- { path: ^/catedra, role: IS_AUTHENTICATED_FULLY }
         # - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         # - { path: ^/panel/, role: IS_AUTHENTICATED_FULLY }

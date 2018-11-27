@@ -1,0 +1,10 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<h2 class="titulo-form">Editar usuario:</h2>
+{{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
+    {{ form_widget(form) }}
+    <div>
+        <input class="btn" type="submit" value="Editar" />
+    </div>
+{{ form_end(form) }}
+
