@@ -3,7 +3,9 @@
 {% block body %}
     <div>
         <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
-        <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i>Edit</a>
+        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+            <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i>Edit</a>
+        {% endif %}
     </div>
 
     <div class="container-fluid info-catedra">
@@ -35,12 +37,22 @@
     {% for publicacion in publicaciones %}
             <div class="col-md-4">
                 <div class="jumbotron">
-                    <i class="fas fa-paperclip"></i>
-                    {{ publicacion.etiqueta }}
+                    <div class="header-publicacion">
+                        <p>
+                        <i class="fas fa-paperclip"></i>
+                        {{ publicacion.etiqueta }}
+                        </p>
+                        {{ publicacion.fechaPublicacion|date("d/m/Y") }}
+                    </div>
                     <div>
+                        <h6>{{ publicacion.titulo }}</h6>
+                        <p>{{ publicacion.bajada }}</p>
                         {{ publicacion.contenido|raw }}
-                        {{ publicacion.firmante }}
-                        {{ publicacion.usuarioPublicacion }}
+                        <div>
+                            <p>Firma la publicación:</p>
+                            {{ publicacion.firmante }}
+                        </div>
+                        
                     </div>
                 </div>
             </div>

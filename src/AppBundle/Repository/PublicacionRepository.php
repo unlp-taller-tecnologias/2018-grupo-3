@@ -15,7 +15,7 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
 		$fechaActual = new \DateTime("now");
 
 		$qb = $this->createQueryBuilder('p')
-			->where('p.fechaPublicacion < :fechaActual')->setParameter('fechaActual', $fechaActual);
+			->where('p.fechaCaducidad > :fechaActual')->setParameter('fechaActual', $fechaActual);
 		return $qb->getQuery()->getResult();
 
 	}
