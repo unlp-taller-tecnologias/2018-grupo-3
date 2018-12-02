@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="tablas">
+        <a class="btn" href="{{ path('usuario_new') }}">Añadir usuario</a>
+        <h3></h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Visado</th>
+                    <th>Telefono contacto</th>
+                    <th>Responsable de cátedra</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for usuario in usuarios %}
+                <tr>
+                    <td>
+                        <a href="{{ path('usuario_show', { 'id': usuario.id }) }}">
+                            {{ usuario.nombre }}
+                        </a>
+                    </td>
+                    <td>{{ usuario.apellido }}</td>
+                    <td>{% if usuario.visado %}Yes{% else %}No{% endif %}</td>
+                    <td>{{ usuario.telefonoContacto }}</td>
+                    <td>{{ usuario.catedra }}</td>
+                    <td>                         
+                        <i class="fas fa-edit"></i><a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">edit</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

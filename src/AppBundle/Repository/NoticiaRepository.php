@@ -10,5 +10,13 @@ namespace AppBundle\Repository;
  */
 class NoticiaRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function notciasActuales() {
 
+		$fechaActual = new \DateTime("now");
+
+		$qb = $this->createQueryBuilder('n')
+			->where('n.fechaCaducidad > :fechaActual')->setParameter('fechaActual', $fechaActual);
+		return $qb->getQuery()->getResult();
+
+	}
 }

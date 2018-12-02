@@ -7,6 +7,7 @@ security:
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_RESPONSABLE: ROLE_CATEDRA
 
     providers:
         fos_userbundle:
@@ -35,6 +36,5 @@ security:
         - { path: ^/register, role: ROLE_ADMIN }
         - { path: ^/catedra/+\d$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/catedra, role: ROLE_ADMIN }
-       
-        # - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        # - { path: ^/panel/, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/usuario/*, role: ROLE_ADMIN }
+        - { path: ^/publicacion/new$, role: ROLE_CATEDRA }

@@ -102,7 +102,7 @@ class Usuario extends BaseUser
         parent::__construct();
         
         // Add role
-        $this->addRole("ROLE_ADMIN");
+        $this->addRole("ROLE_CATEDRA");
     }
 
     /**

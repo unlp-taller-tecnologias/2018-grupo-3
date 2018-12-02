@@ -5,6 +5,7 @@
         <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
             <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i>Edit</a>
+            <a class="btn" href="{{ path('publicacion_new', { 'id': catedra.id }) }}"></i>Añadir publicación</a>
         {% endif %}
     </div>
 
@@ -20,12 +21,6 @@
     </div>
 <!-- 
     <ul class="nav">
-        <li class="nav item">
-            <a href="{{ path('catedra_index') }}">Back to the list</a>
-        </li>
-        <li class="nav item">
-            <a href="{{ path('catedra_edit', { 'id': catedra.id }) }}">Edit</a>
-        </li>
          <li class="nav item">
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">

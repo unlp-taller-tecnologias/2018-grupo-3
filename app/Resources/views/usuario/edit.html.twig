@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="formularios">
+        <h2 class="titulo-form">Usuario edit</h2>
+
+        {{ form_start(edit_form) }}
+            {{ form_widget(edit_form) }}
+            <input class="btn" type="submit" value="Edit" />
+        {{ form_end(edit_form) }}
+
+        <ul>
+            <li>
+                <a href="{{ path('usuario_index') }}">Back to the list</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </section>
+{% endblock %}
