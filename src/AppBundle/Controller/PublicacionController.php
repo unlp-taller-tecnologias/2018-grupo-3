@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Publicacion;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Publicacion controller.
@@ -24,10 +25,10 @@ class PublicacionController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $publicacions = $em->getRepository('AppBundle:Publicacion')->findAll();
+        $publicaciones = $em->getRepository('AppBundle:Publicacion')->publicacionesActuales();
 
         return $this->render('publicacion/index.html.twig', array(
-            'publicacions' => $publicacions,
+            'publicaciones' => $publicaciones,
         ));
     }
 
@@ -132,5 +133,34 @@ class PublicacionController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    /**
+     * Lista todas las publicaciones que estan pendientes de visado.
+     *
+     * @Route("/visar", name="publicacion_visar")
+     * @Method({"GET", "POST"})
+     */
+    public function publicacionesPendientesVisado()
+    {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')->findBy( 
+            array('visada' => false));
+
+        $visarform = $this->createForm(
+            'AppBundle\Form\PublicacionVisadoType',
+            $publicacionesPorVisar);
+        $visarform->handleRequest($request);
+
+        if ($visarform->isSubmitted() && $visarform->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('publicacion/visar.html.twig', array('visar_form' => $visarform->createView() ));
+        
     }
 }

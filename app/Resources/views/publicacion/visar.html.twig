@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="formularios">
+        <h1>Visar publicaciones:</h1>
+
+        {{ form_start(visar_form) }}
+            {{ form_widget(visar_form) }}
+            <input class="btn" type="submit" value="Guardar" />
+        {{ form_end(visar_form) }}
+    </section>
+
+{% endblock %}

@@ -9,26 +9,19 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class PublicacionType extends AbstractType
+class PublicacionVisadoType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titulo')
-        ->add('bajada', TextareaType::class, array('attr' => array('class' => 'tinymce') ))
-        ->add('nombreAutor')
-        ->add('fechaPublicacion', DateType::class, array('widget' => 'single_text'))
-        ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
-        ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
-        ->add('firmante')
-        // ->add('archivo', FileType::class)
-        ->add('links')
-        ->add('etiqueta')
-        ->add('usuarioPublicacion')
-        ->add('catedra');
+        $builder->add('titulo', CollectionType::class, array(
+            'entry_type' => TagType::class,
+            'entry_options' => array('label' => false )
+        ));
     }/**
      * {@inheritdoc}
      */

@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Publicacions list</h1>
+    <h1>Publicaciones list</h1>
 
     <table>
         <thead>
@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for publicacion in publicacions %}
+        {% for publicacion in publicaciones %}
             <tr>
                 <td><a href="{{ path('publicacion_show', { 'id': publicacion.id }) }}">{{ publicacion.id }}</a></td>
                 <td>{{ publicacion.titulo }}</td>

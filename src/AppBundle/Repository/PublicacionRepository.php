@@ -10,4 +10,13 @@ namespace AppBundle\Repository;
  */
 class PublicacionRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function publicacionesActuales() {
+
+		$fechaActual = new \DateTime("now");
+
+		$qb = $this->createQueryBuilder('p')
+			->where('p.fechaPublicacion < :fechaActual')->setParameter('fechaActual', $fechaActual);
+		return $qb->getQuery()->getResult();
+
+	}
 }

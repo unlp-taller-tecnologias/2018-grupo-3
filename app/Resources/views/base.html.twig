@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8" />
@@ -19,25 +19,28 @@
     
     <nav class="navbar navbar-default">
        <div class="container-fluid">
-           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-               <ul class="nav navbar-nav navbar-right">
-                   {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                       <li><a href="{{ path('fos_user_profile_edit') }}">
-                               Logged in as {{ app.user.username }}
+               <ul class="nav">
+                   {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                       <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_profile_edit') }}">
+                              {{ app.user.username }}
                            </a>
                        </li>
-                       <li><a href="{{ path('fos_user_security_logout') }}">
-                               {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                       <li class="nav-item">
+                        <a class="nav-link" href="{{ path('catedra_index') }}">
+                               Cátedras
+                           </a>
+                       </li>
+                       <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">
+                               CERRAR SESIÓN
                            </a>
                        </li>
                    {% else %}
-                       <li><a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                       <li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">INICIAR SESIÓN</a></li>
                    {% endif %}
                </ul>
-           </div>
        </div>
     </nav>
-
 
     <body>
         {% block body %}{% endblock %}

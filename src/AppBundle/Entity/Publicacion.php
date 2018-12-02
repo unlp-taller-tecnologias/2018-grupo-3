@@ -110,9 +110,16 @@ class Publicacion
     /**
      * @var bool
      *
-     * @ORM\Column(name="visada", type="boolean")
+     * @ORM\Column(name="visada", type="boolean", nullable=true)
      */
     private $visada;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="aprobada", type="boolean", nullable=true)
+     */
+    private $aprobada;
 
 
     /**
@@ -476,5 +483,29 @@ class Publicacion
     public function getVisada()
     {
         return $this->visada;
+    }
+
+    /**
+     * Set aprobada.
+     *
+     * @param bool $aprobada
+     *
+     * @return Publicacion
+     */
+    public function setAprobada($aprobada)
+    {
+        $this->aprobada = $aprobada;
+
+        return $this;
+    }
+
+    /**
+     * Get aprobada.
+     *
+     * @return bool
+     */
+    public function getAprobada()
+    {
+        return $this->aprobada;
     }
 }

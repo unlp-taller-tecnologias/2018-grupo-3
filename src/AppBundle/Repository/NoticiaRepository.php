@@ -10,4 +10,5 @@ namespace AppBundle\Repository;
  */
 class NoticiaRepository extends \Doctrine\ORM\EntityRepository
 {
+
 }
