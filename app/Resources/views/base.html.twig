@@ -21,9 +21,12 @@
 			<div class="container-fluid">
 							<ul class="nav">	 		 
 								{% if is_granted("ROLE_ADMIN") %}
+									<li class="nav-link nombre-usuario">
+										{{ app.user.username }}
+									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="{{ path('fos_user_profile_edit') }}">
-											{{ app.user.username }}
+										<a class="nav-link" href="{{ path('fos_user_security_logout') }}">
+											Cerrar sesión
 										</a>
 									</li>
 									<li class="nav-item">
@@ -32,20 +35,18 @@
 										</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="{{ path('fos_user_security_logout') }}">
-											Cerrar sesión
-										</a>
-									</li>
-									<li class="nav-item">
 										<a class="nav-link" href="{{ path('usuario_index') }}">
 											Usuarios
 										</a>
 									</li>
-								{% elseif is_granted("ROLE_CATEDRA") %}
 									<li class="nav-item">
-										<a class="nav-link" href="{{ path('fos_user_profile_edit') }}">
-											{{ app.user.username }}
+										<a class="nav-link" href="{{ path('noticia_index') }}">
+											Noticias
 										</a>
+									</li>
+								{% elseif is_granted("ROLE_CATEDRA") %}
+									<li class="nav-link nombre-usuario">
+										{{ app.user.username }}
 									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{{ path('publicacion_new') }}">

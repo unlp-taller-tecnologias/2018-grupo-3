@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UsuarioType extends AbstractType
 {
@@ -17,7 +18,8 @@ class UsuarioType extends AbstractType
         ->add('apellido')
         ->add('visado')
         ->add('telefonoContacto')
-        ->add('catedra');
+        ->add('catedra')
+        ->add('roles');
     }/**
      * {@inheritdoc}
      */
@@ -28,7 +30,10 @@ class UsuarioType extends AbstractType
         ));
     }
 
-    /**
+    public function getParent()
+    {
+        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+    }/**
      * {@inheritdoc}
      */
     public function getBlockPrefix()

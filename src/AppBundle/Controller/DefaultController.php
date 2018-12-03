@@ -15,7 +15,7 @@ class DefaultController extends Controller
     {
         // replace this example code with whatever you need
         $em =   $this->getDoctrine()->getManager();
-        $noticias = $em->getRepository('AppBundle:Noticia')->findAll();
+        $noticias = $em->getRepository('AppBundle:Noticia')->noticiasActuales();
         $catedras = $em->getRepository('AppBundle:Catedra')->findAll();
         return $this->render('default/index.html.twig', array(
             'noticias' => $noticias,

@@ -7,7 +7,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Catedra
- * @UniqueEntity("nombre")
+ * @UniqueEntity("nombre", message="La cátedra ya se encuentra en la base de datos.")
  * @ORM\Table(name="catedra")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CatedraRepository")
  */

@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationType extends AbstractType
 {
@@ -13,7 +14,8 @@ class RegistrationType extends AbstractType
         $builder->add('nombre')
         ->add('apellido')
         ->add('catedra')
-        ->add('visado');
+        ->add('visado')
+        ->add('roles', ChoiceType::class);
     }
 
     public function getParent()
@@ -26,20 +28,8 @@ class RegistrationType extends AbstractType
         return 'app_user_registration';
     }
 
-    // For Symfony 2.x
-    public function getName()
-    {
-        return $this->getBlockPrefix();
-    }
-
     public function getExistingRoles()
     {
-        // $roleHierarchy = $this->container->getParameter('security.role_hierarchy.roles');
-        // $roles = array_keys($roleHierarchy);
-
-        // foreach ($roles as $role) {
-        //     $theRoles[$role] = $role;
-        // }
-        // return $theRoles;
+        
     }
 }

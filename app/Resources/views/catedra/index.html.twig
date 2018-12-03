@@ -5,7 +5,7 @@
     <a class="btn" href="{{ path('catedra_new') }}">Añadir cátedra</a>
     <h3 class="titulo-tabla"></h3>
 
-    <table>
+    <table class="table table-responsive">
         <thead>
             <tr>
                 <th>Nombre</th>
@@ -25,7 +25,7 @@
                 <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}</td>
                 <td>{{ catedra.telefonoContacto }}</td>
                 <td>
-                    <i class="fas fa-edit"><a href="{{ path('catedra_edit', { 'id': catedra.id }) }}">edit</a>
+                    <i class="fas fa-edit"></i><a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}

@@ -29,7 +29,7 @@
                     <td>{{ usuario.telefonoContacto }}</td>
                     <td>{{ usuario.catedra }}</td>
                     <td>                         
-                        <i class="fas fa-edit"></i><a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">edit</a>
+                        <i class="fas fa-edit"></i><a class="opcion" href="{{ path('usuario_edit', { 'id': usuario.id }) }}">editar</a>
                     </td>
                 </tr>
             {% endfor %}

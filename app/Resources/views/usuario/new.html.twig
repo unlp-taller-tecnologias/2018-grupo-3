@@ -2,17 +2,12 @@
 
 {% block body %}
     <section class="formularios">
-        <h2 class="titulo-form">Nuevo usuario</h2>
+        <h2 class="titulo-form">Nuevo usuario:</h2>
 
         {{ form_start(form) }}
             {{ form_widget(form) }}
-            <input class="btn" type="submit" value="Create" />
+            <input class="btn" type="submit" value="Guardar" />
         {{ form_end(form) }}
 
-        <ul>
-            <li>
-                <a href="{{ path('usuario_index') }}">Back to the list</a>
-            </li>
-        </ul>
     </section>
 {% endblock %}

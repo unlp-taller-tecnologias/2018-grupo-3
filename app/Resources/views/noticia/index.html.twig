@@ -1,47 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Noticias list</h1>
+<section class="tablas">
+    <a class="btn" href="{{ path('noticia_new') }}">Añadir noticia</a>
+    <h3>Noticias:</h3>
 
-    <table>
+    <table class="table table-responsive">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Titulo</th>
                 <th>Bajada</th>
                 <th>Fechapublicacion</th>
                 <th>Contenido</th>
                 <th>Firmante</th>
-                <th>Actions</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         {% for noticia in noticias %}
             <tr>
-                <td><a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.id }}</a></td>
-                <td>{{ noticia.titulo }}</td>
+                <td>
+                    <a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.titulo }}</a>
+                </td>
                 <td>{{ noticia.bajada }}</td>
                 <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
                 <td>{{ noticia.contenido|raw }}</td>
                 <td>{{ noticia.firmante }}</td>
                 <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('noticia_show', { 'id': noticia.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('noticia_edit', { 'id': noticia.id }) }}">edit</a>
-                        </li>
-                    </ul>
+                    <i class="fas fa-edit"></i><a class="opcion" href="{{ path('noticia_edit', { 'id': noticia.id }) }}">edit</a>
                 </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('noticia_new') }}">Create a new noticia</a>
-        </li>
-    </ul>
+</section>
 {% endblock %}

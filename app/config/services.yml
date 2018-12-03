@@ -14,9 +14,9 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
     app.form.registration:
-        class: AppBundle\Form\RegistrationType
+        class: AppBundle\Form\UsuarioType
         tags:
-            - { name: form.type, alias: app_user_registration }
+            - { name: form.type, alias: appbundle_usuario }
     app.form.profile:
         class: AppBundle\Form\ProfileType
         tags:

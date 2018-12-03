@@ -61,6 +61,12 @@ class Noticia
      * @ORM\JoinColumn(name="usuario_noticia", referencedColumnName="id")
      */
     private $usuarioNoticia;
+    /**
+     * @var \Date
+     *
+     * @ORM\Column(name="fecha_caducidad", type="date", nullable=true)
+     */
+    private $fechaCaducidad;
 
 
     /**
@@ -215,5 +221,29 @@ class Noticia
     public function getUsuarioNoticia()
     {
         return $this->usuarioNoticia;
+    }
+
+    /**
+     * Set fechaCaducidad.
+     *
+     * @param \DateTime|null $fechaCaducidad
+     *
+     * @return Noticia
+     */
+    public function setFechaCaducidad($fechaCaducidad = null)
+    {
+        $this->fechaCaducidad = $fechaCaducidad;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaCaducidad.
+     *
+     * @return \DateTime|null
+     */
+    public function getFechaCaducidad()
+    {
+        return $this->fechaCaducidad;
     }
 }

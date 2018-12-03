@@ -20,6 +20,7 @@ class NoticiaType extends AbstractType
         $builder->add('titulo')
         ->add('bajada', TextareaType::class, array('attr' => array('class' => 'tinymce') ))
         ->add('fechaPublicacion', DateType::class, array('widget' => 'single_text'))
+        ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
         ->add('firmante')
         ->add('usuarioNoticia');

@@ -10,7 +10,7 @@ namespace AppBundle\Repository;
  */
 class NoticiaRepository extends \Doctrine\ORM\EntityRepository
 {
-	public function notciasActuales() {
+	public function noticiasActuales() {
 
 		$fechaActual = new \DateTime("now");
 

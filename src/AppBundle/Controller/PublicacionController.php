@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * Publicacion controller.
@@ -139,7 +140,7 @@ class PublicacionController extends Controller
      * Lista todas las publicaciones que estan pendientes de visado.
      *
      * @Route("/visar", name="publicacion_visar")
-     * @Method({"GET", "POST"})
+     * @Method({"POST"})
      */
     public function publicacionesPendientesVisado()
     {
