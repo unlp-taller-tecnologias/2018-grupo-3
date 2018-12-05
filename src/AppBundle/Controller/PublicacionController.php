@@ -140,7 +140,7 @@ class PublicacionController extends Controller
      * Lista todas las publicaciones que estan pendientes de visado.
      *
      * @Route("/visar", name="publicacion_visar")
-     * @Method({"POST"})
+     * @Method({"GET"})
      */
     public function publicacionesPendientesVisado()
     {
@@ -151,17 +151,17 @@ class PublicacionController extends Controller
             array('visada' => false));
 
         $visarform = $this->createForm(
-            'AppBundle\Form\PublicacionVisadoType',
-            $publicacionesPorVisar);
-        $visarform->handleRequest($request);
+            'AppBundle\Form\PublicacionVisadoType');
 
-        if ($visarform->isSubmitted() && $visarform->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        // if ($visarform->isSubmitted() && $visarform->isValid()) {
+        //     $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('homepage');
-        }
+        //     return $this->redirectToRoute('homepage');
+        // }
 
-        return $this->render('publicacion/visar.html.twig', array('visar_form' => $visarform->createView() ));
+        return $this->render('publicacion/visar.html.twig', array(
+            'visar_form' => $visarform->createView(),
+            'publicaciones' => $publicacionesPorVisar ));
         
     }
 }
