@@ -8,6 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 /**
  * Publicacion controller.
@@ -24,36 +27,13 @@ class PublicacionController extends Controller
      */
     public function indexAction()
     {
-
-
         $em = $this->getDoctrine()->getManager();
 
-        $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')->findBy( 
-            array('visada' => false));
+        $publicaciones = $em->getRepository('AppBundle:Publicacion')->publicacionesActuales();
 
-        $publicacionesParaVisar=[];
-    
-        foreach ($publicacionesPorVisar as $publicacion) {
-
-            $publicacionesParaVisar[$publicacion->getId()] = ['publicacion' => $publicacion, 'visado' => 'false'] ;
-        
-        }
-
-        $visar = $this->createForm(
-            'AppBundle\Form\PublicacionVisadoType', $publicacionesParaVisar);
-
-        return $this->render('publicacion/prueba.html.twig', array(
-            'publicaciones' => $publicacionesParaVisar,
-            'visar_form' => $visar->createView(),
+        return $this->render('publicacion/index.html.twig', array(
+            'publicaciones' => $publicaciones,
         ));
-
-        // $em = $this->getDoctrine()->getManager();
-
-        // $publicaciones = $em->getRepository('AppBundle:Publicacion')->publicacionesActuales();
-
-        // return $this->render('publicacion/index.html.twig', array(
-        //     'publicaciones' => $publicaciones,
-        // ));
     }
 
     /**
@@ -65,21 +45,37 @@ class PublicacionController extends Controller
     public function newAction(Request $request)
     {
         $publicacion = new Publicacion();
-        $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
-        $form->handleRequest($request);
+        $em = $this->getDoctrine()->getManager();
+        $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')
+                                    ->findBy(array('visada' => false));
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($publicacion);
-            $em->flush();
+        $visarForm = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion,
+                                        array('data' => $publicacionesPorVisar));
+        $visarForm->handleRequest($request);
 
-            return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
-        }
-
-        return $this->render('publicacion/new.html.twig', array(
-            'publicacion' => $publicacion,
-            'form' => $form->createView(),
+        return $this->render('publicacion/prueba.html.twig', array(
+            'publicaciones' => $publicacionesPorVisar,
+            'visar_form' => $visarForm->createView(),
         ));
+
+
+
+        // $publicacion = new Publicacion();
+        // $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
+        // $form->handleRequest($request);
+        //
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $em = $this->getDoctrine()->getManager();
+        //     $em->persist($publicacion);
+        //     $em->flush();
+        //
+        //     return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
+        // }
+        //
+        // return $this->render('publicacion/new.html.twig', array(
+        //     'publicacion' => $publicacion,
+        //     'form' => $form->createView(),
+        // ));
     }
 
     /**
@@ -159,42 +155,28 @@ class PublicacionController extends Controller
         ;
     }
 
-    /**
-     * Lista todas las publicaciones que estan pendientes de visado.
-     *
-     * @Route("/visar", name="publicacion_visar")
-     * @Method({"GET"})
-     */
-    public function publicacionesPendientesVisado()
+     /**
+      * Lista todas las publicaciones que estan pendientes de visado.
+      *
+      * @Route("/visar", name="publicacion_visar")
+      * @Method({"GET", "POST"})
+      */
+    public function visarAction(Request $request)
     {
 
-        $em = $this->getDoctrine()->getManager();
-
-        $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')->findBy( 
-            array('visada' => false));
-
-        $publicacionesParaVisar = array(array());
+      $em = $this->getDoctrine()->getManager();
+      $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')
+                                  ->findBy(array('visada' => false));
 
 
-        foreach ($publicacionesPorVisar as $publicacion) {
+      $visarForm = $this->createFormBuilder()
+                      ->add(array('aprobar', CheckboxType::class))
+                      ->add(array('rechazar', CheckboxType::class))
+                      ->getForm();
 
-            $publicacionesParaVisar['publicacion'] = ['id' => $publicacion.getId(), 'visado' => false] ;
-            // $publicacionesParaVisar[$publicacion.getId()]['visado'] = false;
-
-        }
-
-        $visarform = $this->createForm(
-            'AppBundle\Form\PublicacionVisadoType', $publicacionesParaVisar);
-
-        // if ($visarform->isSubmitted() && $visarform->isValid()) {
-        //     $this->getDoctrine()->getManager()->flush();
-
-        //     return $this->redirectToRoute('homepage');
-        // }
-
-        // return $this->render('publicacion/visar.html.twig', array(
-        //     'visar_form' => $visarform->createView(),
-        //     'publicaciones' => $publicacionesPorVisar ));
-        
+      return $this->render('publicacion/prueba.html.twig', array(
+          'publicaciones' => $publicacionesPorVisar,
+          'visar_form' => $visarForm->createView(),
+      ));
     }
 }

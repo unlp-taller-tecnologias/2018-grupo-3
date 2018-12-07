@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class PublicacionVisadoType extends AbstractType
 {
@@ -19,11 +21,14 @@ class PublicacionVisadoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         //publicaciones es todo el form grande
-        $builder->add('publicaciones', CollectionType::class, array(
-            'entry_type' => array(),
-            'entry_options' => array('visado' => false),
-        ));
-    }/**
+        foreach ($options['data'] as $pPV) {
+          $builder ->add('Aprobar'.$pPV->getId(), CheckboxType::class);
+        }
+        $builder ->add('Confirmar', SubmitType::class);
+
+    }
+
+    /**
      * {@inheritdoc}
      */
     // public function configureOptions(OptionsResolver $resolver)
