@@ -24,13 +24,36 @@ class PublicacionController extends Controller
      */
     public function indexAction()
     {
+
+
         $em = $this->getDoctrine()->getManager();
 
-        $publicaciones = $em->getRepository('AppBundle:Publicacion')->publicacionesActuales();
+        $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')->findBy( 
+            array('visada' => false));
 
-        return $this->render('publicacion/index.html.twig', array(
-            'publicaciones' => $publicaciones,
+        $publicacionesParaVisar=[];
+    
+        foreach ($publicacionesPorVisar as $publicacion) {
+
+            $publicacionesParaVisar[$publicacion->getId()] = ['publicacion' => $publicacion, 'visado' => 'false'] ;
+        
+        }
+
+        $visar = $this->createForm(
+            'AppBundle\Form\PublicacionVisadoType', $publicacionesParaVisar);
+
+        return $this->render('publicacion/prueba.html.twig', array(
+            'publicaciones' => $publicacionesParaVisar,
+            'visar_form' => $visar->createView(),
         ));
+
+        // $em = $this->getDoctrine()->getManager();
+
+        // $publicaciones = $em->getRepository('AppBundle:Publicacion')->publicacionesActuales();
+
+        // return $this->render('publicacion/index.html.twig', array(
+        //     'publicaciones' => $publicaciones,
+        // ));
     }
 
     /**
@@ -150,8 +173,18 @@ class PublicacionController extends Controller
         $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')->findBy( 
             array('visada' => false));
 
+        $publicacionesParaVisar = array(array());
+
+
+        foreach ($publicacionesPorVisar as $publicacion) {
+
+            $publicacionesParaVisar['publicacion'] = ['id' => $publicacion.getId(), 'visado' => false] ;
+            // $publicacionesParaVisar[$publicacion.getId()]['visado'] = false;
+
+        }
+
         $visarform = $this->createForm(
-            'AppBundle\Form\PublicacionVisadoType');
+            'AppBundle\Form\PublicacionVisadoType', $publicacionesParaVisar);
 
         // if ($visarform->isSubmitted() && $visarform->isValid()) {
         //     $this->getDoctrine()->getManager()->flush();
@@ -159,9 +192,9 @@ class PublicacionController extends Controller
         //     return $this->redirectToRoute('homepage');
         // }
 
-        return $this->render('publicacion/visar.html.twig', array(
-            'visar_form' => $visarform->createView(),
-            'publicaciones' => $publicacionesPorVisar ));
+        // return $this->render('publicacion/visar.html.twig', array(
+        //     'visar_form' => $visarform->createView(),
+        //     'publicaciones' => $publicacionesPorVisar ));
         
     }
 }

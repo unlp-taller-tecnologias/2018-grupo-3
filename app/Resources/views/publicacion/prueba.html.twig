@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+
+{{ form_row(visar_form.publicaciones) }}
+
+
+{{ form_start(visar_form) }}
+	{{ form_row((visar_form.publicaciones)) }}
+            <input class="btn" type="submit" value="Edit" />
+{{ form_end(visar_form) }}
+
+{% endblock %}

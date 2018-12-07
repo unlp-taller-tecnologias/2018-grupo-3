@@ -18,19 +18,20 @@ class PublicacionVisadoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titulo', CollectionType::class, array(
-            'entry_type' => TagType::class,
-            'entry_options' => array('label' => false )
+        //publicaciones es todo el form grande
+        $builder->add('publicaciones', CollectionType::class, array(
+            'entry_type' => array(),
+            'entry_options' => array('visado' => false),
         ));
     }/**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Publicacion'
-        ));
-    }
+    // public function configureOptions(OptionsResolver $resolver)
+    // {
+    //     $resolver->setDefaults(array(
+    //         'data_class' => 'AppBundle\Entity\Publicacion'
+    //     ));
+    // }
 
     /**
      * {@inheritdoc}
