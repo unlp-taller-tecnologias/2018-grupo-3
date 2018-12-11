@@ -49,11 +49,22 @@ class PublicacionController extends Controller
         $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')
                                     ->findBy(array('visada' => false));
 
-        $visarForm = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion,
-                                        array('data' => $publicacionesPorVisar));
+        $visarForm = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion);
         $visarForm->handleRequest($request);
 
-        return $this->render('publicacion/prueba.html.twig', array(
+        if ($visarForm->isSubmitted() && $visarForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
+            if ($publicaciones){
+                foreach ($publicaciones as $clave) {
+                    $publicacion = $em->getRepository('AppBundle:Publicacion')->find($clave);
+                    $publicacion->setAprobada(1);
+                    $em->persist($publicacion);
+                }
+            }
+            $em->flush();     
+        }
+        return $this->render('publicacion/prueba_2.html.twig', array(
             'publicaciones' => $publicacionesPorVisar,
             'visar_form' => $visarForm->createView(),
         ));

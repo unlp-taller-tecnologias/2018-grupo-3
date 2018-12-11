@@ -19,7 +19,13 @@ class UsuarioType extends AbstractType
         ->add('visado')
         ->add('telefonoContacto')
         ->add('catedra')
-        ->add('roles');
+        ->add('rol', ChoiceType::class, array(
+            'choices' => array(
+                'admin' => 'ROLE_ADMIN',
+                'moderador' => 'ROLE_MODERADOR',
+                'responsable' => 'ROLE_RESPONSABLE' ),
+            'expanded' => false,
+            'required' => true ));
     }/**
      * {@inheritdoc}
      */

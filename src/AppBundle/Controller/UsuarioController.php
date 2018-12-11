@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use FOS\UserBundle\Model\UserManagerInterface;
 
 /**
  * Usuario controller.
@@ -15,6 +16,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class UsuarioController extends Controller
 {
+
+    private $userManager;
     /**
      * Lists all usuario entities.
      *
@@ -38,16 +41,21 @@ class UsuarioController extends Controller
      * @Route("/new", name="usuario_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,  UserManagerInterface $userManager)
     {
-        $usuario = new Usuario();
+
+        $this->userManager = $userManager;
+        $usuario = $this->userManager->createUser();
+        
+        $usuario->setEnabled(true);
+
+        
         $form = $this->createForm('AppBundle\Form\UsuarioType', $usuario);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($usuario);
-            $em->flush();
+
+            $this->userManager->updateUser($usuario);
 
             return $this->redirectToRoute('usuario_show', array('id' => $usuario->getId()));
         }
@@ -80,16 +88,18 @@ class UsuarioController extends Controller
      * @Route("/{id}/edit", name="usuario_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Usuario $usuario)
+    public function editAction(Request $request, Usuario $usuario, UserManagerInterface $userManager)
     {
+        $this->userManager = $userManager;
         $deleteForm = $this->createDeleteForm($usuario);
         $editForm = $this->createForm('AppBundle\Form\UsuarioType', $usuario);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->userManager->updateUser($usuario);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('usuario_edit', array('id' => $usuario->getId()));
+            return $this->redirectToRoute('usuario');
         }
 
         return $this->render('usuario/edit.html.twig', array(
