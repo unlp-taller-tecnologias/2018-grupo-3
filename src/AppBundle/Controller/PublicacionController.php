@@ -45,14 +45,10 @@ class PublicacionController extends Controller
     public function newAction(Request $request)
     {
         $publicacion = new Publicacion();
-        $em = $this->getDoctrine()->getManager();
-        $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')
-                                    ->findBy(array('visada' => false));
+        $form = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion);
+        $form->handleRequest($request);
 
-        $visarForm = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion);
-        $visarForm->handleRequest($request);
-
-        if ($visarForm->isSubmitted() && $visarForm->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
             if ($publicaciones){
@@ -64,9 +60,8 @@ class PublicacionController extends Controller
             }
             $em->flush();     
         }
-        return $this->render('publicacion/prueba_2.html.twig', array(
-            'publicaciones' => $publicacionesPorVisar,
-            'visar_form' => $visarForm->createView(),
+        return $this->render('publicacion/visar.html.twig', array(
+            'visar_form' => $form->createView(),
         ));
 
 
@@ -175,19 +170,24 @@ class PublicacionController extends Controller
     public function visarAction(Request $request)
     {
 
-      $em = $this->getDoctrine()->getManager();
-      $publicacionesPorVisar = $em->getRepository('AppBundle:Publicacion')
-                                  ->findBy(array('visada' => false));
+        $publicacion = new Publicacion();
+        $form = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion);
+        $form->handleRequest($request);
 
-
-      $visarForm = $this->createFormBuilder()
-                      ->add(array('aprobar', CheckboxType::class))
-                      ->add(array('rechazar', CheckboxType::class))
-                      ->getForm();
-
-      return $this->render('publicacion/prueba.html.twig', array(
-          'publicaciones' => $publicacionesPorVisar,
-          'visar_form' => $visarForm->createView(),
-      ));
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
+            if ($publicaciones){
+                foreach ($publicaciones as $clave) {
+                    $publicacion = $em->getRepository('AppBundle:Publicacion')->find($clave);
+                    $publicacion->setAprobada(1);
+                    $em->persist($publicacion);
+                }
+            }
+            $em->flush();     
+        }
+        return $this->render('publicacion/visar.html.twig', array(
+            'visar_form' => $form->createView(),
+        ));
     }
 }

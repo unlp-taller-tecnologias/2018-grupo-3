@@ -508,4 +508,9 @@ class Publicacion
     {
         return $this->aprobada;
     }
+
+    public function toString(){
+        return $this->titulo . " - " . $this->getEtiqueta()->getNombre() . " - " . "Para la cátedra: " . 
+        $this->getCatedra()->getNombre() . " - " . "Realizada por: " . $this->getUsuarioPublicacion();
+    }
 }
