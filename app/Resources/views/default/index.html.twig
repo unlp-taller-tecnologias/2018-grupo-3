@@ -4,13 +4,22 @@
 	<div class="row home">
 		<div class="col-md-4 col-sm-12 col-xs-12">
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
-			{% for catedra in catedras %}
-				<table class="table table-striped">
-					<td>
-						<i class="fas fa-angle-right"></i><a target="blank" href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
-					</td>
+			
+			<label for="buscador">Buscar:</label> <input type="text" class="texto-gris" id="buscador" value=""/>
+
+			
+				<table id="tablaLaWebera" class="table table-striped">
+					<tbody>
+						{% for catedra in catedras %}
+						<tr>
+							<td>
+								<i class="fas fa-angle-right"></i><a target="blank" href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
 				</table>
-			{% endfor %}
+			
 	    </div>
 	    <div class="col-md-8 col-sm-12 col-xs-12">
 	    	<h2 class="titulo-noticias-home">Noticias  <i class="fas fa-bullhorn"></i></h2>
@@ -27,5 +36,23 @@
 		    {% endfor %}
 	    </div>
     </div>
-{% endblock %}
 
+    <script type="text/javascript">
+	jQuery("#buscador").keyup(function(){
+	    if( jQuery(this).val() != ""){
+	        jQuery("#tablaLaWebera tbody>tr").hide();
+	        jQuery("#tablaLaWebera td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+	    }
+	    else{
+	        jQuery("#tablaLaWebera tbody>tr").show();
+	    }
+	});
+	 
+	jQuery.extend(jQuery.expr[":"], 
+	{
+	    "contiene-palabra": function(elem, i, match, array) {
+	        return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
+	    }
+	});
+	</script>
+{% endblock %}
