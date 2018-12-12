@@ -165,3 +165,9 @@ input.btn:hover, a.btn:hover{
 	font-weight: bold;
 	text-transform: uppercase;
 }
+.buscador{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin: 5%;
+}

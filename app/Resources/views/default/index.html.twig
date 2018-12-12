@@ -5,20 +5,21 @@
 		<div class="col-md-4 col-sm-12 col-xs-12">
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
 			
-			<label for="buscador">Buscar:</label> <input type="text" class="texto-gris" id="buscador" value=""/>
+			<div class="buscador">
+				<input type="text" class="texto-gris" placeholder="Filtrar por nombre de la cátedra" id="buscador" value=""/>
+			</div>
 
-			
-				<table id="tablaLaWebera" class="table table-striped">
-					<tbody>
-						{% for catedra in catedras %}
-						<tr>
-							<td>
-								<i class="fas fa-angle-right"></i><a target="blank" href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
+			<table id="tablaCatedras" class="table table-striped">
+				<tbody>
+					{% for catedra in catedras %}
+					<tr>
+						<td>
+							<i class="fas fa-angle-right"></i><a target="blank" href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
 			
 	    </div>
 	    <div class="col-md-8 col-sm-12 col-xs-12">
@@ -40,11 +41,11 @@
     <script type="text/javascript">
 	jQuery("#buscador").keyup(function(){
 	    if( jQuery(this).val() != ""){
-	        jQuery("#tablaLaWebera tbody>tr").hide();
-	        jQuery("#tablaLaWebera td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
+	        jQuery("#tablaCatedras tbody>tr").hide();
+	        jQuery("#tablaCatedras td:contiene-palabra('" + jQuery(this).val() + "')").parent("tr").show();
 	    }
 	    else{
-	        jQuery("#tablaLaWebera tbody>tr").show();
+	        jQuery("#tablaCatedras tbody>tr").show();
 	    }
 	});
 	 
