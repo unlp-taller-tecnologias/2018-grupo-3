@@ -54,9 +54,18 @@ class UsuarioController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData()->getRol()->getNombre();
+            switch ($data) {
+                case 'responsable':
+                    $usuario->addRole('ROLE_CATEDRA');
+                    break;
+                
+                case 'administrador':
+                    $usuario->addRole('ROLE_ADMIN');
+                    break;
+            }
 
             $this->userManager->updateUser($usuario);
-
             return $this->redirectToRoute('usuario_show', array('id' => $usuario->getId()));
         }
 

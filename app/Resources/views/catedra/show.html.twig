@@ -49,6 +49,7 @@
                         <h6>{{ publicacion.titulo }}</h6>
                         <p>{{ publicacion.bajada }}</p>
                         {{ publicacion.contenido|raw }}
+                        <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
                         <div>
                             <p>Firma la publicación:</p>
                             {{ publicacion.firmante }}

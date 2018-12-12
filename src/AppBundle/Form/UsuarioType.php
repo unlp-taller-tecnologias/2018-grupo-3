@@ -5,7 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use AppBundle\Entity\Rol;
 
 class UsuarioType extends AbstractType
 {
@@ -19,13 +20,14 @@ class UsuarioType extends AbstractType
         ->add('visado')
         ->add('telefonoContacto')
         ->add('catedra')
-        ->add('rol', ChoiceType::class, array(
-            'choices' => array(
-                'admin' => 'ROLE_ADMIN',
-                'moderador' => 'ROLE_MODERADOR',
-                'responsable' => 'ROLE_RESPONSABLE' ),
-            'expanded' => false,
-            'required' => true ));
+        ->add('rol', EntityType::class, array(
+            'label' => 'Rol',
+            'required' => true,
+            'class' => 'AppBundle:Rol',
+            'choice_label' => function($rol){
+                return $rol->getNombre();
+            },
+            'expanded' => false));
     }/**
      * {@inheritdoc}
      */
