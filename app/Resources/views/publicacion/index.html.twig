@@ -13,6 +13,7 @@
                     <th>Nombre autor</th>
                     <th>Fecha publicacion</th>
                     <th>Contenido</th>
+                    <th>Archivos:</th>
                     <th>Fecha caducidad</th>
                     <th>Firmante</th>
                     <th></th>
@@ -30,6 +31,9 @@
                     <td>{{ publicacion.nombreAutor }}</td>
                     <td>{% if publicacion.fechaPublicacion %}{{ publicacion.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ publicacion.contenido|raw }}</td>
+                    <td>
+                        <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
+                    </td>
                     <td>{% if publicacion.fechaCaducidad %}{{ publicacion.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ publicacion.firmante }}</td>
                     <td>
