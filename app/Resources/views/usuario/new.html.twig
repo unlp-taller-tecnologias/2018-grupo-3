@@ -5,7 +5,21 @@
         <h2 class="titulo-form">Nuevo usuario:</h2>
 
         {{ form_start(form) }}
+
+        	{{ form_row(form.nombre) }}
+
+        	{{ form_row(form.apellido) }}
+
+        	{{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su e-mail' }, 'label': 'E-mail:'}) }}
+
+        	{{ form_row(form.username, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese nombre de usuario' }, 'label': 'Nombre de usuario:'}) }}
+
+        	{{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su contraseña' }, 'label': 'Contraseña:'}) }}
+
+        	{{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirme su contraseña' }, 'label': 'Ingrese nuevamente la contraseña:'}) }}
+
             {{ form_widget(form) }}
+
             <input class="btn" type="submit" value="Guardar" />
         {{ form_end(form) }}
 

@@ -4,10 +4,12 @@ namespace AppBundle\Entity;
 
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Usuario
- *
+ * @UniqueEntity("username", message="El nombre de usuario ya se encuentra en la base de datos.")
+ * @UniqueEntity("email", message="El e-mail ya se encuentra en la base de datos.")
  * @ORM\Table(name="usuario")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository")
  */

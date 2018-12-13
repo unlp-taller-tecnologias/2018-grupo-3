@@ -5,14 +5,20 @@
         <h2 class="titulo-form">Editar usuario:</h2>
 
         {{ form_start(edit_form) }}
+
+            {{ form_row(edit_form.email, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su e-mail' }, 'label': 'E-mail:'}) }}
+
+            {{ form_row(edit_form.username, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese nombre de usuario' }, 'label': 'Nombre de usuario:'}) }}
+
             {{ form_widget(edit_form) }}
+
+
+            {{ form_row(edit_form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su contraseña' }, 'label': 'Contraseña:'}) }}
+
+            {{ form_row(edit_form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirme su contraseña' }, 'label': 'Ingrese nuevamente la contraseña:'}) }}
+
             <input class="btn" type="submit" value="Editar" />
         {{ form_end(edit_form) }}
 
-<!--             <li>
-                {{ form_start(delete_form) }}
-                    <input type="submit" value="Delete">
-                {{ form_end(delete_form) }}
-            </li> -->
     </section>
 {% endblock %}
