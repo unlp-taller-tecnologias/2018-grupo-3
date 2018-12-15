@@ -10,5 +10,13 @@ namespace AppBundle\Repository;
  */
 class CatedraRepository extends \Doctrine\ORM\EntityRepository
 {
+	public function publicacionesAprobadas() {
 
+		$fechaActual = new \DateTime("now");
+
+		$qb = $this->createQueryBuilder('p')
+			->where('p.fechaCaducidad > :fechaActual')->setParameter('fechaActual', $fechaActual);
+		return $qb->getQuery()->getResult();
+
+	}
 }

@@ -45,73 +45,73 @@ class PublicacionController extends Controller
      */
     public function newAction(Request $request)
     {
-        // $publicacion = new Publicacion();
-        // $form = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion);
-        // $form->handleRequest($request);
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-        //     $em = $this->getDoctrine()->getManager();
-        //     $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
-        //     if ($publicaciones){
-        //         foreach ($publicaciones as $clave) {
-        //             $publicacion = $em->getRepository('AppBundle:Publicacion')->find($clave);
-        //             $publicacion->setAprobada(1);
-        //             $em->persist($publicacion);
-        //         }
-        //     }
-        //     $em->flush();     
-        // }
-        // return $this->render('publicacion/visar.html.twig', array(
-        //     'visar_form' => $form->createView(),
-        // ));
-
-
-        $usuario = $this->getUser();
-        $fechaActual = new \DateTime("now");
         $publicacion = new Publicacion();
-        $publicacion->setUsuarioPublicacion($usuario);
-        $publicacion->setCatedra($usuario->getCatedra());
-        $publicacion->setFechaPublicacion($fechaActual);
-        $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
+        $form = $this->createForm('AppBundle\Form\PublicacionVisadoType', $publicacion);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form['archivo']->getData();
-            $file->getPath();   
-            $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
-            
-             try {
-                $file->move(
-                    $this->getParameter('files_directory'),
-                    $fileName
-                );
-            } catch (FileException $e) {
-                $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
-                try {
-                    $file->move(
-                        $this->getParameter('files_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
-                    $file->move(
-                        $this->getParameter('files_directory'),
-                        $fileName
-                    );
+            $em = $this->getDoctrine()->getManager();
+            $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
+            if ($publicaciones){
+                foreach ($publicaciones as $clave) {
+                    $publicacion = $em->getRepository('AppBundle:Publicacion')->find($clave);
+                    $publicacion->setAprobada(1);
+                    $em->persist($publicacion);
                 }
             }
-            $publicacion->setArchivo($fileName);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($publicacion);
-            $em->flush();
-        
-            return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
+            $em->flush();     
         }
-        
-        return $this->render('publicacion/new.html.twig', array(
-            'publicacion' => $publicacion,
-            'form' => $form->createView(),
+        return $this->render('publicacion/visar.html.twig', array(
+            'visar_form' => $form->createView(),
         ));
+
+
+        // $usuario = $this->getUser();
+        // $fechaActual = new \DateTime("now");
+        // $publicacion = new Publicacion();
+        // $publicacion->setUsuarioPublicacion($usuario);
+        // $publicacion->setCatedra($usuario->getCatedra());
+        // $publicacion->setFechaPublicacion($fechaActual);
+        // $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
+        // $form->handleRequest($request);
+        
+        // if ($form->isSubmitted() && $form->isValid()) {
+        //     $file = $form['archivo']->getData();
+        //     $file->getPath();   
+        //     $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+            
+        //      try {
+        //         $file->move(
+        //             $this->getParameter('files_directory'),
+        //             $fileName
+        //         );
+        //     } catch (FileException $e) {
+        //         $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+        //         try {
+        //             $file->move(
+        //                 $this->getParameter('files_directory'),
+        //                 $fileName
+        //             );
+        //         } catch (FileException $e) {
+        //             $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+        //             $file->move(
+        //                 $this->getParameter('files_directory'),
+        //                 $fileName
+        //             );
+        //         }
+        //     }
+        //     $publicacion->setArchivo($fileName);
+        //     $em = $this->getDoctrine()->getManager();
+        //     $em->persist($publicacion);
+        //     $em->flush();
+        
+        //     return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
+        // }
+        
+        // return $this->render('publicacion/new.html.twig', array(
+        //     'publicacion' => $publicacion,
+        //     'form' => $form->createView(),
+        // ));
     }
 
     /**

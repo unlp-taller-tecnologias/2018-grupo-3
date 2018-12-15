@@ -87,9 +87,11 @@ fos_user:
         form:
             type: AppBundle\Form\ProfileType
 
-# fos_ck_editor:
-#     configs:
-#         my_config:
-#             toolbar: [ ["Source", "-", "Save"], "/", ["Anchor"], "/", ["Maximize"] ]
-#             uiColor: "#ffffff"
-#             extraPlugins: "wordcount"
+fos_ck_editor:
+    configs:
+        my_config_1:
+            toolbar: "my_toolbar_1"
+            uiColor: "#000000"
+    toolbars:
+        configs:
+            my_toolbar_1: [ [ "Maximize" ], [Italic], [Bold], [Underline] ]
