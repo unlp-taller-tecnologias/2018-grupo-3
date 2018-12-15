@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Noticia;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use FOS\UserBundle\Util\UserManipulator;
 
 /**
  * noticia controller.
@@ -39,7 +41,11 @@ class NoticiaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $usuario = $this->getUser();
         $noticia = new Noticia();
+        $noticia->setUsuarioNoticia($usuario);
+        $fechaActual = new \DateTime("now");
+        $noticia->setFechaPublicacion($fechaActual);
         $form = $this->createForm('AppBundle\Form\NoticiaType', $noticia);
         $form->handleRequest($request);
 

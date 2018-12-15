@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use FOS\UserBundle\Util\UserManipulator;
 
 /**
  * Publicacion controller.
@@ -65,8 +66,12 @@ class PublicacionController extends Controller
         // ));
 
 
-
+        $usuario = $this->getUser();
+        $fechaActual = new \DateTime("now");
         $publicacion = new Publicacion();
+        $publicacion->setUsuarioPublicacion($usuario);
+        $publicacion->setCatedra($usuario->getCatedra());
+        $publicacion->setFechaPublicacion($fechaActual);
         $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $form->handleRequest($request);
         

@@ -9,6 +9,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use AppBundle\Entity\Catedra;
+use AppBundle\Entity\Usuario;
 
 class PublicacionType extends AbstractType
 {
@@ -20,7 +23,9 @@ class PublicacionType extends AbstractType
         $builder->add('titulo')
         ->add('bajada', TextareaType::class, array('attr' => array('class' => 'tinymce') ))
         ->add('nombreAutor')
-        ->add('fechaPublicacion', DateType::class, array('widget' => 'single_text'))
+        ->add('fechaPublicacion', DateType::class, array(
+            'widget' => 'single_text',
+            'disabled' => 'true'))
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
         ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
         ->add('firmante')
@@ -28,8 +33,12 @@ class PublicacionType extends AbstractType
             'label' => 'Archivo pdf'))
         ->add('links')
         ->add('etiqueta')
-        ->add('usuarioPublicacion')
-        ->add('catedra');
+        ->add('usuarioPublicacion', EntityType::class, array(
+            'class' => 'AppBundle:Usuario',
+            'disabled' => 'true' ))
+        ->add('catedra', EntityType::class, array(
+            'disabled' => true,
+            'class' => 'AppBundle:Catedra', ));
     }/**
      * {@inheritdoc}
      */
