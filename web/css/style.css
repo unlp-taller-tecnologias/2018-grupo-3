@@ -84,15 +84,6 @@ header a, header a:hover{
 	border-bottom: 2px solid #191F2E;
 	padding: 1rem;
 }
-/*thead{
-	background-color: #191F2E;
-}*/
-/*tbody{
-	background-color: #fff;
-}*/
-/*thead th{
-	color: #fff;
-}*/
 .formulario-login{
 	margin: 5% 40% 0% 40%;
 }
@@ -170,4 +161,14 @@ input.btn:hover, a.btn:hover{
 	flex-direction: column;
 	justify-content: center;
 	margin: 5%;
+}
+.publicaciones ul{
+	padding-left: 1rem;
+}
+.publicaciones ul li{
+	display: inline-block;
+
+}
+.publicaciones .delete-btn{
+	
 }

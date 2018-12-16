@@ -36,7 +36,17 @@
             <div class="col-md-4">
                 <div class="jumbotron">
                     {% if is_granted("ROLE_ADMIN") %}
-                        <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}"><i class="fas fa-edit"></i></a>
+                        <ul>
+                            <li>
+                                <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}"><i class="fas fa-edit"></i></a>
+                            </li>
+                            <li>
+                                <input id="publicacion_id" value="{{publicacion.id}}" hidden>
+                                <button id="btn_delete" type="button" class="delete-btn btn btn-danger" data-toggle="modal" data-target="#delete_modal" >
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </li>
+                        </ul>
                     {% endif %}
                     <div class="header-publicacion">
                         <p>
@@ -60,5 +70,39 @@
             </div>
     {% endfor %}
     </div>
+
+    <div class="modal" id='delete_modal' tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Eliminar Publicación</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>¿Estás seguro de que deseas eliminar esta publicación?</p>
+            </div>
+            <div class="modal-footer">
+              <form class="form_delete" method="post">
+                <button type="submit" class="btn btn-primary">Eliminar</button>
+              </form>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<script>
+
+$('#btn_delete').click(function() {
+  var id_pub = $("#publicacion_id").val();
+  $('.form_delete').attr('action', '/publicacion/delete/'+id_pub);
+});
+</script>
 
 {% endblock %}

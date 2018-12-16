@@ -158,21 +158,19 @@ class PublicacionController extends Controller
     /**
      * Deletes a publicacion entity.
      *
-     * @Route("/{id}", name="publicacion_delete")
+     * @Route("/delete/{id}", name="publicacion_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Publicacion $publicacion)
     {
         $form = $this->createDeleteForm($publicacion);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($publicacion);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('publicacion_index');
+           
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($publicacion);
+        $em->flush();
+        return $this->redirectToRoute('publicacion_index');     
+        
     }
 
     /**
