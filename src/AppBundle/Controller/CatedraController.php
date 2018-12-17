@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Catedra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Catedra controller.
@@ -103,18 +104,23 @@ class CatedraController extends Controller
     /**
      * Deletes a catedra entity.
      *
-     * @Route("/{id}", name="catedra_delete")
+     * @Route("/delete/{id}", name="catedra_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Catedra $catedra)
     {
         $form = $this->createDeleteForm($catedra);
         $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($catedra);
+        $em->flush();
+        if ( empty($catedra->getPublicacionesCatedra()) and empty($catedra->getUsuariosResponsables())){
             $em = $this->getDoctrine()->getManager();
             $em->remove($catedra);
             $em->flush();
+        }
+        else{
+            $this->addFlash( 'error', 'La catedra posee publicaciones y/o usuarios asociadxs');
         }
 
         return $this->redirectToRoute('catedra_index');

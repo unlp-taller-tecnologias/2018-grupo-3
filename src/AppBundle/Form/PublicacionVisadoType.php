@@ -22,12 +22,14 @@ class PublicacionVisadoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('visada', EntityType::class, array(
+        $builder->add('aprobada', EntityType::class, array(
             'label' => 'Seleccione las publicaciones que se desea aprobar:',
             'required' => false,
             'class' => 'AppBundle:Publicacion',
             'query_builder' => function($publicacion){
-                return $publicacion->createQueryBuilder('p')->where('p.visada = 1');
+                return $publicacion
+                ->createQueryBuilder('p')
+                ->where('p.aprobada = 1');
             },
             'choice_label' => function($publicacion){
                 return $publicacion->toString();

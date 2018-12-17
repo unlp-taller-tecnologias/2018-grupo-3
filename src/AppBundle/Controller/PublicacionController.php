@@ -60,7 +60,9 @@ class PublicacionController extends Controller
                 }
             }
             $em->flush();     
+            return $this->redirectToRoute('publicacion_index');
         }
+
         return $this->render('publicacion/visar.html.twig', array(
             'visar_form' => $form->createView(),
         ));

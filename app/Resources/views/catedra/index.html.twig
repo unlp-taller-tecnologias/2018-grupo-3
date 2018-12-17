@@ -4,7 +4,11 @@
 <section class="tablas">
     <a class="btn" href="{{ path('catedra_new') }}">Añadir cátedra</a>
     <h3 class="titulo-tabla"></h3>
-
+    {% for flash_message in app.session.flashbag.get('error') %}
+        <div class="flash-error">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
     <table class="table table-responsive">
         <thead>
             <tr>
@@ -12,6 +16,7 @@
                 <th>Email contacto</th>
                 <th>Horario atención</th>
                 <th>Telefono contacto</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -26,6 +31,9 @@
                 <td>{{ catedra.telefonoContacto }}</td>
                 <td>
                     <i class="fas fa-edit"></i><a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}">edit</a>
+                </td>
+                <td>
+                    <a href="{{ path('catedra_delete', { 'id': catedra.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         {% endfor %}
