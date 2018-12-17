@@ -50,6 +50,11 @@
 										{{ app.user.username }}
 									</li>
 									<li class="nav-item">
+										<a class="nav-link" href="{{ path('adm_catedra', {'id': app.user.catedra.id}) }}">
+											{{ app.user.catedra }}
+										</a> 
+									</li>
+									<li class="nav-item">
 										<a class="nav-link" href="{{ path('publicacion_new') }}">
 											Publicaciones
 										</a>

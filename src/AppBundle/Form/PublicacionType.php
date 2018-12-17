@@ -29,8 +29,8 @@ class PublicacionType extends AbstractType
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
         ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
         ->add('firmante')
-        ->add('archivo', FileType::class, array(
-            'label' => 'Archivo pdf'))
+        // ->add('archivo', FileType::class, array(
+        //     'label' => 'Archivo pdf'))
         ->add('links')
         ->add('etiqueta')
         ->add('usuarioPublicacion', EntityType::class, array(

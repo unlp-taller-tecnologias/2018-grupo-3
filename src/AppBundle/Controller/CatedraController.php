@@ -7,6 +7,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
+
 
 /**
  * Catedra controller.
@@ -101,6 +105,34 @@ class CatedraController extends Controller
         ));
     }
 
+
+    /**
+     *
+     * @Route("/{id}/mi_catedra", name="adm_catedra")
+     * @Method({"GET", "POST"})
+     */
+    public function admCatedra( Catedra $catedra, Security $security){
+
+            $user = $security->getUser();
+
+            if (isset($user)) {
+                $userRol = $user->getRoles()[0];
+                $publicaciones = $catedra->getPublicacionesCatedra();
+                $catedraUser = $user->getCatedra();
+
+                if ( $userRol == 'ROLE_ADMIN' || $userRol == 'ROLE_MODERADOR' || ($catedraUser == $catedra) ) {
+                    return $this->render('catedra/micatedra.html.twig', array(
+                    'catedra' => $catedra,
+                    'publicaciones' => $publicaciones,
+                    ));
+                }
+            }
+            return $this->render('catedra/error.html.twig');
+
+
+    }
+
+
     /**
      * Deletes a catedra entity.
      *
@@ -111,10 +143,8 @@ class CatedraController extends Controller
     {
         $form = $this->createDeleteForm($catedra);
         $form->handleRequest($request);
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($catedra);
-        $em->flush();
-        if ( empty($catedra->getPublicacionesCatedra()) and empty($catedra->getUsuariosResponsables())){
+   
+        if ( $catedra->getPublicacionesCatedra()->isEmpty() && $catedra->getUsuariosResponsables()->isEmpty()){
             $em = $this->getDoctrine()->getManager();
             $em->remove($catedra);
             $em->flush();

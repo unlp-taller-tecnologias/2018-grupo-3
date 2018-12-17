@@ -14,7 +14,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
         $em =   $this->getDoctrine()->getManager();
         $noticias = $em->getRepository('AppBundle:Noticia')->noticiasActuales();
         $catedras = $em->getRepository('AppBundle:Catedra')->findAll();

@@ -3,13 +3,13 @@
 {% block body %}
     <div class="d-flex justify-content-between align-items-end">
         <h1 class="nombre-catedra">{{ catedra.nombre }}
-        {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+        
             <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i>Editar</a>
         </h1>
         <div class="mr-5">
             <a class="btn" href="{{ path('publicacion_new', { 'id': catedra.id }) }}">Añadir publicación</a>
         </div>
-        {% endif %}
+        
     </div>
 
     <div class="container-fluid info-catedra">
@@ -27,6 +27,16 @@
     {% for publicacion in publicaciones %}
             <div class="col-md-4">
                 <div class="jumbotron">
+                    {% if is_granted("ROLE_ADMIN") %}
+                        <ul>
+                            <li>
+                                <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}"><i class="fas fa-edit"></i></a>
+                            </li>
+                            <li>
+                                <a href="{{ path('publicacion_delete', { 'id': publicacion.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
+                            </li>
+                        </ul>
+                    {% endif %}
                     <div class="header-publicacion">
                         <p>
                         <i class="fas fa-paperclip"></i>

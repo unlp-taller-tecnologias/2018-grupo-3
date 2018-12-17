@@ -35,7 +35,7 @@ security:
         # - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: ROLE_ADMIN }
         - { path: ^/catedra/+\d$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/catedra, role: ROLE_ADMIN }
+        # - { path: ^/catedra, role: ROLE_ADMIN }
         - { path: ^/usuario/*$, role: ROLE_ADMIN }
         # - { path: ^/publicacion/new$, role: ROLE_ADMIN }
         - { path: ^/publicacion/visar$, role: ROLE_ADMIN }

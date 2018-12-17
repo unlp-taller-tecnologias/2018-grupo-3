@@ -15,8 +15,17 @@ class PublicacionRepository extends \Doctrine\ORM\EntityRepository
 		$fechaActual = new \DateTime("now");
 
 		$qb = $this->createQueryBuilder('p')
-			->where('p.fechaCaducidad > :fechaActual')->setParameter('fechaActual', $fechaActual);
+			->where('p.fechaCaducidad > :fechaActual')->setParameter('fechaActual', $fechaActual)
+			->andwhere('p.visada = 0')
+			->orwhere('p.visada = 1 AND p.aprobada = 1');
 		return $qb->getQuery()->getResult();
 
+	}
+
+	public function publicacionesPendientes(){
+		$qb = $this->createQueryBuilder('p')
+			->where('p.visada = 1')
+			->andwhere('p.aprobada IS NULL');
+		return $qb->getQuery()->getResult();
 	}
 }
