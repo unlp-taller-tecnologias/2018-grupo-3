@@ -46,10 +46,10 @@ class UsuarioController extends Controller
 
         $this->userManager = $userManager;
         $usuario = $this->userManager->createUser();
-        
+
         $usuario->setEnabled(true);
 
-        
+
         $form = $this->createForm('AppBundle\Form\UsuarioType', $usuario);
         $form->handleRequest($request);
 
@@ -59,7 +59,7 @@ class UsuarioController extends Controller
                 case 'responsable':
                     $usuario->addRole('ROLE_CATEDRA');
                     break;
-                
+
                 case 'administrador':
                     $usuario->addRole('ROLE_ADMIN');
                     break;
@@ -101,14 +101,17 @@ class UsuarioController extends Controller
     {
         $this->userManager = $userManager;
         $deleteForm = $this->createDeleteForm($usuario);
-        $editForm = $this->createForm('AppBundle\Form\UsuarioType', $usuario);
+        $editForm = $this->createForm('AppBundle\Form\UsuarioUpdateType', $usuario);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->userManager->updateUser($usuario);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('usuario');
+            return $this->render('usuario/show.html.twig', array(
+                'usuario' => $usuario,
+                'delete_form' => $deleteForm->createView(),
+            ));
         }
 
         return $this->render('usuario/edit.html.twig', array(

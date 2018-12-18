@@ -12,11 +12,6 @@
 
             {{ form_widget(edit_form) }}
 
-
-            {{ form_row(edit_form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su contraseña' }, 'label': 'Contraseña:'}) }}
-
-            {{ form_row(edit_form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirme su contraseña' }, 'label': 'Ingrese nuevamente la contraseña:'}) }}
-
             <input class="btn" type="submit" value="Editar" />
         {{ form_end(edit_form) }}
 
