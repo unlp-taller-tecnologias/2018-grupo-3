@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <div class="d-flex justify-content-between align-items-end">
         <h1 class="nombre-catedra">{{ catedra.nombre }}
         {% if is_granted("IS_AUTHENTICATED_FULLY") %}
@@ -15,12 +16,19 @@
     <div class="container-fluid info-catedra">
         <div><i class="fas fa-envelope"></i>
             {{ catedra.emailContacto }}
-        </div> 
+        </div>
         <i class="fas fa-phone"></i>
             {{ catedra.telefonoContacto }}
-        <div><i class="fas fa-user-alt"></i>    
+        <div><i class="fas fa-user-alt"></i>
             {% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}
         </div>
+    </div>
+
+    <div class="container-fluid">
+    {% for etiqueta in etiquetas %}
+      <a href="{{ path('catedra_show_etiqueta', { 'id': catedra.id, 'etiqueta': etiqueta.id}) }}">{{ etiqueta.nombre }}</a>
+    {% endfor %}
+      <a href="{{ path('catedra_show', { 'id': catedra.id }) }}">Todas</a>
     </div>
 
     <div class="row publicaciones">
@@ -44,7 +52,7 @@
                             <p>Firma la publicación:</p>
                             {{ publicacion.firmante }}
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Catedra;
+use AppBundle\Entity\Etiqueta;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -73,9 +74,42 @@ class CatedraController extends Controller
         $deleteForm = $this->createDeleteForm($catedra);
         $publicaciones = $catedra->getPublicacionesCatedra();
 
+        $em =   $this->getDoctrine()->getManager();
+        $etiquetas = $em->getRepository('AppBundle:Etiqueta')->findAll();
+
         return $this->render('catedra/show.html.twig', array(
             'catedra' => $catedra,
             'publicaciones' => $publicaciones,
+            'etiquetas' => $etiquetas,
+            'delete_form' => $deleteForm->createView(),
+        ));
+    }
+
+    /**
+     * Finds and displays a catedra entity.
+     *
+     * @Route("/{id}/{etiqueta}", name="catedra_show_etiqueta")
+     * @Method("GET")
+     */
+    public function showEtiquetaAction(Catedra $catedra, Etiqueta $etiqueta = null)
+    {
+        $deleteForm = $this->createDeleteForm($catedra);
+
+        $em =   $this->getDoctrine()->getManager();
+
+        if ($etiqueta == null) {
+          $publicaciones = $catedra->getPublicacionesCatedra();
+        } else {
+          $publicaciones = $em->getRepository('AppBundle:Publicacion')->findBy(array('etiqueta' => $etiqueta->getId(),
+                                                                                     'catedra' => $catedra->getId()));
+        }
+
+        $etiquetas = $em->getRepository('AppBundle:Etiqueta')->findAll();
+
+        return $this->render('catedra/show.html.twig', array(
+            'catedra' => $catedra,
+            'publicaciones' => $publicaciones,
+            'etiquetas' => $etiquetas,
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -143,7 +177,7 @@ class CatedraController extends Controller
     {
         $form = $this->createDeleteForm($catedra);
         $form->handleRequest($request);
-   
+
         if ( $catedra->getPublicacionesCatedra()->isEmpty() && $catedra->getUsuariosResponsables()->isEmpty()){
             $em = $this->getDoctrine()->getManager();
             $em->remove($catedra);
