@@ -30,7 +30,9 @@ class PublicacionType extends AbstractType
         ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
         ->add('firmante')
         ->add('archivo', FileType::class, array(
-            'label' => 'Archivo pdf'))
+            'label' => 'Archivo pdf',
+            "attr" =>array("class" => "form-control"),
+            "data_class" => null))
         ->add('link1')
         ->add('link2')
         ->add('link3')
