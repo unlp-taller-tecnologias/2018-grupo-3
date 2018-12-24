@@ -72,7 +72,13 @@ class CatedraController extends Controller
     public function showAction(Catedra $catedra)
     {
         $deleteForm = $this->createDeleteForm($catedra);
-        $publicaciones = $catedra->getPublicacionesCatedra();
+        $publicaciones = [];
+
+        foreach ( $catedra->getPublicacionesCatedra() as $publicacion ) {
+            if ( ($publicacion->getVisada() == 1) && ($publicacion->getAprobada() == 1) ) {
+                $publicaciones[$publicacion->getId()] = $publicacion;
+            }
+        }
 
         $em =   $this->getDoctrine()->getManager();
         $etiquetas = $em->getRepository('AppBundle:Etiqueta')->findAll();
@@ -100,8 +106,10 @@ class CatedraController extends Controller
         if ($etiqueta == null) {
           $publicaciones = $catedra->getPublicacionesCatedra();
         } else {
-          $publicaciones = $em->getRepository('AppBundle:Publicacion')->findBy(array('etiqueta' => $etiqueta->getId(),
-                                                                                     'catedra' => $catedra->getId()));
+          $publicaciones = $em->getRepository(
+            'AppBundle:Publicacion')->findBy(array(
+            'etiqueta' => $etiqueta->getId(),
+            'catedra' => $catedra->getId()));
         }
 
         $etiquetas = $em->getRepository('AppBundle:Etiqueta')->findAll();

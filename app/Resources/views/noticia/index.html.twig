@@ -4,7 +4,11 @@
 <section class="tablas">
     <a class="btn" href="{{ path('noticia_new') }}">Añadir noticia</a>
     <h3></h3>
-
+    {% for flash_message in app.session.flashbag.get('error') %}
+        <div class="flash-error">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
     <table class="table table-responsive">
         <thead>
             <tr>
@@ -13,6 +17,7 @@
                 <th>Fechapublicacion</th>
                 <th>Contenido</th>
                 <th>Firmante</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -28,6 +33,9 @@
                 <td>{{ noticia.firmante }}</td>
                 <td>
                     <i class="fas fa-edit"></i><a class="opcion" href="{{ path('noticia_edit', { 'id': noticia.id }) }}">edit</a>
+                </td>
+                <td>
+                    <a href="{{ path('noticia_delete', { 'id': noticia.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         {% endfor %}

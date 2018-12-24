@@ -78,11 +78,18 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\Usuario
     from_email:
-        address: "marianelgau@gmail.com"
-        sender_name: "Marianela"
+        address: "noreply@example.com"
+        sender_name: "Cartelera virtual"
     registration:
         form:
             type: AppBundle\Form\RegistrationType
+    service:
+        mailer: fos_user.mailer.twig_swift
+    resetting:
+        email:
+            from_email:
+                address: "noreply@example.com"
+                sender_name: "Cartelera virtual"
     profile:
         form:
             type: AppBundle\Form\ProfileType

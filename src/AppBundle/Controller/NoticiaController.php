@@ -107,7 +107,7 @@ class NoticiaController extends Controller
     /**
      * Deletes a noticia entity.
      *
-     * @Route("/{id}", name="noticia_delete")
+     * @Route("/delete/{id}", name="noticia_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Noticia $noticia)
@@ -115,11 +115,9 @@ class NoticiaController extends Controller
         $form = $this->createDeleteForm($noticia);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($noticia);
-            $em->flush();
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($noticia);
+        $em->flush();
 
         return $this->redirectToRoute('noticia_index');
     }

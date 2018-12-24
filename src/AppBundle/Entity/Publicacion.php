@@ -80,9 +80,37 @@ class Publicacion
     /**
      * @var string
      *
-     * @ORM\Column(name="links", type="string", length=255, nullable=true)
+     * @ORM\Column(name="link1", type="string", length=255, nullable=true)
      */
-    private $links;
+    private $link1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link2", type="string", length=255, nullable=true)
+     */
+    private $link2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link3", type="string", length=255, nullable=true)
+     */
+    private $link3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link4", type="string", length=255, nullable=true)
+     */
+    private $link4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link5", type="string", length=255, nullable=true)
+     */
+    private $link5;
 
     /**
      * @ORM\ManyToOne(targetEntity="Etiqueta", inversedBy="publicaciones")
@@ -512,5 +540,125 @@ class Publicacion
     public function toString(){
         return $this->titulo . " - " . $this->getEtiqueta()->getNombre() . " - " . "Para la cátedra: " . 
         $this->getCatedra()->getNombre() . " - " . "Realizada por: " . $this->getUsuarioPublicacion();
+    }
+
+    /**
+     * Set link1.
+     *
+     * @param string|null $link1
+     *
+     * @return Publicacion
+     */
+    public function setLink1($link1 = null)
+    {
+        $this->link1 = $link1;
+
+        return $this;
+    }
+
+    /**
+     * Get link1.
+     *
+     * @return string|null
+     */
+    public function getLink1()
+    {
+        return $this->link1;
+    }
+
+    /**
+     * Set link2.
+     *
+     * @param string|null $link2
+     *
+     * @return Publicacion
+     */
+    public function setLink2($link2 = null)
+    {
+        $this->link2 = $link2;
+
+        return $this;
+    }
+
+    /**
+     * Get link2.
+     *
+     * @return string|null
+     */
+    public function getLink2()
+    {
+        return $this->link2;
+    }
+
+    /**
+     * Set link3.
+     *
+     * @param string|null $link3
+     *
+     * @return Publicacion
+     */
+    public function setLink3($link3 = null)
+    {
+        $this->link3 = $link3;
+
+        return $this;
+    }
+
+    /**
+     * Get link3.
+     *
+     * @return string|null
+     */
+    public function getLink3()
+    {
+        return $this->link3;
+    }
+
+    /**
+     * Set link4.
+     *
+     * @param string|null $link4
+     *
+     * @return Publicacion
+     */
+    public function setLink4($link4 = null)
+    {
+        $this->link4 = $link4;
+
+        return $this;
+    }
+
+    /**
+     * Get link4.
+     *
+     * @return string|null
+     */
+    public function getLink4()
+    {
+        return $this->link4;
+    }
+
+    /**
+     * Set link5.
+     *
+     * @param string|null $link5
+     *
+     * @return Publicacion
+     */
+    public function setLink5($link5 = null)
+    {
+        $this->link5 = $link5;
+
+        return $this;
+    }
+
+    /**
+     * Get link5.
+     *
+     * @return string|null
+     */
+    public function getLink5()
+    {
+        return $this->link5;
     }
 }

@@ -29,9 +29,13 @@ class PublicacionType extends AbstractType
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
         ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
         ->add('firmante')
-        // ->add('archivo', FileType::class, array(
-        //     'label' => 'Archivo pdf'))
-        ->add('links')
+        ->add('archivo', FileType::class, array(
+            'label' => 'Archivo pdf'))
+        ->add('link1')
+        ->add('link2')
+        ->add('link3')
+        ->add('link4')
+        ->add('link5')
         ->add('etiqueta')
         ->add('usuarioPublicacion', EntityType::class, array(
             'class' => 'AppBundle:Usuario',

@@ -1,7 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
     <section class="tablas">
+        {% for flash_message in app.session.flashbag.get('error') %}
+            <div class="flash-error">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
         <a class="btn" href="{{ path('usuario_new') }}">Añadir usuario</a>
         <h3></h3>
 
@@ -13,6 +19,7 @@
                     <th>Visado</th>
                     <th>Telefono contacto</th>
                     <th>Responsable de cátedra</th>
+                    <th></th>
                     <th></th>
                 </tr>
             </thead>
@@ -30,6 +37,10 @@
                     <td>{{ usuario.catedra }}</td>
                     <td>                         
                         <i class="fas fa-edit"></i><a class="opcion" href="{{ path('usuario_edit', { 'id': usuario.id }) }}">editar</a>
+                        <a href=""></a>
+                    </td>
+                    <td>
+                        <a href="{{ path('usuario_delete', { 'id': usuario.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             {% endfor %}
