@@ -45,6 +45,9 @@
 											Noticias
 										</a>
 									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
+									</li>
 								{% elseif is_granted("ROLE_CATEDRA") %}
 									<li class="nav-link nombre-usuario">
 										{{ app.user.username }}
@@ -63,6 +66,9 @@
 										<a class="nav-link" href="{{ path('fos_user_security_logout') }}">
 											Cerrar sesión
 										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
 									</li>
 								{% else %}
 									<li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">INICIAR SESIÓN</a></li>

@@ -88,7 +88,7 @@ fos_user:
     resetting:
         email:
             from_email:
-                address: "noreply@example.com"
+                address: "marianelgau@gmail.com"
                 sender_name: "Cartelera virtual"
     profile:
         form:
@@ -101,4 +101,4 @@ fos_ck_editor:
             uiColor: "#000000"
     toolbars:
         configs:
-            my_toolbar_1: [ [ "Maximize" ], [Italic], [Bold], [Underline] ]
+            my_toolbar_1: [ [ "Maximize" ], [Italic], [Bold], [Underline], [Strike], [NumberedList], [BulletedList], [Indent], [Blockquote] ]
