@@ -15,41 +15,41 @@
         </div>
     </div>
 
-    <div class="container-fluid">
-    {% for etiqueta in etiquetas %}
-      <a href="{{ path('catedra_show_etiqueta', { 'id': catedra.id, 'etiqueta': etiqueta.id}) }}">{{ etiqueta.nombre }}</a>
-    {% endfor %}
-      <a href="{{ path('catedra_show', { 'id': catedra.id }) }}">Todas</a>
+    <div class="etiquetas">
+        {% for etiqueta in etiquetas %}
+          <a class="btn-etiqueta" href="{{ path('catedra_show_etiqueta', { 'id': catedra.id, 'etiqueta': etiqueta.id}) }}"><i class="fas fa-paperclip"></i>{{ etiqueta.nombre }}</a>
+        {% endfor %}
+          <a class="btn-etiqueta" href="{{ path('catedra_show', { 'id': catedra.id }) }}"><i class="fas fa-paperclip"></i>Todas</a>
     </div>
 
-
     <div class="row publicaciones">
-    {% for publicacion in publicaciones %}
-            <div class="col-md-4">
-                <div class="jumbotron">
-                    <div class="header-publicacion">
-                        <p>
-                        <i class="fas fa-paperclip"></i>
-                        {{ publicacion.etiqueta }}
-                        </p>
-                        {{ publicacion.fechaPublicacion|date("d/m/Y") }}
-                    </div>
-                    <div>
-                        <h6>{{ publicacion.titulo }}</h6>
-                        <p>{{ publicacion.bajada }}</p>
-                        {{ publicacion.contenido|raw }}
-                        <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
-                        <a style="display: block;" target="_blank" href="{{ publicacion.link1 }}">{{publicacion.link1}}</a>
-                        <a style="display: block;" target="_blank" href="{{ publicacion.link2 }}">{{publicacion.link2}}</a>
-                        <div>
-                            <p>Firma la publicación:</p>
-                            {{ publicacion.firmante }}
+
+        {% for publicacion in publicaciones %}
+                <div class="col-md-4">
+                    <div class="jumbotron">
+                        <div class="header-publicacion">
+                            <p>
+                            <i class="fas fa-paperclip"></i>
+                            {{ publicacion.etiqueta }}
+                            </p>
+                            {{ publicacion.fechaPublicacion|date("d/m/Y") }}
                         </div>
-                        
+                        <div>
+                            <h6>{{ publicacion.titulo }}</h6>
+                            <p>{{ publicacion.bajada }}</p>
+                            {{ publicacion.contenido|raw }}
+                            <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
+                            <a style="display: block;" target="_blank" href="{{ publicacion.link1 }}">{{publicacion.link1}}</a>
+                            <a style="display: block;" target="_blank" href="{{ publicacion.link2 }}">{{publicacion.link2}}</a>
+                            <div>
+                                <p>Firma la publicación:</p>
+                                {{ publicacion.firmante }}
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
-            </div>
-    {% endfor %}
+        {% endfor %}
     </div>
 
 
