@@ -1,8 +1,5 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-	<section class="formulario-login">
-		<h2 class="titulo-form"></h2>
-   		{{ include('@FOSUser/Security/login_content.html.twig') }}
-   </section>
+   	{{ include('@FOSUser/Security/login_content.html.twig') }}
 {% endblock fos_user_content %}
