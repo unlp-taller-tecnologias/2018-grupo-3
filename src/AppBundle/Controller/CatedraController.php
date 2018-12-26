@@ -75,7 +75,7 @@ class CatedraController extends Controller
         $publicaciones = [];
 
         foreach ( $catedra->getPublicacionesCatedra() as $publicacion ) {
-            if ( ($publicacion->getVisada() == 1) && ($publicacion->getAprobada() == 1) ) {
+            if ( (($publicacion->getVisada() == 1) && ($publicacion->getAprobada() == 1)) | ($publicacion->getVisada() == 0) ) {
                 $publicaciones[$publicacion->getId()] = $publicacion;
             }
         }
