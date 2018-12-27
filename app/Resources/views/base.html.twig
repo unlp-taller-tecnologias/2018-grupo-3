@@ -22,14 +22,6 @@
 			<div class="container-fluid">
 							<ul class="nav">	 		 
 								{% if is_granted("ROLE_ADMIN") %}
-									<li class="nav-link nombre-usuario">
-										{{ app.user.username }}
-									</li>
-									<li class="nav-item">
-										<a class="nav-link" href="{{ path('fos_user_security_logout') }}">
-											Cerrar sesión
-										</a>
-									</li>
 									<li class="nav-item">
 										<a class="nav-link" href="{{ path('catedra_index') }}">
 											Cátedras
@@ -46,7 +38,17 @@
 										</a>
 									</li>
 									<li class="nav-item">
-										<a class="nav-link" href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
+										<a class="nav-link" href="{{ path('publicacion_visar') }}">
+											Visado
+										</a>
+									</li>
+									<li class="nav-link nombre-usuario	">
+										{{ app.user.username }}
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{{ path('fos_user_security_logout') }}">
+											Cerrar sesión
+										</a>
 									</li>
 								{% elseif is_granted("ROLE_CATEDRA") %}
 									<li class="nav-link nombre-usuario">
@@ -72,6 +74,9 @@
 									</li>
 								{% else %}
 									<li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">INICIAR SESIÓN</a></li>
+									<li class="nav-item">
+										<a class="nav-link" href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
+									</li>
 								{% endif %}
 							</ul>
 			</div>

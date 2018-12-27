@@ -94,7 +94,7 @@ class CatedraController extends Controller
     /**
      * Finds and displays a catedra entity.
      *
-     * @Route("/{id}/{etiqueta}", name="catedra_show_etiqueta")
+     * @Route("/{id}/etiqueta", name="catedra_show_etiqueta")
      * @Method("GET")
      */
     public function showEtiquetaAction(Catedra $catedra, Etiqueta $etiqueta = null)

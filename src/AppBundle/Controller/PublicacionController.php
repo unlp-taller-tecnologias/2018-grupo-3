@@ -55,6 +55,9 @@ class PublicacionController extends Controller
         $publicacion->setUsuarioPublicacion($usuario);
         $publicacion->setCatedra($usuario->getCatedra());
         $publicacion->setFechaPublicacion($fechaActual);
+        if ($usuario->getVisado() == 1) {
+          $publicacion->setVisada(1);
+        }
         $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $form->handleRequest($request);
         
@@ -124,8 +127,10 @@ class PublicacionController extends Controller
         $deleteForm = $this->createDeleteForm($publicacion);
         $editForm = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $editForm->handleRequest($request);
-
-
+        $usuario = $this->getUser();
+        if ($usuario->getVisado() == 1) {
+          $publicacion->setAprobada(0);
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
@@ -165,6 +170,7 @@ class PublicacionController extends Controller
         $form->handleRequest($request);
            
         $em = $this->getDoctrine()->getManager();
+        
         $em->remove($publicacion);
         $em->flush();
         return $this->redirectToRoute('publicacion_index');     

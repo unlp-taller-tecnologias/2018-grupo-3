@@ -4,10 +4,14 @@
 <section class="formulario-visado">
 
     {{ form_start(visar_form) }}
-    {{ dump(visar_form) }}
-        {{ form_widget(visar_form) }}
+    
+
+    	{{ form_row(visar_form.aprobada) }}
+
+        
         <input class="btn" type="submit" value="Guardar" />
     {{ form_end(visar_form) }}
 
 </section>
 {% endblock %}
+

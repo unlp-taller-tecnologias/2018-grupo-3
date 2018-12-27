@@ -24,7 +24,6 @@
     {% for publicacion in publicaciones %}
             <div class="col-md-4">
                 <div class="jumbotron">
-                    {% if is_granted("ROLE_ADMIN") %}
                         <ul>
                             <li>
                                 <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}"><i class="fas fa-edit"></i></a>
@@ -33,7 +32,6 @@
                                 <a href="{{ path('publicacion_delete', { 'id': publicacion.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
                             </li>
                         </ul>
-                    {% endif %}
                     <div class="header-publicacion">
                         <p>
                         <i class="fas fa-paperclip"></i>
