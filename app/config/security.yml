@@ -39,3 +39,4 @@ security:
         - { path: ^/usuario/*$, role: ROLE_ADMIN }
         # - { path: ^/publicacion/new$, role: ROLE_ADMIN }
         - { path: ^/publicacion/visar$, role: ROLE_ADMIN }
+        - { path: ^/noticia/$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }

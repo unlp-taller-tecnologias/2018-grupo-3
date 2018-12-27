@@ -170,8 +170,6 @@ class CatedraController extends Controller
                 }
             }
             return $this->render('catedra/error.html.twig');
-
-
     }
 
 
