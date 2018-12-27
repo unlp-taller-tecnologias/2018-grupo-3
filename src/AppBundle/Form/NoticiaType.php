@@ -24,7 +24,9 @@ class NoticiaType extends AbstractType
         ->add('fechaPublicacion', DateType::class, array(
             'widget' => 'single_text',
             'disabled' => 'true'))
-        ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
+        ->add('fechaCaducidad', DateType::class, array(
+            'widget' => 'single_text',
+            'required' => false))
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
         ->add('link1')
         ->add('link2')

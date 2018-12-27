@@ -190,3 +190,11 @@ a.btn-etiqueta{
 a.btn-etiqueta:hover{
 	opacity: 0.8;
 }
+
+@media only screen and (max-width: 768px){
+
+	.row{
+		flex-direction: column;
+	}
+
+}

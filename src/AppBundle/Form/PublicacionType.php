@@ -27,7 +27,9 @@ class PublicacionType extends AbstractType
             'widget' => 'single_text',
             'disabled' => 'true'))
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
-        ->add('fechaCaducidad', DateType::class, array('widget' => 'single_text'))
+        ->add('fechaCaducidad', DateType::class, array(
+            'widget' => 'single_text',
+            'required' => false))
         ->add('firmante')
         ->add('archivo', FileType::class, array(
             'label' => 'Archivo pdf',
