@@ -57,15 +57,19 @@ class PublicacionController extends Controller
         $publicacion->setFechaPublicacion($fechaActual);
         if ($usuario->getVisado() == 1) {
           $publicacion->setVisada(1);
+          $publicacion->setAprobada(0);
+        } else {
+          $publicacion->setVisada(0);
+          $publicacion->setAprobada(1);
         }
         $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form['archivo']->getData();
-            $file->getPath();   
+            $file->getPath();
             $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
-            
+
              try {
                 $file->move(
                     $this->getParameter('files_directory'),
@@ -90,10 +94,10 @@ class PublicacionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($publicacion);
             $em->flush();
-        
+
             return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
         }
-        
+
         return $this->render('publicacion/new.html.twig', array(
             'publicacion' => $publicacion,
             'form' => $form->createView(),
@@ -168,13 +172,13 @@ class PublicacionController extends Controller
     {
         $form = $this->createDeleteForm($publicacion);
         $form->handleRequest($request);
-           
+
         $em = $this->getDoctrine()->getManager();
-        
+
         $em->remove($publicacion);
         $em->flush();
-        return $this->redirectToRoute('publicacion_index');     
-        
+        return $this->redirectToRoute('publicacion_index');
+
     }
 
     /**
@@ -216,7 +220,7 @@ class PublicacionController extends Controller
                     $em->persist($publicacion);
                 }
             }
-            $em->flush();     
+            $em->flush();
         }
         return $this->render('publicacion/visar.html.twig', array(
             'visar_form' => $form->createView(),

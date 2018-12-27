@@ -75,7 +75,7 @@ class CatedraController extends Controller
         $publicaciones = [];
 
         foreach ( $catedra->getPublicacionesCatedra() as $publicacion ) {
-            if ( (($publicacion->getVisada() == 1) && ($publicacion->getAprobada() == 1)) | ($publicacion->getVisada() == 0) ) {
+            if ($publicacion->getAprobada() == 1) {
                 $publicaciones[$publicacion->getId()] = $publicacion;
             }
         }
@@ -109,7 +109,8 @@ class CatedraController extends Controller
           $publicaciones = $em->getRepository(
             'AppBundle:Publicacion')->findBy(array(
             'etiqueta' => $etiqueta->getId(),
-            'catedra' => $catedra->getId()));
+            'catedra' => $catedra->getId(),
+            'aprobada' => 1));
         }
 
         $etiquetas = $em->getRepository('AppBundle:Etiqueta')->findAll();

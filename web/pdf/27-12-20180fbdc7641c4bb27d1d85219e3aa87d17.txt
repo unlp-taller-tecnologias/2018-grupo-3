@@ -1,0 +1,40 @@
+1ra:
+Software libre: nuestro hilo conductor.
+HTML-CSS: aspectos básicos.
+HTML semántico.
+Validadores.
+Accesibilidad web.
+
+2da:
+Procesamiento en el servidor con PHP
+Manejo de sesiones
+Acceso a BBDD
+
+3ra:
+Problemas BBDD
+MVC
+Templates con Twig
+
+4ta:
+REST
+Slim
+Ejemplo API Rest con Slim
+
+5ta:
+DOM: el modelo de objetos del documento
+Procesamiento en el cliente: Javascript
+AJAX
+
+6ta:
+APIs HTML5
+BOT Telegram
+
+7ma:
+Identificación, Autenticación y Autorización
+Estándares: Oauth y OpenID Connect
+APIs
+
+8va:
+Frameworks JS
+Vue.js: Características, Directivas, Componentes y Consumir una Api
+

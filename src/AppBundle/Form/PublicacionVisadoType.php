@@ -30,7 +30,7 @@ class PublicacionVisadoType extends AbstractType
             'query_builder' => function($publicacion){
                 return $publicacion
                 ->createQueryBuilder('p')
-                ->where('p.aprobada IS NULL')
+                ->where('p.aprobada = 0')
                 ->andwhere('p.visada = 1');
             },
             'choice_label' => function($publicacion){
