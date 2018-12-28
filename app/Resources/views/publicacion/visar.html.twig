@@ -2,9 +2,13 @@
 
 {% form_theme visar_form _self %}
 
+
 {% block visadochoice_row %}
-{{ parent() }}
-<p> hola</p>
+{{ dump(form.parent.vars.value) }}
+
+<h3>{{label}}</h3>
+
+<a href="">{{form.parent.vars.titulo}}</a>
 
 {% endblock %}
 
