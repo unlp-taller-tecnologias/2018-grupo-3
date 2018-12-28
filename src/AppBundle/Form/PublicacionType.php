@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,21 +27,26 @@ class PublicacionType extends AbstractType
         ->add('fechaPublicacion', DateType::class, array(
             'widget' => 'single_text',
             'disabled' => 'true'))
-        ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
+        ->add('contenido', CKEditorType::class, array( 
+            'config' => array( 'uiColor' => '#ffffff' ),
+            'required' => true ))
         ->add('fechaCaducidad', DateType::class, array(
             'widget' => 'single_text',
             'required' => false))
-        ->add('firmante')
+        ->add('firmante', TextType::class, array('required' => false))
         ->add('archivo', FileType::class, array(
             'label' => 'Archivo pdf',
             "attr" =>array("class" => "form-control"),
-            "data_class" => null))
+            "data_class" => null,
+            "required" => false ))
         ->add('link1')
         ->add('link2')
         ->add('link3')
         ->add('link4')
         ->add('link5')
-        ->add('etiqueta')
+        ->add('etiqueta', EntityType::class, array(
+            'class' => 'AppBundle:Etiqueta',
+            'required' => true ))
         ->add('usuarioPublicacion', EntityType::class, array(
             'class' => 'AppBundle:Usuario',
             'disabled' => 'true' ))

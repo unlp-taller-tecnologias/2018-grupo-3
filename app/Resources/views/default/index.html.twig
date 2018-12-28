@@ -3,7 +3,7 @@
 {% block body %}
 	
 	<div class="row home">
-		<div class="col-md-4 col-sm-12 col-xs-12">
+		<div class="col-lg-4 col-md-12 col-sm-12">
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
 			
 			<div class="buscador">
@@ -15,7 +15,7 @@
 					{% for catedra in catedras %}
 					<tr>
 						<td>
-							<i class="fas fa-angle-right"></i><a target="blank" href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
+							<i class="fas fa-angle-right"></i><a href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
 						</td>
 					</tr>
 					{% endfor %}
@@ -23,7 +23,7 @@
 			</table>
 			
 	    </div>
-	    <div class="col-md-8 col-sm-12 col-xs-12">
+	    <div class="col-lg-8 col-md-12 col-sm-12">
 	    	<h2 class="titulo-noticias-home">Noticias  <i class="fas fa-bullhorn"></i></h2>
 
 			{% for noticia in noticias %}

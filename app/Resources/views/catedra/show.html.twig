@@ -25,7 +25,7 @@
     <div class="row publicaciones">
 
         {% for publicacion in publicaciones %}
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-6">
                     <div class="jumbotron">
                         <div class="header-publicacion">
                             <p>
@@ -38,14 +38,27 @@
                             <h6>{{ publicacion.titulo }}</h6>
                             <p>{{ publicacion.bajada }}</p>
                             {{ publicacion.contenido|raw }}
-                            <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
+                            {% if publicacion.archivo is not empty %}
+                                <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
+                            {% endif %}
                             <a style="display: block;" target="_blank" href="{{ publicacion.link1 }}">{{publicacion.link1}}</a>
                             <a style="display: block;" target="_blank" href="{{ publicacion.link2 }}">{{publicacion.link2}}</a>
                             <div>
                                 <p>Firma la publicación:</p>
-                                {{ publicacion.firmante }}
+                                {% if publicacion.firmante is not empty %}
+                                    {{ publicacion.firmante }}
+                                {% else %}
+                                    <p>{{ publicacion.usuarioPublicacion }}</p>
+                                {% endif %}
                             </div>
-                            
+
+                            {% if publicacion.modificaciones %}
+                                {% for modificacion in publicacion.modificaciones %}
+                                    <p>Modificada: {{ modificacion.fecha|date("d/m/Y") }}</p>
+                                    <p>Horario: {{ modificacion.hora|date("H:i") }}</p>
+                                    <p>Por: {{ modificacion.nombreAutor }}</p>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 </div>

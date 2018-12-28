@@ -191,10 +191,8 @@ a.btn-etiqueta:hover{
 	opacity: 0.8;
 }
 
-@media only screen and (max-width: 768px){
-
+@media only screen and (max-width: 960px){
 	.row{
-		flex-direction: column;
+		flex-direction: row-reverse;
 	}
-
 }

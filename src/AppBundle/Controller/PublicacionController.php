@@ -66,6 +66,11 @@ class PublicacionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+          var_dump($form['archivo']);
+
+          if ( !empty($form['archivo']->getData()) ) {
+            
             $file = $form['archivo']->getData();
             $file->getPath();
             $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
@@ -75,7 +80,7 @@ class PublicacionController extends Controller
                     $this->getParameter('files_directory'),
                     $fileName
                 );
-            } catch (FileException $e) {
+              } catch (FileException $e) {
                 $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
                 try {
                     $file->move(
@@ -91,6 +96,10 @@ class PublicacionController extends Controller
                 }
             }
             $publicacion->setArchivo($fileName);
+          }else{
+            $publicacion->setArchivo(NULL);
+          }
+            
             $em = $this->getDoctrine()->getManager();
             $em->persist($publicacion);
             $em->flush();
@@ -99,9 +108,9 @@ class PublicacionController extends Controller
         }
 
         return $this->render('publicacion/new.html.twig', array(
-            'publicacion' => $publicacion,
-            'form' => $form->createView(),
-        ));
+             'publicacion' => $publicacion,
+             'form' => $form->createView(),
+         ));
     }
 
     /**
@@ -147,9 +156,6 @@ class PublicacionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($modificacion);
 
-            if ($publicacion->getVisada() == true) {
-              $publicacion->setAprobada('0');
-            }
             $em->flush();
 
             return $this->redirectToRoute('publicacion_edit', array('id' => $publicacion->getId()));
@@ -174,6 +180,14 @@ class PublicacionController extends Controller
         $form->handleRequest($request);
 
         $em = $this->getDoctrine()->getManager();
+
+        if ( !($publicacion->getModificaciones()->isEmpty()) ) {
+          
+            foreach ($publicacion->getModificaciones() as $modificacion) {
+              $em->remove($modificacion);
+              $em->flush();
+            }
+        }
 
         $em->remove($publicacion);
         $em->flush();

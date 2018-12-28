@@ -120,11 +120,11 @@ class UsuarioController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
+    
     /**
      * Deletes a usuario entity.
      *
-     * @Route("/{id}", name="usuario_delete")
+     * @Route("/delete/{id}", name="usuario_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Usuario $usuario)
@@ -132,10 +132,13 @@ class UsuarioController extends Controller
         $form = $this->createDeleteForm($usuario);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ( $usuario->getPublicaciones()->isEmpty() && empty($usuario->getCatedra()) ){
             $em = $this->getDoctrine()->getManager();
             $em->remove($usuario);
             $em->flush();
+        }
+        else{
+            $this->addFlash( 'error', 'El usuario posee publicaciones y/o usuarios asociadxs');
         }
 
         return $this->redirectToRoute('usuario_index');

@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Usuario;
@@ -33,7 +34,7 @@ class NoticiaType extends AbstractType
         ->add('link3')
         ->add('link4')
         ->add('link5')
-        ->add('firmante')
+        ->add('firmante', TextType::class, array('required' => false))
         ->add('usuarioNoticia', EntityType::class, array(
             'class' => 'AppBundle:Usuario',
             'disabled' => 'true' ));
