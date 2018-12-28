@@ -139,6 +139,9 @@ class PublicacionController extends Controller
         $editForm = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $editForm->handleRequest($request);
         $usuario = $this->getUser();
+        if ($usuario->getVisado() == 1) {
+          $publicacion->setAprobada(0);
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
