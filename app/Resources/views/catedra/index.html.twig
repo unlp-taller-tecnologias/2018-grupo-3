@@ -31,7 +31,7 @@
                 <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}</td>
                 <td>{{ catedra.telefonoContacto }}</td>
                 <td>
-                    <i class="fas fa-edit"></i><a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"></a>
+                    <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i></a>
                 </td>
                 <td>
                     <a href="{{ path('catedra_delete', { 'id': catedra.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
