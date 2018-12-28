@@ -180,7 +180,7 @@ class PublicacionController extends Controller
             $modificacion = new Modificacion();
             $modificacion->setFecha(new \DateTime("now"));
             $modificacion->setHora(new \DateTime("now"));
-            $modificacion->setNombreAutor("male");
+            $modificacion->setNombreAutor("hay que modificarlo");
             $modificacion->setPublicacionModificada($publicacion);
 
             $em = $this->getDoctrine()->getManager();
