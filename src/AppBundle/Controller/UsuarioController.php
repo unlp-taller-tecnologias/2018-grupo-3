@@ -63,6 +63,10 @@ class UsuarioController extends Controller
                 case 'administrador':
                     $usuario->addRole('ROLE_ADMIN');
                     break;
+
+                case 'moderador':
+                    $usuario->addRole('ROLE_MODERADOR');
+                    break;
             }
 
             $this->userManager->updateUser($usuario);

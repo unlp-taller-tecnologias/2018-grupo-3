@@ -21,7 +21,7 @@
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
 							<ul class="nav">	 		 
-								{% if is_granted("ROLE_ADMIN") %}
+								{% if is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERADOR") %}
 									<li class="nav-item">
 										<a class="nav-link" href="{{ path('catedra_index') }}">
 											Cátedras
