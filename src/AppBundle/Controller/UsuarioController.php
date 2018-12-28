@@ -124,7 +124,7 @@ class UsuarioController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-    
+
     /**
      * Deletes a usuario entity.
      *
@@ -136,13 +136,13 @@ class UsuarioController extends Controller
         $form = $this->createDeleteForm($usuario);
         $form->handleRequest($request);
 
-        if ( $usuario->getPublicaciones()->isEmpty() && empty($usuario->getCatedra()) ){
+        if ( $usuario->getPublicaciones()->isEmpty() ){
             $em = $this->getDoctrine()->getManager();
             $em->remove($usuario);
             $em->flush();
         }
         else{
-            $this->addFlash( 'error', 'El usuario posee publicaciones y/o usuarios asociadxs');
+            $this->addFlash( 'error', 'El usuario posee publicaciones');
         }
 
         return $this->redirectToRoute('usuario_index');

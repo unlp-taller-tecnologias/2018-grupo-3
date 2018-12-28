@@ -434,6 +434,17 @@ class Publicacion
         return $this->modificaciones;
     }
 
+    public function getModificacion() {
+        $modificaciones = $this->getModificaciones();
+        $max = NULL;
+        foreach ($modificaciones as $modif) {
+            if (($max == NULL) || ($modif->getHora() >= $max->getHora())) {
+                $max = $modif;
+            }
+        }
+        return $max;
+    }
+
     /**
      * Set catedra.
      *
@@ -507,7 +518,7 @@ class Publicacion
     }
 
     public function toString(){
-        return $this->titulo . " - " . $this->getEtiqueta()->getNombre() . " - " . "Para la cátedra: " . 
+        return $this->titulo . " - " . $this->getEtiqueta()->getNombre() . " - " . "Para la cátedra: " .
         $this->getCatedra()->getNombre() . " - " . "Realizada por: " . $this->getUsuarioPublicacion();
     }
 

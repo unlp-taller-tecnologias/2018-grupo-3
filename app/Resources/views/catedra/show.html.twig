@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-   
+
     <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
 
     <div class="container-fluid info-catedra">
         <div><i class="fas fa-envelope"></i>
             {{ catedra.emailContacto }}
-        </div> 
+        </div>
         <i class="fas fa-phone"></i>
             {{ catedra.telefonoContacto }}
-        <div><i class="fas fa-user-alt"></i>    
+        <div><i class="fas fa-user-alt"></i>
             {% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}
         </div>
     </div>
@@ -44,20 +44,18 @@
                             <a style="display: block;" target="_blank" href="{{ publicacion.link1 }}">{{publicacion.link1}}</a>
                             <a style="display: block;" target="_blank" href="{{ publicacion.link2 }}">{{publicacion.link2}}</a>
                             <div>
-                                <p>Firma la publicación:</p>
+                                <p>Firma la publicación:
                                 {% if publicacion.firmante is not empty %}
-                                    {{ publicacion.firmante }}
+                                    {{ publicacion.firmante }}</p>
                                 {% else %}
-                                    <p>{{ publicacion.usuarioPublicacion }}</p>
+                                    {{ publicacion.usuarioPublicacion }}</p>
                                 {% endif %}
                             </div>
 
                             {% if publicacion.modificaciones %}
-                                {% for modificacion in publicacion.modificaciones %}
-                                    <p>Modificada: {{ modificacion.fecha|date("d/m/Y") }}</p>
-                                    <p>Horario: {{ modificacion.hora|date("H:i") }}</p>
-                                    <p>Por: {{ modificacion.nombreAutor }}</p>
-                                {% endfor %}
+                                <p>Modificada el día {{ publicacion.modificacion.fecha|date("d/m/Y") }}
+                                {{ publicacion.modificacion.hora|date("H:i") }} hs
+                                por {{ publicacion.modificacion.nombreAutor }}</p>
                             {% endif %}
                         </div>
                     </div>

@@ -48,8 +48,6 @@ class PublicacionController extends Controller
      */
     public function newAction(Request $request, Catedra $catedra)
     {
-
-
         $usuario = $this->getUser();
         $fechaActual = new \DateTime("now");
         $publicacion = new Publicacion();
@@ -63,13 +61,14 @@ class PublicacionController extends Controller
           $publicacion->setVisada(0);
           $publicacion->setAprobada(1);
         }
+
         $form = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
           if ( !empty($form['archivo']->getData()) ) {
-            
+
             $file = $form['archivo']->getData();
             $file->getPath();
             $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
@@ -98,7 +97,7 @@ class PublicacionController extends Controller
           }else{
             $publicacion->setArchivo(NULL);
           }
-            
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($publicacion);
             $em->flush();
@@ -140,14 +139,11 @@ class PublicacionController extends Controller
         $editForm = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $editForm->handleRequest($request);
         $usuario = $this->getUser();
-        if ($usuario->getVisado() == 1) {
-          $publicacion->setAprobada(0);
-        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
             if ( !empty($editForm['archivo']->getData()) ) {
-            
+
               $file = $editForm['archivo']->getData();
               $file->getPath();
               $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
@@ -180,7 +176,7 @@ class PublicacionController extends Controller
             $modificacion = new Modificacion();
             $modificacion->setFecha(new \DateTime("now"));
             $modificacion->setHora(new \DateTime("now"));
-            $modificacion->setNombreAutor("hay que modificarlo");
+            $modificacion->setNombreAutor("".$usuario->getApellido()." ".$usuario->getNombre()."");
             $modificacion->setPublicacionModificada($publicacion);
 
             $em = $this->getDoctrine()->getManager();
@@ -212,7 +208,7 @@ class PublicacionController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         if ( !($publicacion->getModificaciones()->isEmpty()) ) {
-          
+
             foreach ($publicacion->getModificaciones() as $modificacion) {
               $em->remove($modificacion);
               $em->flush();
