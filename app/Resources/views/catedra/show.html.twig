@@ -52,7 +52,7 @@
                                 {% endif %}
                             </div>
 
-                            {% if publicacion.modificaciones %}
+                            {% if publicacion.modificacion %}
                                 <p>Modificada el día {{ publicacion.modificacion.fecha|date("d/m/Y") }}
                                 {{ publicacion.modificacion.hora|date("H:i") }} hs
                                 por {{ publicacion.modificacion.nombreAutor }}</p>
