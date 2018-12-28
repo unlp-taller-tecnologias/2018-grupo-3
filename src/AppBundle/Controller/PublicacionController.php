@@ -67,8 +67,6 @@ class PublicacionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-          var_dump($form['archivo']);
-
           if ( !empty($form['archivo']->getData()) ) {
             
             $file = $form['archivo']->getData();
@@ -103,7 +101,7 @@ class PublicacionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($publicacion);
             $em->flush();
-
+            $this->addFlash( 'exito', 'La publicación se agregó exitosamente');
             return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
         }
 
@@ -236,6 +234,7 @@ class PublicacionController extends Controller
             }
             $em->flush();
         }
+        $this->addFlash( 'exito', 'Las publicaciones han sido aprobadas exitósamente');
         return $this->render('publicacion/visar.html.twig', array(
             'visar_form' => $form->createView(),
         ));

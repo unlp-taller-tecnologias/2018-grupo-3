@@ -3,6 +3,12 @@
 {% block body %}
 <section class="formulario-visado">
 
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="flash-error">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
     {{ form_start(visar_form) }}
     
 

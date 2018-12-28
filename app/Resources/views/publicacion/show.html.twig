@@ -1,60 +1,50 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Publicacion</h1>
 
-    <table>
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="flash-error">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+
+    <table class="table table-responsive d-flex justify-content-center">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ publicacion.id }}</td>
+                <td class="titulo-publicacion">{{ publicacion.titulo }}</td>
             </tr>
             <tr>
-                <th>Titulo</th>
-                <td>{{ publicacion.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Bajada</th>
                 <td>{{ publicacion.bajada }}</td>
             </tr>
             <tr>
-                <th>Nombreautor</th>
-                <td>{{ publicacion.nombreAutor }}</td>
+                <td>Fecha: {% if publicacion.fechaPublicacion %}{{ publicacion.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Fechapublicacion</th>
-                <td>{% if publicacion.fechaPublicacion %}{{ publicacion.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if publicacion.fechaCaducidad %}Fecha de caducidad: {{ publicacion.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Contenido</th>
                 <td>{{ publicacion.contenido|raw }}</td>
-            </tr>
-            <tr>
-                <th>Fechacaducidad</th>
-                <td>{% if publicacion.fechaCaducidad %}{{ publicacion.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
             </tr>
             <tr>
                 <th>Firmante</th>
                 <td>{{ publicacion.firmante }}</td>
             </tr>
             <tr>
-                <th>Archivo</th>
-                <td>{{ publicacion.archivo }}</td>
+                {% if publicacion.archivo %}
+                    <th>Archivo:</th>
+                    <td>{{ publicacion.archivo }}</td>
+                {% endif %}
             </tr>
             <tr>
                 <th>Link</th>
                 <td>{{ publicacion.link1 }}</td>
             </tr>
+            <tr>
+                <td>
+                    <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}">Editar</a>
+                </td>
+            </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('publicacion_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}">Edit</a>
-        </li>
-       
-    </ul>
 {% endblock %}

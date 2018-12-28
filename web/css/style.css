@@ -59,7 +59,7 @@ header a, header a:hover{
 .titulo-catedras-home{
 	padding-top: 5%;
 }
-.titulo-noticia{
+.titulo-noticia, .titulo-publicacion{
 	font-size: 25px;
 	font-weight: bold;
 }
