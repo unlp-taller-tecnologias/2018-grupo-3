@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Publicacion;
 use AppBundle\Entity\Modificacion;
+use AppBundle\Entity\Catedra;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -42,10 +43,10 @@ class PublicacionController extends Controller
     /**
      * Creates a new publicacion entity.
      *
-     * @Route("/new", name="publicacion_new")
+     * @Route("/new/catedra/{id}", name="publicacion_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Catedra $catedra)
     {
 
 
@@ -53,7 +54,7 @@ class PublicacionController extends Controller
         $fechaActual = new \DateTime("now");
         $publicacion = new Publicacion();
         $publicacion->setUsuarioPublicacion($usuario);
-        $publicacion->setCatedra($usuario->getCatedra());
+        $publicacion->setCatedra($catedra);
         $publicacion->setFechaPublicacion($fechaActual);
         if ($usuario->getVisado() == 1) {
           $publicacion->setVisada(1);
