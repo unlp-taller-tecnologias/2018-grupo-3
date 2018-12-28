@@ -72,6 +72,9 @@
 									<li class="nav-item">
 										<a class="nav-link" href="{{ path('fos_user_resetting_request') }}">Forgot password ?</a>
 									</li>
+									
+									<a class="nav-link" href="{{ path('fos_user_resetting_reset', {'response': null, 'token': 1}) }}">Forgot password ?</a>
+
 								{% endif %}
 							</ul>
 			</div>
