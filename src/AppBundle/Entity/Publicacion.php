@@ -45,7 +45,7 @@ class Publicacion
     /**
      * @var string
      *
-     * @ORM\Column(name="contenido", type="string", length=255)
+     * @ORM\Column(name="contenido", type="text")
      */
     private $contenido;
 

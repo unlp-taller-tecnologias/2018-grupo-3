@@ -23,7 +23,7 @@ class PublicacionVisadoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('aprobada', EntityType::class, array(
+        $builder->add('aprobada', VisadoChoiceType::class, array(
             'label' => 'Seleccione las publicaciones que se desea aprobar:',
             'required' => false,
             'class' => 'AppBundle:Publicacion',
