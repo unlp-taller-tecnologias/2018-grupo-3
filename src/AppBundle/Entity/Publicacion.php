@@ -36,13 +36,6 @@ class Publicacion
     private $bajada;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nombre_autor", type="string", length=255)
-     */
-    private $nombreAutor;
-
-    /**
      * @var \Date
      *
      * @ORM\Column(name="fecha_publicacion", type="date")
@@ -206,30 +199,6 @@ class Publicacion
     public function getBajada()
     {
         return $this->bajada;
-    }
-
-    /**
-     * Set nombreAutor
-     *
-     * @param string $nombreAutor
-     *
-     * @return Publicacion
-     */
-    public function setNombreAutor($nombreAutor)
-    {
-        $this->nombreAutor = $nombreAutor;
-
-        return $this;
-    }
-
-    /**
-     * Get nombreAutor
-     *
-     * @return string
-     */
-    public function getNombreAutor()
-    {
-        return $this->nombreAutor;
     }
 
     /**

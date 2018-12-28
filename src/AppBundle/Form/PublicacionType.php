@@ -23,7 +23,6 @@ class PublicacionType extends AbstractType
     {
         $builder->add('titulo')
         ->add('bajada', TextareaType::class, array('attr' => array('class' => 'tinymce') ))
-        ->add('nombreAutor')
         ->add('fechaPublicacion', DateType::class, array(
             'widget' => 'single_text',
             'disabled' => 'true'))

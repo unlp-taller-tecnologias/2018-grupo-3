@@ -10,7 +10,6 @@
                 <tr>
                     <th>Titulo</th>
                     <th>Bajada</th>
-                    <th>Nombre autor</th>
                     <th>Fecha publicacion</th>
                     <th>Contenido</th>
                     <th>Archivos:</th>
@@ -28,7 +27,6 @@
                         </a>
                     </td>
                     <td>{{ publicacion.bajada }}</td>
-                    <td>{{ publicacion.nombreAutor }}</td>
                     <td>{% if publicacion.fechaPublicacion %}{{ publicacion.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
                     <td>{{ publicacion.contenido|raw }}</td>
                     <td>
