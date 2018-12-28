@@ -16,7 +16,8 @@ class CatedraRepository extends \Doctrine\ORM\EntityRepository
 
 		$qb = $this->createQueryBuilder('p')
 			->where('p.fechaCaducidad > :fechaActual')->setParameter('fechaActual', $fechaActual)
-			->andwhere('p.aprobada = 1');
+			->andwhere('p.aprobada = 1')
+			->orderBy('p.fechaPublicacion', 'ASC');
 		return $qb->getQuery()->getResult();
 
 	}

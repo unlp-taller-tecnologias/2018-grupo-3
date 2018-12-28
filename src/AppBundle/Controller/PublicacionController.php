@@ -146,6 +146,37 @@ class PublicacionController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
 
+            if ( !empty($editForm['archivo']->getData()) ) {
+            
+              $file = $editForm['archivo']->getData();
+              $file->getPath();
+              $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+
+               try {
+                  $file->move(
+                      $this->getParameter('files_directory'),
+                      $fileName
+                  );
+                } catch (FileException $e) {
+                  $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                  try {
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  } catch (FileException $e) {
+                      $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  }
+              }
+              $publicacion->setArchivo($fileName);
+            }else{
+              $publicacion->setArchivo(NULL);
+            }
+
             $modificacion = new Modificacion();
             $modificacion->setFecha(new \DateTime("now"));
             $modificacion->setHora(new \DateTime("now"));

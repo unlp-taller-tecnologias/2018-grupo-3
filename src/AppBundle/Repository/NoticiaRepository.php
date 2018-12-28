@@ -16,7 +16,8 @@ class NoticiaRepository extends \Doctrine\ORM\EntityRepository
 
 		$qb = $this->createQueryBuilder('n')
 			->where('n.fechaCaducidad > :fechaActual')->setParameter('fechaActual', $fechaActual)
-			->orwhere('n.fechaCaducidad is NULL');
+			->orwhere('n.fechaCaducidad is NULL')
+			->orderBy('n.fechaPublicacion', 'DESC');
 		return $qb->getQuery()->getResult();
 
 	}
