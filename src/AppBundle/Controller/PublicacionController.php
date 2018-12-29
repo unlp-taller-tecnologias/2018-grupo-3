@@ -255,7 +255,11 @@ class PublicacionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
+            if ( isset($request->request->get('appbundle_publicacion')['aprobada']) ) {
+                $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
+            } else {
+              $publicaciones = null;
+            }
             if ($publicaciones){
                 foreach ($publicaciones as $clave) {
                     $publicacion = $em->getRepository('AppBundle:Publicacion')->find($clave);

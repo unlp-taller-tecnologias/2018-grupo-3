@@ -38,17 +38,17 @@
                             <h6>{{ publicacion.titulo }}</h6>
                             <p>{{ publicacion.bajada }}</p>
                             {{ publicacion.contenido|raw }}
+                            
                             {% if publicacion.archivo is not empty %}
                                 <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
                             {% endif %}
-                            <a style="display: block;" target="_blank" href="{{ publicacion.link1 }}">{{publicacion.link1}}</a>
-                            <a style="display: block;" target="_blank" href="{{ publicacion.link2 }}">{{publicacion.link2}}</a>
+
                             <div>
                                 <p>Firma la publicación:
                                 {% if publicacion.firmante is not empty %}
                                     {{ publicacion.firmante }}</p>
                                 {% else %}
-                                    {{ publicacion.usuarioPublicacion }}</p>
+                                    {{ publicacion.getNombreUsuarioPublicacion() }}</p>
                                 {% endif %}
                             </div>
 

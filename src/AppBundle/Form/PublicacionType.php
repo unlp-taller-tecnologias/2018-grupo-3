@@ -26,7 +26,7 @@ class PublicacionType extends AbstractType
         ->add('fechaPublicacion', DateType::class, array(
             'widget' => 'single_text',
             'disabled' => 'true'))
-        ->add('contenido', CKEditorType::class, array( 
+        ->add('contenido', CKEditorType::class, array(
             'config' => array( 'uiColor' => '#ffffff' ),
             'required' => true ))
         ->add('fechaCaducidad', DateType::class, array(
@@ -38,11 +38,6 @@ class PublicacionType extends AbstractType
             "attr" =>array("class" => "form-control"),
             "data_class" => null,
             "required" => false ))
-        ->add('link1')
-        ->add('link2')
-        ->add('link3')
-        ->add('link4')
-        ->add('link5')
         ->add('etiqueta', EntityType::class, array(
             'class' => 'AppBundle:Etiqueta',
             'required' => true ))

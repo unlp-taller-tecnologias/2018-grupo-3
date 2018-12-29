@@ -6,16 +6,16 @@
         <div class="mr-5">
             <a class="btn" href="{{ path('publicacion_new', { 'id': catedra.id }) }}">Añadir publicación</a>
         </div>
-        
+
     </div>
 
     <div class="container-fluid info-catedra">
         <div><i class="fas fa-envelope"></i>
             {{ catedra.emailContacto }}
-        </div> 
+        </div>
         <i class="fas fa-phone"></i>
             {{ catedra.telefonoContacto }}
-        <div><i class="fas fa-user-alt"></i>    
+        <div><i class="fas fa-user-alt"></i>
             {% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}
         </div>
     </div>
@@ -46,14 +46,18 @@
                         {% if publicacion.archivo is not empty %}
                             <a href="{{ asset('pdf/'~publicacion.archivo) }}" target="_blank">Ver pdf</a>
                         {% endif %}
-                        <a style="display: block;" target="_blank" href="{{ publicacion.link1 }}">{{publicacion.link1}}</a>
+
                         {% if publicacion.firmante is not empty %}
                             <div>
-                                <p>Firma la publicación:</p>
-                                {{ publicacion.firmante }}
+                                <p>Firma la publicación:
+                                {% if publicacion.firmante is not empty %}
+                                    {{ publicacion.firmante }}</p>
+                                {% else %}
+                                    {{ publicacion.getNombreUsuarioPublicacion() }}</p>
+                                {% endif %}
                             </div>
                         {% endif %}
-                        
+
                     </div>
                 </div>
             </div>

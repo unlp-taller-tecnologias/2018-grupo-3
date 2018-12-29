@@ -21,6 +21,6 @@ class DefaultController extends Controller
             'noticias' => $noticias,
             'catedras' => $catedras ));
 
-        
+
     }
 }

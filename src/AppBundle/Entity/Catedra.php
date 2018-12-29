@@ -64,6 +64,7 @@ class Catedra
 
     /**
      * @ORM\OneToMany(targetEntity="Publicacion", mappedBy="catedra")
+     * @ORM\OrderBy({"fechaPublicacion" = "DESC"})
      */
     private $publicacionesCatedra;
 
@@ -229,7 +230,6 @@ class Catedra
     public function addPublicacionesCatedra(\AppBundle\Entity\Publicacion $publicacionesCatedra)
     {
         $this->publicacionesCatedra[] = $publicacionesCatedra;
-
         return $this;
     }
 
