@@ -4,12 +4,23 @@
 
 
 {% block visadochoice_row %}
-{{ dump(form.parent.vars.value) }}
+
 
 <h3>{{label}}</h3>
+<div id="appbundle_publicacion_aprobada">
+{% for child in form %}
 
-<a href="">{{form.parent.vars.titulo}}</a>
+	<div class="form-check">
 
+		<input type="checkbox" id="{{child.vars.name}}" name="appbundle_publicacion[aprobada][]" class="form-check-input" value="{{ child.vars.value }}">
+		<label class="form-check-label" for="{{ child.vars.name }}">
+			<a target="_blank" href="{{ path('publicacion_show', { 'id': child.vars.value }) }}">{{child.vars.label}}</a>
+		</label>
+
+	</div>
+	
+{% endfor %}
+</div>
 {% endblock %}
 
 {% block body %}
