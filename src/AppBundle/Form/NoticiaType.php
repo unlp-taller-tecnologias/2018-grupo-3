@@ -29,11 +29,6 @@ class NoticiaType extends AbstractType
             'widget' => 'single_text',
             'required' => false))
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
-        ->add('link1')
-        ->add('link2')
-        ->add('link3')
-        ->add('link4')
-        ->add('link5')
         ->add('firmante', TextType::class, array('required' => false))
         ->add('usuarioNoticia', EntityType::class, array(
             'class' => 'AppBundle:Usuario',
