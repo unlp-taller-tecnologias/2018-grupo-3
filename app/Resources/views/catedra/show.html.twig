@@ -37,8 +37,8 @@
                         <div>
                             <h6>{{ publicacion.titulo }}</h6>
                             <p>{{ publicacion.bajada }}</p>
-                            {{ publicacion.contenido|raw }}
-                            
+                            <p>{{ publicacion.contenido|raw }}</p>
+
                             {% if publicacion.archivo is not empty %}
                                 <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
                             {% endif %}
@@ -46,16 +46,16 @@
                             <div>
                                 <p>Firma la publicación:
                                 {% if publicacion.firmante is not empty %}
-                                    {{ publicacion.firmante }}</p>
+                                    {{ publicacion.firmante }}
                                 {% else %}
-                                    {{ publicacion.getNombreUsuarioPublicacion() }}</p>
-                                {% endif %}
+                                    {{ publicacion.getNombreUsuarioPublicacion() }}
+                                {% endif %}</p>
                             </div>
 
                             {% if publicacion.modificacion %}
-                                <p>Modificada el día {{ publicacion.modificacion.fecha|date("d/m/Y") }}
+                                <p><strong>Modificada el día {{ publicacion.modificacion.fecha|date("d/m/Y") }}
                                 {{ publicacion.modificacion.hora|date("H:i") }} hs
-                                por {{ publicacion.modificacion.nombreAutor }}</p>
+                                por {{ publicacion.modificacion.nombreAutor }}</strong></p>
                             {% endif %}
                         </div>
                     </div>
