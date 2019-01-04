@@ -1,15 +1,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {% block subject %}
 {%- autoescape false -%}
-{{ 'Solicitud de cambio de contraseña'|trans({'%username%': user.username}) }}
+{{ 'Recuperar contraseña'|trans({'%username%': user.username}) }}
 {%- endautoescape -%}
 {% endblock %}
 
 {% block body_text %}
 {% autoescape false %}
-{{ 'Olvido de contraseña' |trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
+Si olvidaste tu contraseña, ingresá al siguiente link: {{ confirmationUrl }}
 
-{{ dump(confirmationUrl) }}
+Si no solicitaste el cambio, ignorá este mensaje.
 
 {% endautoescape %}
 {% endblock %}
