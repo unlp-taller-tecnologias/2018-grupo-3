@@ -26,8 +26,12 @@
                 <td>{{ publicacion.contenido|raw }}</td>
             </tr>
             <tr>
-                <th>Firmante</th>
-                <td>{{ publicacion.firmante }}</td>
+                <td>Firmante:
+                {% if publicacion.firmante is not empty %}
+                    {{ publicacion.firmante }}
+                {% else %}
+                    {{ publicacion.getNombreUsuarioPublicacion() }}
+                {% endif %}</td>
             </tr>
             <tr>
                 {% if publicacion.archivo %}
