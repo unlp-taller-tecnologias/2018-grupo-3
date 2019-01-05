@@ -220,7 +220,7 @@ class PublicacionController extends Controller
 
         $em->remove($publicacion);
         $em->flush();
-        return $this->redirectToRoute('publicacion_index');
+        return $this->redirectToRoute('adm_catedra', array('id' => $publicacion->getCatedra()->getId()));
 
     }
 
