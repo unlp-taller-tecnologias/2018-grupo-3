@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Rol;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+
 
 class UsuarioType extends AbstractType
 {
@@ -17,9 +19,7 @@ class UsuarioType extends AbstractType
     {
         $builder->add('nombre')
         ->add('apellido')
-        ->add('visado')
         ->add('telefonoContacto')
-        ->add('catedra')
         ->add('rol', EntityType::class, array(
             'label' => 'Rol',
             'required' => true,
@@ -27,7 +27,9 @@ class UsuarioType extends AbstractType
             'choice_label' => function($rol){
                 return $rol->getNombre();
             },
-            'expanded' => false));
+            'expanded' => false))
+        ->add('visado')
+        ->add('catedra');
     }/**
      * {@inheritdoc}
      */

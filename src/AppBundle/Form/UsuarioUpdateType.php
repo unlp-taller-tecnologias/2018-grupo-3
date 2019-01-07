@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Rol;
+use Symfony\Component\Security\Core\Security;
 
 class UsuarioUpdateType extends AbstractType
 {
@@ -15,12 +16,15 @@ class UsuarioUpdateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder->add('nombre')
         ->add('apellido')
         ->add('visado')
-        ->add('telefonoContacto')
-        ->add('catedra')
-        ->add('email')
+        ->add('telefonoContacto');
+        if ($options) {
+            $builder->add('catedra');
+        }
+        $builder->add('email')
         ->add('username')
         ->add('rol', EntityType::class, array(
             'label' => 'Rol',

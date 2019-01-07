@@ -100,6 +100,7 @@ class UsuarioController extends Controller
      *
      * @Route("/{id}/edit", name="usuario_edit")
      * @Method({"GET", "POST"})
+     * 
      */
     public function editAction(Request $request, Usuario $usuario, UserManagerInterface $userManager)
     {
