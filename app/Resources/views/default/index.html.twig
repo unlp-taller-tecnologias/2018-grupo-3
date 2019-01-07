@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	
+
 	<div class="row home">
 		<div class="col-lg-4 col-md-12 col-sm-12">
 			<h2 class="titulo-catedras-home"><i class="fas fa-list-ul"></i> Cátedras</h2>
-			
+
 			<div class="buscador">
 				<input type="text" class="texto-gris" placeholder="Filtrar por nombre de la cátedra" id="buscador" value=""/>
 			</div>
@@ -15,13 +15,13 @@
 					{% for catedra in catedras %}
 					<tr>
 						<td>
-							<i class="fas fa-angle-right"></i><a href="/catedra/{{catedra.id}}" class="">{{catedra.nombre}}</a>
+							<i class="fas fa-angle-right"></i><a href="{{ path('catedra_show', { 'id': catedra.id }) }}" class="">{{catedra.nombre}}</a>
 						</td>
 					</tr>
 					{% endfor %}
 				</tbody>
 			</table>
-			
+
 	    </div>
 	    <div class="col-lg-8 col-md-12 col-sm-12">
 	    	<h2 class="titulo-noticias-home">Noticias  <i class="fas fa-bullhorn"></i></h2>
@@ -33,7 +33,7 @@
 		            <div>
 		            	{{ noticia.contenido|raw }}
 		            </div>
-		            {{ noticia.firmante }}	    
+		            {{ noticia.firmante }}
 		        </section>
 		    {% endfor %}
 	    </div>
@@ -51,8 +51,8 @@
 		        jQuery("#tablaCatedras tbody>tr").show();
 		    }
 		});
-		 
-		jQuery.extend(jQuery.expr[":"], 
+
+		jQuery.extend(jQuery.expr[":"],
 		{
 		    "contiene-palabra": function(elem, i, match, array) {
 		        return (elem.textContent || elem.innerText || jQuery(elem).text() || "").toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;

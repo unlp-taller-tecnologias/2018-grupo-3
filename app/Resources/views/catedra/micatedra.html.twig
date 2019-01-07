@@ -47,17 +47,14 @@
                             <a href="{{ asset('pdf/'~publicacion.archivo) }}" target="_blank">Ver pdf</a>
                         {% endif %}
 
-                        {% if publicacion.firmante is not empty %}
-                            <div>
-                                <p>Firma la publicación:
-                                {% if publicacion.firmante is not empty %}
-                                    {{ publicacion.firmante }}</p>
-                                {% else %}
-                                    {{ publicacion.getNombreUsuarioPublicacion() }}</p>
-                                {% endif %}
-                            </div>
-                        {% endif %}
-
+                        <div>
+                            <p>Firma la publicación:
+                            {% if publicacion.firmante is not empty %}
+                                {{ publicacion.firmante }}
+                            {% else %}
+                                {{ publicacion.getNombreUsuarioPublicacion() }}
+                            {% endif %}</p>
+                        </div>
                     </div>
                 </div>
             </div>

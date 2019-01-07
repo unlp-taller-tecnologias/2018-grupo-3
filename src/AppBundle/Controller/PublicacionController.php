@@ -67,36 +67,36 @@ class PublicacionController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-          if ( !empty($form['archivo']->getData()) ) {
+            if ( !empty($form['archivo']->getData()) ) {
 
-            $file = $form['archivo']->getData();
-            $file->getPath();
-            $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+              $file = $form['archivo']->getData();
+              $file->getPath();
+              $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
 
-             try {
-                $file->move(
-                    $this->getParameter('files_directory'),
-                    $fileName
-                );
-              } catch (FileException $e) {
-                $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
-                try {
-                    $file->move(
-                        $this->getParameter('files_directory'),
-                        $fileName
-                    );
+               try {
+                  $file->move(
+                      $this->getParameter('files_directory'),
+                      $fileName
+                  );
                 } catch (FileException $e) {
-                    $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
-                    $file->move(
-                        $this->getParameter('files_directory'),
-                        $fileName
-                    );
-                }
+                  $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                  try {
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  } catch (FileException $e) {
+                      $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  }
+              }
+              $publicacion->setArchivo($fileName);
+            }else{
+              $publicacion->setArchivo(NULL);
             }
-            $publicacion->setArchivo($fileName);
-          }else{
-            $publicacion->setArchivo(NULL);
-          }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($publicacion);
@@ -187,7 +187,7 @@ class PublicacionController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('publicacion_edit', array('id' => $publicacion->getId()));
+            return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
         }
 
         return $this->render('publicacion/edit.html.twig', array(
@@ -220,7 +220,7 @@ class PublicacionController extends Controller
 
         $em->remove($publicacion);
         $em->flush();
-        return $this->redirectToRoute('publicacion_index');
+        return $this->redirectToRoute('adm_catedra', array('id' => $publicacion->getCatedra()->getId()));
 
     }
 
@@ -268,6 +268,7 @@ class PublicacionController extends Controller
                 }
             }
             $em->flush();
+            return $this->redirectToRoute('publicacion_visar');
         }
         $this->addFlash( 'exito', 'Las publicaciones han sido aprobadas exitósamente');
         return $this->render('publicacion/visar.html.twig', array(

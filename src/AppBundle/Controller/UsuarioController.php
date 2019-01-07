@@ -95,6 +95,41 @@ class UsuarioController extends Controller
         ));
     }
 
+    private function editRole($usuario, $data) {
+        switch ($usuario->getRol()->getNombre()) {
+            case 'responsable':
+                $usuario->removeRole('ROLE_ADMIN');
+                $usuario->removeRole('ROLE_MODERADOR');
+                break;
+
+            case 'administrador':
+                $usuario->removeRole('ROLE_CATEDRA');
+                $usuario->removeRole('ROLE_MODERADOR');
+                break;
+
+            case 'moderador':
+                $usuario->removeRole('ROLE_ADMIN');
+                $usuario->removeRole('ROLE_CATEDRA');
+                break;
+        }
+
+        switch ($data) {
+            case 'responsable':
+                $usuario->addRole('ROLE_CATEDRA');
+                break;
+
+            case 'administrador':
+                $usuario->addRole('ROLE_ADMIN');
+                break;
+
+            case 'moderador':
+                $usuario->addRole('ROLE_MODERADOR');
+                break;
+        }
+
+        return $usuario;
+    }
+
     /**
      * Displays a form to edit an existing usuario entity.
      *
@@ -110,6 +145,10 @@ class UsuarioController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
+            $data = $editForm->getData()->getRol()->getNombre();
+            $usuario = $this->editRole($usuario, $data);
+
             $this->userManager->updateUser($usuario);
             $this->getDoctrine()->getManager()->flush();
 
