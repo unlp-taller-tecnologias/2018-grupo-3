@@ -28,8 +28,8 @@ class UsuarioType extends AbstractType
                 return $rol->getNombre();
             },
             'expanded' => false))
-        ->add('visado')
-        ->add('catedra');
+        ->add('catedra')
+        ->add('visado');
     }/**
      * {@inheritdoc}
      */

@@ -21,8 +21,10 @@ class PublicacionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('titulo')
-        ->add('bajada', TextareaType::class, array('attr' => array('class' => 'tinymce') ))
+        $builder->add('titulo', TextType::class, array('attr' => array('maxlength' => 255)))
+        ->add('bajada', TextareaType::class, array(
+            'attr' => array('class' => 'tinymce',
+                            'maxlength' => 255)))
         ->add('fechaPublicacion', DateType::class, array(
             'widget' => 'single_text',
             'disabled' => 'true'))
@@ -32,7 +34,7 @@ class PublicacionType extends AbstractType
         ->add('fechaCaducidad', DateType::class, array(
             'widget' => 'single_text',
             'required' => false))
-        ->add('firmante', TextType::class, array('required' => false))
+        ->add('firmante', TextType::class, array('required' => false, 'attr' => array('maxlength' => 255)))
         ->add('archivo', FileType::class, array(
             'label' => 'Archivo pdf',
             "attr" =>array("class" => "form-control"),

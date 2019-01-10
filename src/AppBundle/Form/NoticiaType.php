@@ -21,7 +21,8 @@ class NoticiaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('titulo')
-        ->add('bajada', TextareaType::class, array('attr' => array('class' => 'tinymce') ))
+        ->add('bajada', TextareaType::class, array('attr' => array('class' => 'tinymce',
+                                                                   'maxlength' => 255) ))
         ->add('fechaPublicacion', DateType::class, array(
             'widget' => 'single_text',
             'disabled' => 'true'))
@@ -29,7 +30,7 @@ class NoticiaType extends AbstractType
             'widget' => 'single_text',
             'required' => false))
         ->add('contenido', CKEditorType::class, array( 'config' => array( 'uiColor' => '#ffffff' )))
-        ->add('firmante', TextType::class, array('required' => false))
+        ->add('firmante', TextType::class, array('required' => false, 'attr' => array('maxlength' => 255)))
         ->add('usuarioNoticia', EntityType::class, array(
             'class' => 'AppBundle:Usuario',
             'disabled' => 'true' ));

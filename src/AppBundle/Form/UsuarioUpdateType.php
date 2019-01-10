@@ -16,15 +16,10 @@ class UsuarioUpdateType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
         $builder->add('nombre')
         ->add('apellido')
-        ->add('visado')
-        ->add('telefonoContacto');
-        if ($options) {
-            $builder->add('catedra');
-        }
-        $builder->add('email')
+        ->add('telefonoContacto')
+        ->add('email')
         ->add('username')
         ->add('rol', EntityType::class, array(
             'label' => 'Rol',
@@ -34,6 +29,10 @@ class UsuarioUpdateType extends AbstractType
                 return $rol->getNombre();
             },
             'expanded' => false));
+        if ($options) {
+            $builder->add('catedra');
+        }
+        $builder->add('visado');
     }/**
      * {@inheritdoc}
      */
