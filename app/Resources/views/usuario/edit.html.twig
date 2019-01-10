@@ -6,6 +6,10 @@
 
         {{ form_start(edit_form) }}
 
+            {{ form_row(edit_form.nombre) }}
+
+            {{ form_row(edit_form.apellido) }}
+
             {{ form_row(edit_form.email, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su e-mail' }, 'label': 'E-mail:'}) }}
 
             {{ form_row(edit_form.username, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese nombre de usuario' }, 'label': 'Nombre de usuario:'}) }}
