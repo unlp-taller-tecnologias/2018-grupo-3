@@ -29,9 +29,9 @@ class UsuarioUpdateType extends AbstractType
                 return $rol->getNombre();
             },
             'expanded' => false));
-        if ($options) {
+        // if ($options) {
             $builder->add('catedra');
-        }
+        // }
         $builder->add('visado');
     }/**
      * {@inheritdoc}
