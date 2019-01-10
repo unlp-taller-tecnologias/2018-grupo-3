@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Usuario</h1>
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="flash-error">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
 
-    <table>
+    <table class="table table-responsive d-flex justify-content-center">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ usuario.id }}</td>
-            </tr>
             <tr>
                 <th>Nombre</th>
                 <td>{{ usuario.nombre }}</td>
@@ -18,27 +18,41 @@
                 <td>{{ usuario.apellido }}</td>
             </tr>
             <tr>
+                <th>Email</th>
+                <td>{{ usuario.email }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de Usuario</th>
+                <td>{{ usuario.username }}</td>
+            </tr>
+            <tr>
+                <th>Teléfono de Contacto</th>
+                <td>{{ usuario.telefonoContacto }}</td>
+            </tr>
+            <tr>
+                <th>Rol</th>
+                <td>{{ usuario.rol.nombre }}</td>
+            </tr>
+            {% if usuario.catedra %}
+            <tr>
+                <th>Cátedra</th>
+                <td>{{ usuario.catedra.nombre }}</td>
+            </tr>
+            <tr>
                 <th>Visado</th>
                 <td>{% if usuario.visado %}Yes{% else %}No{% endif %}</td>
             </tr>
+            {% endif %}
             <tr>
-                <th>Telefonocontacto</th>
-                <td>{{ usuario.telefonoContacto }}</td>
+                <td>
+                    <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Editar</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="{{ path('usuario_index') }}">Volver a la lista</a>
+                </td>
             </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('usuario_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}

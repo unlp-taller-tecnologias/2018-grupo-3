@@ -94,7 +94,7 @@ class NoticiaController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('noticia_edit', array('id' => $noticia->getId()));
+            return $this->redirectToRoute('noticia_show', array('id' => $noticia->getId()));
         }
 
         return $this->render('noticia/edit.html.twig', array(

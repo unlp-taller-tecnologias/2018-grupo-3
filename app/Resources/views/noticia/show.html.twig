@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>noticia</h1>
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="flash-error">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
 
-    <table>
+    <table class="table table-responsive d-flex justify-content-center">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ noticia.id }}</td>
-            </tr>
             <tr>
                 <th>Titulo</th>
                 <td>{{ noticia.titulo }}</td>
@@ -29,20 +29,11 @@
                 <th>Firmante</th>
                 <td>{{ noticia.firmante }}</td>
             </tr>
+            <tr>
+                <td>
+                    <a href="{{ path('noticia_edit', { 'id': noticia.id }) }}">Editar</a>
+                </td>
+            </tr>
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('noticia_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('noticia_edit', { 'id': noticia.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
 {% endblock %}
