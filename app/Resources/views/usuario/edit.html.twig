@@ -40,7 +40,9 @@
               $('#appbundle_usuario_catedra').show();
           } else {
               $("#appbundle_usuario_visado").hide();
+              $("#appbundle_usuario_visado").prop("checked", false);
               $("#appbundle_usuario_catedra").hide();
+              $('#appbundle_usuario_catedra').val('');
           }
       });
   </script>
