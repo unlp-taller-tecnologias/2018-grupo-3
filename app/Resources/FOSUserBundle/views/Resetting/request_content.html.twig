@@ -1,11 +1,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
-    <div>
-        <label for="username">Ingrese su mail:</label>
-        <input type="text" id="username" name="username" required="required" />
-    </div>
-    <div>
-        <input type="submit" value="Enviar" />
-    </div>
-</form>
+<section class="formularios">
+	<h2 class="titulo-form">Recuperación de contraseña</h2>
+	<br>
+	<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+	    <div class="form-group">
+	        <label for="username">Ingrese su email:</label>
+	        <input class="form-control" type="text" id="username" name="username" required="required" />
+	    </div>
+	    
+	    <input class="btn" type="submit" value="Enviar" />
+	    
+	</form>
+</section>
