@@ -5,6 +5,11 @@
 
 {% block visadochoice_row %}
 
+{% if form.children is empty %}
+    
+    <h3>No hay publicaciones pendientes de visado.</h3>
+
+{% else %}
 
 <h3>{{label}}</h3>
 <div id="appbundle_publicacion_aprobada">
@@ -20,27 +25,31 @@
 	</div>
 	
 {% endfor %}
+<div class="form-group">
+    <input class="btn" type="submit" value="Guardar" />
 </div>
+</div>
+
+{% endif %}
 {% endblock %}
 
 {% block body %}
-<section class="formulario-visado">
-
-    {% for flash_message in app.session.flashbag.get('exito') %}
-        <div class="flash-error">
-            {{ flash_message }}
-        </div>
-    {% endfor %}
-
-    {{ form_start(visar_form) }}
     
 
-    	{{ form_row(visar_form.aprobada) }}
+        {% for flash_message in app.session.flashbag.get('exito') %}
+            <div class="alert alert-success">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
 
-        
-        <input class="btn" type="submit" value="Guardar" />
-    {{ form_end(visar_form) }}
+        <section class="formulario-visado">
 
-</section>
+                {{ form_start(visar_form) }}        
+                	{{ form_row(visar_form.aprobada) }}
+                    
+                {{ form_end(visar_form) }}
+
+        </section>
+
+   
 {% endblock %}
-

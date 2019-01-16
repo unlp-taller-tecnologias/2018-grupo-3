@@ -3,7 +3,7 @@
 {% block body %}
 
     {% for flash_message in app.session.flashbag.get('exito') %}
-        <div class="flash-error">
+        <div class="alert alert-success">
             {{ flash_message }}
         </div>
     {% endfor %}

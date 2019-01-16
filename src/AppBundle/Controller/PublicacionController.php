@@ -254,6 +254,7 @@ class PublicacionController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash( 'exito', 'Las publicaciones han sido aprobadas exitósamente');
             $em = $this->getDoctrine()->getManager();
             if ( isset($request->request->get('appbundle_publicacion')['aprobada']) ) {
                 $publicaciones = $request->request->get('appbundle_publicacion')['aprobada'];
@@ -270,7 +271,7 @@ class PublicacionController extends Controller
             $em->flush();
             return $this->redirectToRoute('publicacion_visar');
         }
-        $this->addFlash( 'exito', 'Las publicaciones han sido aprobadas exitósamente');
+        
         return $this->render('publicacion/visar.html.twig', array(
             'visar_form' => $form->createView(),
         ));
