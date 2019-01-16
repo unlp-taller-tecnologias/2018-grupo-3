@@ -198,6 +198,19 @@ a.btn-etiqueta:hover{
 	opacity: 0.8;
 }
 
+.check-email{
+	margin: 5%;
+    background-color: #fff;
+    padding: 5%;
+    text-align: center;
+    opacity: 0.8;
+    
+}
+.check-email h4{
+	opacity: 1;
+	font-weight: bold;
+}
+
 @media only screen and (max-width: 960px){
 	.row{
 		flex-direction: row-reverse;
