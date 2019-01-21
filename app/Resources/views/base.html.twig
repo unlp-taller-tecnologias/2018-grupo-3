@@ -18,62 +18,51 @@
 				<img class="logo-unlp" src="{{ asset('logo-unlp.png') }}">
 		</header>
 
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-							<ul class="nav">
-  								{% if is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERADOR") %}
-                      <li class="nav-link nombre-usuario	">
-                        {{ app.user.username }}
-                      </li>
-    									<li class="nav-item">
-    										<a class="nav-link" href="{{ path('catedra_index') }}">
-    											Cátedras
-    										</a>
-    									</li>
-                      {% if is_granted("ROLE_ADMIN") %}
-        									<li class="nav-item">
-        										<a class="nav-link" href="{{ path('usuario_index') }}">
-        											Usuarios
-        										</a>
-        									</li>
-                      {% endif %}
-    									<li class="nav-item">
-    										<a class="nav-link" href="{{ path('noticia_index') }}">
-    											Noticias
-    										</a>
-    									</li>
-    									<li class="nav-item">
-    										<a class="nav-link" href="{{ path('publicacion_visar') }}">
-    											Visado
-    										</a>
-    									</li>
-    									<li class="nav-item">
-    										<a class="nav-link" href="{{ path('fos_user_security_logout') }}">
-    											Cerrar sesión
-    										</a>
-    									</li>
-  								{% elseif is_granted("ROLE_CATEDRA") %}
-                      <li class="nav-link nombre-usuario	">
-                        {{ app.user.username }}
-                      </li>
-    									<li class="nav-item">
-    										<a class="nav-link" href="{{ path('adm_catedra', {'id': app.user.catedra.id}) }}">
-    											{{ app.user.catedra }}
-    										</a>
-    									</li>
-    									<li class="nav-item">
-    										<a class="nav-link" href="{{ path('fos_user_security_logout') }}">
-    											Cerrar sesión
-    										</a>
-    									</li>
-  								{% else %}
-    									<li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">INICIAR SESIÓN</a></li>
-    									<li class="nav-item">
-    										<a class="nav-link" href="{{ path('fos_user_resetting_request') }}">Recuperar contraseña</a>
-    									</li>
-  								{% endif %}
-							</ul>
-			</div>
+		<nav class="">
+			<ul class="nav">
+				{% if is_granted("ROLE_ADMIN") or is_granted("ROLE_MODERADOR") %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('catedra_index') }}">
+							Cátedras
+						</a>
+					</li>
+                    {% if is_granted("ROLE_ADMIN") %}
+    					<li class="nav-item">
+    						<a class="nav-link" href="{{ path('usuario_index') }}">
+    							Usuarios
+    						</a>
+    					</li>
+                    {% endif %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('noticia_index') }}">
+							Noticias
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('publicacion_visar') }}">
+							Visado
+						</a>
+					</li>
+				{% elseif is_granted("ROLE_CATEDRA") %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('adm_catedra', {'id': app.user.catedra.id}) }}">
+							{{ app.user.catedra }}
+						</a>
+					</li>
+				{% else %}
+					<li class="nav-item"><a class="nav-link" href="{{ path('fos_user_security_login') }}">INICIAR SESIÓN</a></li>
+					<li class="nav-item">
+						<a class="nav-link" href="{{ path('fos_user_resetting_request') }}">Recuperar contraseña</a>
+					</li>
+				{% endif %}
+                {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                    <li class="nav-item ml-auto">
+                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">
+                            {{ app.user.username }} - Cerrar sesión
+                        </a>
+                    </li>
+                {% endif %}
+		    </ul>
 		</nav>
 
 		<body>

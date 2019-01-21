@@ -9,42 +9,46 @@
             {{ flash_message }}
         </div>
     {% endfor %}
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Email contacto</th>
-                <th>Horario atención</th>
-                <th>Telefono contacto</th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for catedra in catedras %}
-            <tr>
-                <td>
-                    <a href="{{ path('catedra_show', { 'id': catedra.id }) }}">{{ catedra.nombre }}</a>
-                </td>
-                <td>{{ catedra.emailContacto }}</td>
-                <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}</td>
-                <td>{{ catedra.telefonoContacto }}</td>
-                <td>
-                    <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i></a>
-                </td>
-                <td>
-                    <a href="{{ path('catedra_delete', { 'id': catedra.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
-                </td>
-                <td>
-                    <a class="" href="{{ path('adm_catedra', {'id': catedra.id}) }}">
-                        administrar publicaciones
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email contacto</th>
+                    <th>Horario atención</th>
+                    <th>Telefono contacto</th>
+                    <th>Secretario</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for catedra in catedras %}
+                <tr>
+                    <td>
+                        <a href="{{ path('catedra_show', { 'id': catedra.id }) }}">{{ catedra.nombre }}</a>
+                    </td>
+                    <td>{{ catedra.emailContacto }}</td>
+                    <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}</td>
+                    <td>{{ catedra.telefonoContacto }}</td>
+                    <td>{{ catedra.secretario }}</td>
+                    <td>
+                        <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td>
+                        <a href="{{ path('catedra_delete', { 'id': catedra.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                    <td>
+                        <a class="" href="{{ path('adm_catedra', {'id': catedra.id}) }}">
+                            <i class="fab fa-whmcs"></i> administrar
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
 
 {% endblock %}

@@ -10,41 +10,42 @@
         {% endfor %}
         <a class="btn" href="{{ path('usuario_new') }}">Añadir usuario</a>
         <h3></h3>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Visado</th>
-                    <th>Telefono contacto</th>
-                    <th>Responsable de cátedra</th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for usuario in usuarios %}
-                <tr>
-                    <td>
-                        <a href="{{ path('usuario_show', { 'id': usuario.id }) }}">
-                            {{ usuario.nombre }}
-                        </a>
-                    </td>
-                    <td>{{ usuario.apellido }}</td>
-                    <td>{% if usuario.visado %}Yes{% else %}No{% endif %}</td>
-                    <td>{{ usuario.telefonoContacto }}</td>
-                    <td>{{ usuario.catedra }}</td>
-                    <td>                         
-                        <i class="fas fa-edit"></i><a class="opcion" href="{{ path('usuario_edit', { 'id': usuario.id }) }}">editar</a>
-                        <a href=""></a>
-                    </td>
-                    <td>
-                        <a href="{{ path('usuario_delete', { 'id': usuario.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre y apellido</th>
+                        <th>Email</th>
+                        <th>Visado</th>
+                        <th>Teléfono contacto</th>
+                        <th>Cátedra</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for usuario in usuarios %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('usuario_show', { 'id': usuario.id }) }}">
+                                {{ usuario.nombre }} {{ usuario.apellido }}
+                            </a>
+                        </td>
+                        <td>{{ usuario.email }}</td>
+                        <td>{% if usuario.visado %}Si{% else %}No{% endif %}</td>
+                        <td>{{ usuario.telefonoContacto }}</td>
+                        <td>{{ usuario.catedra }}</td>
+                        <td>                         
+                            <i class="fas fa-edit"></i><a class="opcion" href="{{ path('usuario_edit', { 'id': usuario.id }) }}">editar</a>
+                            <a href=""></a>
+                        </td>
+                        <td>
+                            <a href="{{ path('usuario_delete', { 'id': usuario.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
     </section>
 {% endblock %}

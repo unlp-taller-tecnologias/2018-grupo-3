@@ -9,37 +9,39 @@
             {{ flash_message }}
         </div>
     {% endfor %}
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Titulo</th>
-                <th>Bajada</th>
-                <th>Fechapublicacion</th>
-                <th>Contenido</th>
-                <th>Firmante</th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for noticia in noticias %}
-            <tr>
-                <td>
-                    <a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.titulo }}</a>
-                </td>
-                <td>{{ noticia.bajada }}</td>
-                <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
-                <td>{{ noticia.contenido|raw }}</td>
-                <td>{{ noticia.firmante }}</td>
-                <td>
-                    <i class="fas fa-edit"></i><a class="opcion" href="{{ path('noticia_edit', { 'id': noticia.id }) }}">edit</a>
-                </td>
-                <td>
-                    <a href="{{ path('noticia_delete', { 'id': noticia.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Titulo</th>
+                    <th>Bajada</th>
+                    <th>Fechapublicacion</th>
+                    <th>Contenido</th>
+                    <th>Firmante</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for noticia in noticias %}
+                <tr>
+                    <td>
+                        <a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.titulo }}</a>
+                    </td>
+                    <td>{{ noticia.bajada }}</td>
+                    <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ noticia.contenido|raw }}</td>
+                    <td>{{ noticia.firmante }}</td>
+                    <td>
+                        <i class="fas fa-edit"></i><a class="opcion" href="{{ path('noticia_edit', { 'id': noticia.id }) }}">edit</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('noticia_delete', { 'id': noticia.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
 {% endblock %}

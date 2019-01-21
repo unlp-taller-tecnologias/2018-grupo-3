@@ -80,6 +80,9 @@ header a, header a:hover{
 .table th{
 	border-top: none;
 }
+.table td{
+	vertical-align: inherit;
+}
 .tablas{
 	margin: 2% 5% 5% 5%;
 }
@@ -210,7 +213,18 @@ a.btn-etiqueta:hover{
 	opacity: 1;
 	font-weight: bold;
 }
-
+.fa-trash-alt{
+	color: red;
+}
+.btn-visado{
+	margin-top: 3%;
+}
+.publicacion-visado a{
+	color: #191F2E;
+}
+.publicacion-visado a:hover{
+	text-decoration: underline;	
+}
 @media only screen and (max-width: 960px){
 	.row{
 		flex-direction: row-reverse;
