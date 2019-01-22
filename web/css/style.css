@@ -96,14 +96,14 @@ header a, header a:hover{
 	padding: 1rem;
 }
 .formulario-login{
-	margin: 5% 40% 0% 40%;
+	margin: 3% 35% 3% 35%;
 }
 .formulario-login label{
-	font-size: 22px;
+	font-size: 16px;
 }
-.formulario-login .form-check-label{
-	font-size: 18px;
-}
+/*.formulario-login .form-check-label{
+	font-size: 14px;
+}*/
 .formularios .form-control{
 	width: 40%;
 }
@@ -243,6 +243,10 @@ a.archivo{
 .fa-exclamation-triangle,
 .fa-exclamation-circle{
 	padding-right: 1%;
+}
+.btn-iniciar-sesion{
+	font-weight: bold;
+	font-size: 14px;
 }
 @media only screen and (max-width: 960px){
 	.row{
