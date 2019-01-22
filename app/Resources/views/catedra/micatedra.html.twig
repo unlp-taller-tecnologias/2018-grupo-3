@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
     <div class="d-flex justify-content-between align-items-end">
         <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
         <div class="mr-5">

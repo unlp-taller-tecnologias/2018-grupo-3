@@ -70,6 +70,7 @@ class UsuarioController extends Controller
             }
 
             $this->userManager->updateUser($usuario);
+            $this->addFlash( 'exito', 'El usuario se agregó exitosamente');
             return $this->redirectToRoute('usuario_show', array('id' => $usuario->getId()));
         }
 
@@ -182,7 +183,7 @@ class UsuarioController extends Controller
             $em->flush();
         }
         else{
-            $this->addFlash( 'error', 'El usuario posee publicaciones');
+            $this->addFlash( 'error', 'Error: El usuario posee publicaciones, no se puede eliminar');
         }
 
         return $this->redirectToRoute('usuario_index');

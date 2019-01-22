@@ -223,6 +223,8 @@ class PublicacionController extends Controller
 
         $em->remove($publicacion);
         $em->flush();
+        $this->addFlash( 'exito', 'La publicación se eliminó exitosamente');
+
         return $this->redirectToRoute('adm_catedra', array('id' => $publicacion->getCatedra()->getId()));
 
     }

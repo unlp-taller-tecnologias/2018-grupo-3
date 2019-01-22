@@ -2,12 +2,12 @@
 
 {% block body %}
 
+    {% for flash_message in app.session.flashbag.get('error') %}
+        <div class="alert alert-danger">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
     <section class="tablas">
-        {% for flash_message in app.session.flashbag.get('error') %}
-            <div class="flash-error">
-                {{ flash_message }}
-            </div>
-        {% endfor %}
         <a class="btn" href="{{ path('usuario_new') }}">Añadir usuario</a>
         <h3></h3>
         <div class="table-responsive">

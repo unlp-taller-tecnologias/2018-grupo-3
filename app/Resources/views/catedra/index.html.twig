@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<section class="tablas">
-    <a class="btn" href="{{ path('catedra_new') }}">Añadir cátedra</a>
-    <h3 class="titulo-tabla"></h3>
     {% for flash_message in app.session.flashbag.get('error') %}
-        <div class="flash-error">
+        <div class="alert alert-danger">
             {{ flash_message }}
         </div>
     {% endfor %}
+<section class="tablas">
+    <a class="btn" href="{{ path('catedra_new') }}">Añadir cátedra</a>
+    <h3 class="titulo-tabla"></h3>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
