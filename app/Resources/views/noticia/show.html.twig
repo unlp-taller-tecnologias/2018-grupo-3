@@ -29,7 +29,7 @@
                 {% if noticia.firmante is not empty %}
                     {{ noticia.firmante }}
                 {% else %}
-                    {{ noticia.getUsuarioNoticia()->getNombre() }}
+                    {{ noticia.usuarioNoticia }}
                 {% endif %}</p>
             </div>
         </div>

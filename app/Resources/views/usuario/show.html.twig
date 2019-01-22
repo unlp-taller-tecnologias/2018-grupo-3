@@ -7,52 +7,32 @@
         </div>
     {% endfor %}
 
-    <table class="table table-responsive d-flex justify-content-center">
-        <tbody>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ usuario.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Apellido</th>
-                <td>{{ usuario.apellido }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ usuario.email }}</td>
-            </tr>
-            <tr>
-                <th>Nombre de Usuario</th>
-                <td>{{ usuario.username }}</td>
-            </tr>
-            <tr>
-                <th>Teléfono de Contacto</th>
-                <td>{{ usuario.telefonoContacto }}</td>
-            </tr>
-            <tr>
-                <th>Rol</th>
-                <td>{{ usuario.rol.nombre }}</td>
-            </tr>
+    <div class="container jumbotron">
+            
+                <div>{{ usuario.nombre }}</div>
+            
+         
+                <div>{{ usuario.apellido }}</div>
+
+                <div>{{ usuario.email }}</div>
+
+                <div>{{ usuario.username }}</div>
+
+                <div>{{ usuario.telefonoContacto }}</div>
+   
+                <div>{{ usuario.rol.nombre }}</div>
+           
             {% if usuario.catedra %}
-            <tr>
-                <th>Cátedra</th>
-                <td>{{ usuario.catedra.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Visado</th>
-                <td>{% if usuario.visado %}Yes{% else %}No{% endif %}</td>
-            </tr>
+
+                <div>{{ usuario.catedra.nombre }}</div>
+            
+                <div>{% if usuario.visado %}Yes{% else %}No{% endif %}</div>
+          
             {% endif %}
-            <tr>
-                <td>
-                    <a href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Editar</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="{{ path('usuario_index') }}">Volver a la lista</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+           
+                    <a class="btn" href="{{ path('usuario_edit', { 'id': usuario.id }) }}">Editar</a>
+       
+                    <a class="btn" href="{{ path('usuario_index') }}">Volver a la lista</a>
+             
+    </div>
 {% endblock %}

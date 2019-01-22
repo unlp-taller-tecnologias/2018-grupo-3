@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+
 body{
 	background-color: #eee;
 	font-family: 'Montserrat', sans-serif;
@@ -101,9 +102,6 @@ header a, header a:hover{
 .formulario-login label{
 	font-size: 16px;
 }
-/*.formulario-login .form-check-label{
-	font-size: 14px;
-}*/
 .formularios .form-control{
 	width: 40%;
 }
@@ -233,9 +231,6 @@ a.btn-etiqueta:hover{
 .publicacion-visado a:hover{
 	text-decoration: underline;	
 }
-.archivo{
-
-}
 a.archivo{
 	color: #191F2E;	
 	font-weight: bold;
@@ -248,8 +243,41 @@ a.archivo{
 	font-weight: bold;
 	font-size: 14px;
 }
-@media only screen and (max-width: 960px){
+
+@media screen and (max-width: 992px) {
+
 	.row{
 		flex-direction: row-reverse;
 	}
+	header{
+		height: 170px;
+	}
+	header a{
+		width: 35%;
+	}
+	.logo-unlp{
+		width: 30%;
+	}
+	.logo-medicina{
+		width: 15%;
+	}
+	.etiquetas{
+		margin: 3% 45% 3% 5%
+	}
+	.formularios .form-control{
+		width: 100%;
+		height: 3rem;
+	}
+	.form-group{
+		font-size: 30px;
+	}
+	h2.titulo-form{
+		font-size: 38px;
+	}
+	input.btn{
+		font-size: 34px;
+		margin-top: 2%;
+	}
+
 }
+
