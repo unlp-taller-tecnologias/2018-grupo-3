@@ -181,7 +181,8 @@ input.btn:hover, a.btn:hover{
 	display: inline-block;
 }
 
-input#appbundle_publicacion_archivo.form-control{
+input#appbundle_publicacion_archivo.form-control,
+input#appbundle_noticia_archivo.form-control{
 	padding: 0;
 	height: auto;
 	width: auto;

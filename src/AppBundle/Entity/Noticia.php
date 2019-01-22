@@ -57,6 +57,13 @@ class Noticia
     private $firmante;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="archivo", type="string", length=255, nullable=true)
+     */
+    private $archivo;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Usuario", inversedBy="noticias")
      * @ORM\JoinColumn(name="usuario_noticia", referencedColumnName="id")
      */
@@ -246,4 +253,28 @@ class Noticia
         return $this->fechaCaducidad;
     }
 
+
+    /**
+     * Set archivo.
+     *
+     * @param string|null $archivo
+     *
+     * @return Noticia
+     */
+    public function setArchivo($archivo = null)
+    {
+        $this->archivo = $archivo;
+
+        return $this;
+    }
+
+    /**
+     * Get archivo.
+     *
+     * @return string|null
+     */
+    public function getArchivo()
+    {
+        return $this->archivo;
+    }
 }

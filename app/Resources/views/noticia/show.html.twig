@@ -21,7 +21,9 @@
             <p>{{ noticia.bajada }}</p>
             <p>{{ noticia.contenido|raw }}</p>
 
-
+            {% if noticia.archivo is not empty %}
+                <a href="{{ asset('pdf/'~noticia.archivo) }}">Ver archivo</a>
+            {% endif %}
 
             <div>
                 <p>Firma la noticia:

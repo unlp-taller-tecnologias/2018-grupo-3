@@ -50,6 +50,38 @@ class NoticiaController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if ( !empty($form['archivo']->getData()) ) {
+
+              $file = $form['archivo']->getData();
+              $file->getPath();
+              $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+
+               try {
+                  $file->move(
+                      $this->getParameter('files_directory'),
+                      $fileName
+                  );
+                } catch (FileException $e) {
+                  $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                  try {
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  } catch (FileException $e) {
+                      $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  }
+              }
+              $noticia->setArchivo($fileName);
+            }else{
+              $noticia->setArchivo(NULL);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($noticia);
             $em->flush();
@@ -87,11 +119,45 @@ class NoticiaController extends Controller
      */
     public function editAction(Request $request, Noticia $noticia)
     {
+        $archivo_anterior = $noticia->getArchivo();
         $deleteForm = $this->createDeleteForm($noticia);
         $editForm = $this->createForm('AppBundle\Form\NoticiaType', $noticia);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if ( !empty($editForm['archivo']->getData()) ) {
+
+              $file = $editForm['archivo']->getData();
+              $file->getPath();
+              $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+
+               try {
+                  $file->move(
+                      $this->getParameter('files_directory'),
+                      $fileName
+                  );
+                } catch (FileException $e) {
+                  $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                  try {
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  } catch (FileException $e) {
+                      $fileName = date("d-m-Y").md5(uniqid()).'.'.$file->guessExtension();
+                      $file->move(
+                          $this->getParameter('files_directory'),
+                          $fileName
+                      );
+                  }
+              }
+              $noticia->setArchivo($fileName);
+            }else{
+              if (!empty($archivo_anterior)) {
+                  $noticia->setArchivo($archivo_anterior);
+              }
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('noticia_show', array('id' => $noticia->getId()));
