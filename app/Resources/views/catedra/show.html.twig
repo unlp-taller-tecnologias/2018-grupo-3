@@ -5,14 +5,21 @@
     <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
 
     <div class="container-fluid info-catedra">
-        <div><i class="fas fa-envelope"></i>
+        <div>
+            <i class="fas fa-envelope"></i>
             {{ catedra.emailContacto }}
         </div>
-        <i class="fas fa-phone"></i>
+        {% if catedra.telefonoContacto is not empty %}
+            <i class="fas fa-phone"></i>
             {{ catedra.telefonoContacto }}
-        <div><i class="fas fa-user-alt"></i>
-            {% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}
-        </div>
+        {% endif %}
+        {% if catedra.horarioAtencion is not empty %}
+            <div>
+                <i class="fas fa-user-alt"></i>
+                {{ catedra.horarioAtencion }}
+            </div>
+        {% endif %}
+        
     </div>
 
     <div class="etiquetas">
@@ -40,7 +47,7 @@
                             <p>{{ publicacion.contenido|raw }}</p>
 
                             {% if publicacion.archivo is not empty %}
-                                <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
+                                <a class="archivo" href="{{ asset('pdf/'~publicacion.archivo) }}">VER ARCHIVO</a>
                             {% endif %}
 
                             <div>

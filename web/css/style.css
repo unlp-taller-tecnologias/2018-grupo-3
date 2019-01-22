@@ -205,17 +205,21 @@ a.btn-etiqueta:hover{
 	opacity: 0.8;
 }
 
-.check-email{
+.check-email,
+.pagina-error{
 	margin: 5%;
-    background-color: #fff;
     padding: 5%;
     text-align: center;
     opacity: 0.8;
-    
+    background-color: #fff;
 }
-.check-email h4{
+.check-email h4,
+.pagina-error h4{
 	opacity: 1;
 	font-weight: bold;
+}
+.pagina-error h4{
+	color: red;
 }
 .fa-trash-alt{
 	color: red;
@@ -235,6 +239,10 @@ a.btn-etiqueta:hover{
 a.archivo{
 	color: #191F2E;	
 	font-weight: bold;
+}
+.fa-exclamation-triangle,
+.fa-exclamation-circle{
+	padding-right: 1%;
 }
 @media only screen and (max-width: 960px){
 	.row{

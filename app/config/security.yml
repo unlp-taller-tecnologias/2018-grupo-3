@@ -41,4 +41,4 @@ security:
         - { path: ^/publicacion/$, role: ROLE_ADMIN }
         - { path: ^/publicacion/visar$, role: ROLE_ADMIN }
         - { path: ^/noticia/$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
-        - { path: ^/profile/$, role: ROLE_ADMIN }
+        - { path: ^/profile/$, role: IS_AUTHENTICATED_ANONYMOUSLY }

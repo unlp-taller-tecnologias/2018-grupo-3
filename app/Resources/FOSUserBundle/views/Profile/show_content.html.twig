@@ -2,8 +2,9 @@
 
 <section class="formularios">
 	<div class="fos_user_user_show">
-	    <p>Usuario: {{ user.username }}</p>
-	    <p>Email: {{ user.email }}</p>
-	    <p>Requiere visado: {{ user.email }}</p>
+		<div class="jumbotron">
+	    	<p><strong>Usuario:</strong> {{ user.nombre }} {{ user.apellido }}</p>
+	    	<p><strong>Email:</strong> {{ user.email }}</p>
+		</div>
 	</div>
 </section>

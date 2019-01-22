@@ -17,12 +17,11 @@
             {% endif %}
         </div>
         <div>
-           <!--  <h2 class="titulo-publicacion">{{ noticia.titulo }}</h2> -->
             <p>{{ noticia.bajada }}</p>
             <p>{{ noticia.contenido|raw }}</p>
 
             {% if noticia.archivo is not empty %}
-                <a href="{{ asset('pdf/'~noticia.archivo) }}">Ver archivo</a>
+                <a class="archivo" href="{{ asset('pdf/'~noticia.archivo) }}">Ver archivo</a>
             {% endif %}
 
             <div>
@@ -30,7 +29,7 @@
                 {% if noticia.firmante is not empty %}
                     {{ noticia.firmante }}
                 {% else %}
-                    {{ noticia.getNombreUsuarioNoticia() }}
+                    {{ noticia.getUsuarioNoticia()->getNombre() }}
                 {% endif %}</p>
             </div>
         </div>
