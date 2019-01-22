@@ -14,9 +14,9 @@
             <thead>
                 <tr>
                     <th>Titulo</th>
-                    <th>Bajada</th>
+                    <!-- <th>Bajada</th> -->
                     <th>Fecha publicación</th>
-                    <th>Contenido</th>
+                    <!-- <th>Contenido</th> -->
                     <th>Firmante</th>
                     <th></th>
                     <th></th>
@@ -28,9 +28,9 @@
                     <td>
                         <a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.titulo }}</a>
                     </td>
-                    <td>{{ noticia.bajada }}</td>
+                    <!-- <td>{{ noticia.bajada }}</td> -->
                     <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
-                    <td>{{ noticia.contenido|raw }}</td>
+                    <!-- <td>{{ noticia.contenido|raw }}</td> -->
                     <td>{{ noticia.firmante }}</td>
                     <td>
                         <i class="fas fa-edit"></i><a class="opcion" href="{{ path('noticia_edit', { 'id': noticia.id }) }}">edit</a>

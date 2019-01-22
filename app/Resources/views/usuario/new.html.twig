@@ -40,29 +40,33 @@
 
 {% block javascripts %}
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
-      $(document).ready(function(){
-          $("#input-catedra").hide();
-          $("#input-visado").hide();
-          $("#appbundle_usuario_visado").hide();
-          $("#appbundle_usuario_catedra").hide();
+    $(document).ready(function(){
+        if ($('#appbundle_usuario_rol').val() != '3') {
+            $("#appbundle_usuario_visado").hide();
+            $("#appbundle_usuario_catedra").hide();
+            $("#input-catedra").hide();
+            $("#input-visado").hide();
+        }
 
-      });
+    });
 
-      $('#appbundle_usuario_rol').on('change', function() {
-          if ($('#appbundle_usuario_rol').val() == '1') {
-              $('#appbundle_usuario_visado').show();
-              $('#appbundle_usuario_catedra').show();
-              $("#input-catedra").show();
-              $("#input-visado").show();
-          } else {
-              $("#appbundle_usuario_visado").hide();
-              $("#appbundle_usuario_visado").prop("checked", false);
-              $("#appbundle_usuario_catedra").hide();
-              $('#appbundle_usuario_catedra').val('');
-          }
-      });
-  </script>
+    $('#appbundle_usuario_rol').on('change', function() {
+        if ($('#appbundle_usuario_rol').val() == '3') {
+            $('#appbundle_usuario_visado').show();
+            $('#appbundle_usuario_catedra').show();
+            $("#input-catedra").show();
+            $("#input-visado").show();
+        } else {
+            $("#appbundle_usuario_visado").hide();
+            $("#appbundle_usuario_visado").prop("checked", false);
+            $("#appbundle_usuario_catedra").hide();
+            $('#appbundle_usuario_catedra').val('');
+            $("#input-catedra").hide();
+            $("#input-visado").hide();
+        }
+    });
+</script>
 
 {% endblock %}
