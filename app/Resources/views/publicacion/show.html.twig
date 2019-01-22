@@ -35,8 +35,7 @@
             </tr>
             <tr>
                 {% if publicacion.archivo %}
-                    <th>Archivo:</th>
-                    <td>{{ publicacion.archivo }}</td>
+                    <td><a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver archivo cargado</a></td>
                 {% endif %}
             </tr>
             <tr>

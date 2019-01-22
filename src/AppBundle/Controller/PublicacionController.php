@@ -135,6 +135,7 @@ class PublicacionController extends Controller
      */
     public function editAction(Request $request, Publicacion $publicacion)
     {
+        $archivo_anterior = $publicacion->getArchivo();
         $deleteForm = $this->createDeleteForm($publicacion);
         $editForm = $this->createForm('AppBundle\Form\PublicacionType', $publicacion);
         $editForm->handleRequest($request);
@@ -173,7 +174,9 @@ class PublicacionController extends Controller
               }
               $publicacion->setArchivo($fileName);
             }else{
-              $publicacion->setArchivo(NULL);
+              if (!empty($archivo_anterior)) {
+                  $publicacion->setArchivo($archivo_anterior);
+              }
             }
 
             $modificacion = new Modificacion();

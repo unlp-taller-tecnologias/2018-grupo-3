@@ -36,7 +36,7 @@ class PublicacionType extends AbstractType
             'required' => false))
         ->add('firmante', TextType::class, array('required' => false, 'attr' => array('maxlength' => 255)))
         ->add('archivo', FileType::class, array(
-            'label' => 'Archivo pdf',
+            'label' => 'Archivo',
             "attr" =>array("class" => "form-control"),
             "data_class" => null,
             "required" => false ))
