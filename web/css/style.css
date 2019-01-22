@@ -57,6 +57,7 @@ header a, header a:hover{
 	background-color: rgba(248, 248, 255, 0.9);
 	padding: 2rem 2rem;
 	border-radius: 0;
+	border: 1px solid;
 }
 .titulo-noticias-home, .titulo-catedras-home{
 	margin: 5%;
@@ -227,6 +228,13 @@ a.btn-etiqueta:hover{
 }
 .publicacion-visado a:hover{
 	text-decoration: underline;	
+}
+.archivo{
+
+}
+a.archivo{
+	color: #191F2E;	
+	font-weight: bold;
 }
 @media only screen and (max-width: 960px){
 	.row{

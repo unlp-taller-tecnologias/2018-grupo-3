@@ -28,12 +28,16 @@
 
 			{% for noticia in noticias %}
 				<section class="jumbotron">
+					{{ noticia.fechaPublicacion|date("d/m/Y") }}
 		            <h6 class="titulo-noticia">{{ noticia.titulo }}</h6>
 		            {{ noticia.bajada }}
+		            {{ noticia.contenido|raw }}
+		            {% if noticia.archivo is not empty %}
+		            	<a class="archivo" href="{{ asset('pdf/'~noticia.archivo) }}">VER ARCHIVO</iframe></a>
+		            {% endif %}
 		            <div>
-		            	{{ noticia.contenido|raw }}
+		            	{{ noticia.firmante }}
 		            </div>
-		            {{ noticia.firmante }}
 		        </section>
 		    {% endfor %}
 	    </div>
