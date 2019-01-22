@@ -147,13 +147,15 @@ input.btn:hover, a.btn:hover{
 	margin-left: 3%;
 	margin-right: 3%;
 }
-.header-publicacion{
+.header-publicacion,
+.header-noticia{
 	border-bottom: 1px solid #191F2E;
 	display: flex;
 	justify-content: space-between;
 	font-weight: bold;
 }
-.header-publicacion p{
+.header-publicacion p,
+.header-noticia p{
 	margin: 0;
 }
 .nombre-catedra i, .nombre-catedra a{

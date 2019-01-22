@@ -8,42 +8,38 @@
         </div>
     {% endfor %}
 
-    <table class="table table-responsive d-flex justify-content-center">
-        <tbody>
-            <tr>
-                <td class="titulo-publicacion">{{ publicacion.titulo }}</td>
-            </tr>
-            <tr>
-                <td>{{ publicacion.bajada }}</td>
-            </tr>
-            <tr>
-                <td>Fecha: {% if publicacion.fechaPublicacion %}{{ publicacion.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <td>{% if publicacion.fechaCaducidad %}Fecha de caducidad: {{ publicacion.fechaCaducidad|date('Y-m-d') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <td>{{ publicacion.contenido|raw }}</td>
-            </tr>
-            <tr>
-                <td>Firmante:
+    <div class="jumbotron">
+        <div class="header-publicacion">
+            <p>
+            <i class="fas fa-paperclip"></i>
+            {{ publicacion.etiqueta }}
+            </p>
+            {{ publicacion.fechaPublicacion|date("d/m/Y") }}
+        </div>
+        <div>
+            <h2 class="titulo-publicacion">{{ publicacion.titulo }}</h2>
+            <p>{{ publicacion.bajada }}</p>
+            <p>{{ publicacion.contenido|raw }}</p>
+
+            {% if publicacion.archivo is not empty %}
+                <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
+            {% endif %}
+
+            <div>
+                <p>Firma la publicación:
                 {% if publicacion.firmante is not empty %}
                     {{ publicacion.firmante }}
                 {% else %}
                     {{ publicacion.getNombreUsuarioPublicacion() }}
-                {% endif %}</td>
-            </tr>
-            <tr>
-                {% if publicacion.archivo %}
-                    <td><a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver archivo cargado</a></td>
-                {% endif %}
-            </tr>
-            <tr>
-                <td>
-                    <a href="{{ path('publicacion_edit', { 'id': publicacion.id }) }}">Editar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                {% endif %}</p>
+            </div>
+
+            {% if publicacion.modificacion %}
+                <p><strong>Modificada el día {{ publicacion.modificacion.fecha|date("d/m/Y") }}
+                {{ publicacion.modificacion.hora|date("H:i") }} hs
+                por {{ publicacion.modificacion.nombreAutor }}</strong></p>
+            {% endif %}
+        </div>
+    </div>
 
 {% endblock %}

@@ -7,33 +7,30 @@
         </div>
     {% endfor %}
 
-    <table class="table table-responsive d-flex justify-content-center">
-        <tbody>
-            <tr>
-                <th>Titulo</th>
-                <td>{{ noticia.titulo }}</td>
-            </tr>
-            <tr>
-                <th>Bajada</th>
-                <td>{{ noticia.bajada }}</td>
-            </tr>
-            <tr>
-                <th>Fechapublicacion</th>
-                <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Contenido</th>
-                <td>{{ noticia.contenido|raw }}</td>
-            </tr>
-            <tr>
-                <th>Firmante</th>
-                <td>{{ noticia.firmante }}</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="{{ path('noticia_edit', { 'id': noticia.id }) }}">Editar</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="jumbotron">
+        <div class="header-noticia">
+            
+            <h2 class="titulo-noticia">{{ noticia.titulo }}</h2>
+            
+            {% if noticia.fechaPublicacion %}
+                {{ noticia.fechaPublicacion|date("d/m/Y") }}
+            {% endif %}
+        </div>
+        <div>
+           <!--  <h2 class="titulo-publicacion">{{ noticia.titulo }}</h2> -->
+            <p>{{ noticia.bajada }}</p>
+            <p>{{ noticia.contenido|raw }}</p>
+
+
+
+            <div>
+                <p>Firma la noticia:
+                {% if noticia.firmante is not empty %}
+                    {{ noticia.firmante }}
+                {% else %}
+                    {{ noticia.getNombreUsuarioNoticia() }}
+                {% endif %}</p>
+            </div>
+        </div>
+    </div>
 {% endblock %}
