@@ -43,7 +43,9 @@ class UsuarioType extends AbstractType
     public function getParent()
     {
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
-    }/**
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getBlockPrefix()

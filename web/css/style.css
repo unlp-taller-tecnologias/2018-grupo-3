@@ -40,6 +40,9 @@ header a, header a:hover{
 	padding-left: 1%;
 	word-break: normal;
 }
+header>div{
+	width: 84%;
+}
 .home{
 	margin-left: 2%;
 	margin-right: 2%;
@@ -253,7 +256,7 @@ a.archivo{
 		flex-direction: row-reverse;
 	}
 	header{
-		height: 170px;
+		height: 220px;
 	}
 	header a{
 		width: 35%;
@@ -286,6 +289,10 @@ a.archivo{
 	}
 	.formulario-login label {
     	font-size: 28px;
+	}
+	a.nav-link{
+		font-size: 25px;
+		font-weight: bold;
 	}
 }
 @media (max-width: 600px) {
