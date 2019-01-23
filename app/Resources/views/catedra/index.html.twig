@@ -7,7 +7,9 @@
         </div>
     {% endfor %}
 <section class="tablas">
-    <a class="btn" href="{{ path('catedra_new') }}">Añadir cátedra</a>
+    {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_CATEDRA") %}
+        <a class="btn" href="{{ path('catedra_new') }}">Añadir cátedra</a>
+    {% endif %}
     
     <div class="table-responsive">
         <table class="table table-striped">
@@ -18,8 +20,10 @@
                     <th>Horario atención</th>
                     <th>Telefono contacto</th>
                     <th>Secretario</th>
+                    {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_CATEDRA") %}
                     <th></th>
                     <th></th>
+                    {% endif %}
                     <th></th>
                 </tr>
             </thead>
@@ -33,12 +37,14 @@
                     <td>{% if catedra.horarioAtencion %}{{ catedra.horarioAtencion }}{% endif %}</td>
                     <td>{{ catedra.telefonoContacto }}</td>
                     <td>{{ catedra.secretario }}</td>
-                    <td>
-                        <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i></a>
-                    </td>
-                    <td>
-                        <a href="{{ path('catedra_delete', { 'id': catedra.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
-                    </td>
+                    {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_CATEDRA") %}
+                        <td>
+                            <a class="opcion" href="{{ path('catedra_edit', { 'id': catedra.id }) }}"><i class="fas fa-edit"></i></a>
+                        </td>
+                        <td>
+                            <a href="{{ path('catedra_delete', { 'id': catedra.id }) }}" onclick="return confirm('Está seguro que quiere eliminar? Esta acción no se puede revertir')"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    {% endif %}
                     <td>
                         <a class="" href="{{ path('adm_catedra', {'id': catedra.id}) }}">
                             <i class="fab fa-whmcs"></i> administrar

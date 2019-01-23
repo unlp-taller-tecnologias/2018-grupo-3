@@ -36,9 +36,9 @@ security:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: ROLE_ADMIN }
         - { path: ^/catedra/+\d$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/catedra$, role: ROLE_ADMIN }
-        #- { path: ^/usuario/*$, role: ROLE_ADMIN }
-        - { path: ^/publicacion/$, role: ROLE_ADMIN }
-        - { path: ^/publicacion/visar$, role: ROLE_ADMIN }
+        - { path: ^/catedra/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/usuario/*$, role: ROLE_ADMIN }
+        - { path: ^/publicacion/$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
+        - { path: ^/publicacion/visar$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
         - { path: ^/noticia/$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
         - { path: ^/profile/$, role: IS_AUTHENTICATED_ANONYMOUSLY }

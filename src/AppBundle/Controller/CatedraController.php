@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Http\Authorization\AccessDeniedHandlerInterface;
 
@@ -43,24 +44,30 @@ class CatedraController extends Controller
      * @Route("/new", name="catedra_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Security $security)
     {
-        $catedra = new Catedra();
-        $form = $this->createForm('AppBundle\Form\CatedraType', $catedra);
-        $form->handleRequest($request);
+        $userRol = $security->getUser()->getRoles()[0];
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($catedra);
-            $em->flush();
+        if ( $userRol == 'ROLE_ADMIN' ) {
+            $catedra = new Catedra();
+            $form = $this->createForm('AppBundle\Form\CatedraType', $catedra);
+            $form->handleRequest($request);
 
-            return $this->redirectToRoute('catedra_show', array('id' => $catedra->getId()));
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($catedra);
+                $em->flush();
+
+                return $this->redirectToRoute('catedra_show', array('id' => $catedra->getId()));
+            }
+
+            return $this->render('catedra/new.html.twig', array(
+                'catedra' => $catedra,
+                'form' => $form->createView(),
+            ));
+        }else{
+            return $this->render('catedra/error.html.twig');
         }
-
-        return $this->render('catedra/new.html.twig', array(
-            'catedra' => $catedra,
-            'form' => $form->createView(),
-        ));
     }
 
     /**
@@ -129,23 +136,29 @@ class CatedraController extends Controller
      * @Route("/{id}/edit", name="catedra_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Catedra $catedra)
+    public function editAction(Request $request, Catedra $catedra, Security $security)
     {
-        $deleteForm = $this->createDeleteForm($catedra);
-        $editForm = $this->createForm('AppBundle\Form\CatedraType', $catedra);
-        $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+        $userRol = $security->getUser()->getRoles()[0];
+        if ( $userRol == 'ROLE_ADMIN' ) {
+            $deleteForm = $this->createDeleteForm($catedra);
+            $editForm = $this->createForm('AppBundle\Form\CatedraType', $catedra);
+            $editForm->handleRequest($request);
 
-            return $this->redirectToRoute('catedra_edit', array('id' => $catedra->getId()));
+            if ($editForm->isSubmitted() && $editForm->isValid()) {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('catedra_edit', array('id' => $catedra->getId()));
+            }
+
+            return $this->render('catedra/edit.html.twig', array(
+                'catedra' => $catedra,
+                'edit_form' => $editForm->createView(),
+                'delete_form' => $deleteForm->createView(),
+            ));
+        }else{
+            return $this->render('catedra/error.html.twig');
         }
-
-        return $this->render('catedra/edit.html.twig', array(
-            'catedra' => $catedra,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-        ));
     }
 
 
@@ -180,21 +193,26 @@ class CatedraController extends Controller
      * @Route("/delete/{id}", name="catedra_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Catedra $catedra)
+    public function deleteAction(Request $request, Catedra $catedra, Security $security)
     {
-        $form = $this->createDeleteForm($catedra);
-        $form->handleRequest($request);
+        $userRol = $security->getUser()->getRoles()[0];
+        if ( $userRol == 'ROLE_ADMIN' ) {
+            $form = $this->createDeleteForm($catedra);
+            $form->handleRequest($request);
 
-        if ( $catedra->getPublicacionesCatedra()->isEmpty() && $catedra->getUsuariosResponsables()->isEmpty()){
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($catedra);
-            $em->flush();
-        }
-        else{
-            $this->addFlash( 'error', 'La catedra posee publicaciones y/o usuarios asociadxs');
-        }
+            if ( $catedra->getPublicacionesCatedra()->isEmpty() && $catedra->getUsuariosResponsables()->isEmpty()){
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($catedra);
+                $em->flush();
+            }
+            else{
+                $this->addFlash( 'error', 'La catedra posee publicaciones y/o usuarios asociadxs');
+            }
 
-        return $this->redirectToRoute('catedra_index');
+            return $this->redirectToRoute('catedra_index');
+        }else{
+            return $this->render('catedra/error.html.twig');
+        }
     }
 
     /**
