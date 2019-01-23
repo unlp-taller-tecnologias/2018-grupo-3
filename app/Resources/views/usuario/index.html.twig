@@ -10,7 +10,7 @@
     <section class="tablas">
         <a class="btn" href="{{ path('usuario_new') }}">Añadir usuario</a>
         <h3></h3>
-        <div class="table-responsive-md table-responsive-sm">
+        <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -32,11 +32,11 @@
                                 {{ usuario.nombre }} {{ usuario.apellido }}
                             </a>
                         </td>
-                        <td>{{ usuario.email }}</td>
-                        <td>{{ usuario.rol.nombre }}</td>
-                        <td>{% if usuario.visado %}Si{% else %}No{% endif %}</td>
-                        <td>{{ usuario.telefonoContacto }}</td>
-                        <td>{{ usuario.catedra }}</td>
+                        <td><p>{{ usuario.email }}</p></td>
+                        <td><p>{{ usuario.rol.nombre }}</p></td>
+                        <td><p>{% if usuario.visado %}Si{% else %}No{% endif %}</p></td>
+                        <td><p>{{ usuario.telefonoContacto }}</p></td>
+                        <td><p>{{ usuario.catedra }}</p></td>
                         <td>
                             <a class="opcion" href="{{ path('usuario_edit', { 'id': usuario.id }) }}"><i class="fas fa-edit"></i></a>
                         </td>

@@ -49,7 +49,7 @@
                         <p>{{ publicacion.bajada }}</p>
                         {{ publicacion.contenido|raw }}
                         {% if publicacion.archivo is not empty %}
-                            <a href="{{ asset('pdf/'~publicacion.archivo) }}" target="_blank">Ver pdf</a>
+                            <a href="{{ asset('pdf/'~publicacion.archivo) }}" target="_blank">Ver archivo</a>
                         {% endif %}
 
                         <div>

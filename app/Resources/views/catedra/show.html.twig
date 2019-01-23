@@ -35,12 +35,12 @@
                             {{ publicacion.fechaPublicacion|date("d/m/Y") }}
                         </div>
                         <div>
-                            <h6>{{ publicacion.titulo }}</h6>
+                            <h6 class="titulo-publi"><a href="{{ path('publicacion_show', { 'id': publicacion.id }) }}">{{ publicacion.titulo }}</a></h6>
                             <p>{{ publicacion.bajada }}</p>
                             <p>{{ publicacion.contenido|raw }}</p>
 
                             {% if publicacion.archivo is not empty %}
-                                <a class="archivo" href="{{ asset('pdf/'~publicacion.archivo) }}">VER ARCHIVO</a>
+                                <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver archivo</a>
                             {% endif %}
 
                             <div>

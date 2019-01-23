@@ -29,7 +29,7 @@
                         <a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.titulo }}</a>
                     </td>
                     <!-- <td>{{ noticia.bajada }}</td> -->
-                    <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if noticia.fechaPublicacion %}{{ noticia.fechaPublicacion|date('d-m-Y') }}{% endif %}</td>
                     <!-- <td>{{ noticia.contenido|raw }}</td> -->
                     <td>{{ noticia.firmante }}</td>
                     <td>

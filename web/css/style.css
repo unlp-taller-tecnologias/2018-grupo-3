@@ -19,9 +19,9 @@ nav{
 nav .nav-link{
 	color: #000;
 }
-div{
+/*div{ //ESTO ROMPE LAS TABLES RESPONSIVE - HAY QUE DELIMITARLO
 	word-break: break-all;
-}
+}*/
 h6{
 	font-weight: bold;
 }
@@ -70,6 +70,10 @@ header a, header a:hover{
 }
 .titulo-noticia, .titulo-publicacion{
 	font-size: 25px;
+	font-weight: bold;
+}
+.titulo-publi a{
+	color: #191F2E;
 	font-weight: bold;
 }
 .formularios{
@@ -243,8 +247,7 @@ a.archivo{
 	font-weight: bold;
 	font-size: 14px;
 }
-
-@media screen and (max-width: 992px) {
+@media (max-width: 992px) {
 
 	.row{
 		flex-direction: row-reverse;
@@ -277,6 +280,27 @@ a.archivo{
 	input.btn{
 		font-size: 34px;
 		margin-top: 2%;
+	}
+	.formulario-login {
+	    margin: 3% 25% 3% 25%;
+	}
+	.formulario-login label {
+    	font-size: 28px;
+	}
+}
+@media (max-width: 600px) {
+
+	header{
+		height: 250px;
+	}
+	header a{
+		width: 40%;
+	}
+	.formulario-login {
+	    margin: 10% 15% 3% 15%;
+	}
+	.formulario-login label {
+    	font-size: 30px;
 	}
 
 }
