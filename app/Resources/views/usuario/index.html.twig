@@ -33,7 +33,11 @@
                             </a>
                         </td>
                         <td><p>{{ usuario.email }}</p></td>
-                        <td><p>{{ usuario.rol.nombre }}</p></td>
+                        <td>
+                            {% if usuario.rol is not empty %}
+                            <p>{{ usuario.rol.nombre }}</p>
+                            {% endif %}
+                        </td>
                         <td><p>{% if usuario.visado %}Si{% else %}No{% endif %}</p></td>
                         <td><p>{{ usuario.telefonoContacto }}</p></td>
                         <td><p>{{ usuario.catedra }}</p></td>
