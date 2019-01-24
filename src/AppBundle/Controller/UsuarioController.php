@@ -177,13 +177,13 @@ class UsuarioController extends Controller
         $form = $this->createDeleteForm($usuario);
         $form->handleRequest($request);
 
-        if ( $usuario->getPublicaciones()->isEmpty() ){
+        if ( $usuario->getPublicaciones()->isEmpty() && $usuario->getNoticias()->isEmpty() ){
             $em = $this->getDoctrine()->getManager();
             $em->remove($usuario);
             $em->flush();
         }
         else{
-            $this->addFlash( 'error', 'Error: El usuario posee publicaciones, no se puede eliminar');
+            $this->addFlash( 'error', 'Error: El usuario posee publicaciones y/o noticias, no se puede eliminar');
         }
 
         return $this->redirectToRoute('usuario_index');
