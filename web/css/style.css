@@ -360,4 +360,14 @@ a.archivo{
 	    width: 100%;
 	    font-size: 20px;
 	}
+	.titulo-catedras-home {
+	    padding-top: 2%;
+	    font-size: 32px;
+	}
+	.titulo-noticias-home{
+		font-size: 32px;
+	}
+	.home table a{
+		font-size: 20px;
+	} 
 }
