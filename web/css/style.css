@@ -250,25 +250,29 @@ a.archivo{
 	font-weight: bold;
 	font-size: 14px;
 }
-@media (max-width: 992px) {
+
+@media (max-width: 768px) {
 
 	.row{
 		flex-direction: row-reverse;
 	}
+	nav>.dropdown{
+		display: none;
+	}
+	nav>.dropdown{
+		display: block;
+	}
 	header{
-		height: 220px;
+		height: 200px;
 	}
 	header a{
-		width: 35%;
+		width: 40%;
 	}
 	.logo-unlp{
 		width: 30%;
 	}
 	.logo-medicina{
 		width: 15%;
-	}
-	.etiquetas{
-		margin: 3% 45% 3% 5%
 	}
 	.formularios .form-control{
 		width: 100%;
@@ -284,9 +288,6 @@ a.archivo{
 		font-size: 34px;
 		margin-top: 2%;
 	}
-	.formulario-login {
-	    margin: 3% 25% 3% 25%;
-	}
 	.formulario-login label {
     	font-size: 28px;
 	}
@@ -294,14 +295,34 @@ a.archivo{
 		font-size: 25px;
 		font-weight: bold;
 	}
-}
-@media (max-width: 600px) {
-
-	header{
-		height: 250px;
+	.titulo-catedras-home {
+	    padding-top: 2%;
+	    font-size: 45px;
 	}
-	header a{
-		width: 40%;
+	.titulo-noticias-home{
+		font-size: 45px;
+	}
+	.buscador>input{
+		height: 3rem;
+	}
+	.home table a{
+		font-size: 25px;
+	} 
+	.fecha-noticia{
+		margin-bottom: 2%;
+	}
+	.bajada-noticia{
+		font-size: 18px;
+	}
+	.contenido-noticia{
+		font-size: 20px;
+	}
+	a.btn-etiqueta{
+		padding: 1.5% 2% 1.5% 1%;
+    	font-size: 20px;
+	}
+	.menu-desplegado{
+		display: none;
 	}
 	.formulario-login {
 	    margin: 10% 15% 3% 15%;
@@ -309,6 +330,34 @@ a.archivo{
 	.formulario-login label {
     	font-size: 30px;
 	}
-
+	.etiquetas{
+		margin-right: 20%;
+	}
 }
-
+@media (max-width: 480px){
+	.etiquetas {
+	    margin-right: 0%;
+	}
+	header{
+		height: 100px;
+	}
+	.logo-unlp{
+		width: 35%;
+	}
+	.logo-medicina{
+		width: 20%;
+	}
+	.info-catedra{
+		margin: auto;
+	}
+	.etiquetas{
+		margin-right: 0%;
+	}
+	a.btn-etiqueta{
+		font-size: 13px;
+	}
+	header a {
+	    width: 100%;
+	    font-size: 20px;
+	}
+}
