@@ -85,6 +85,7 @@ class NoticiaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($noticia);
             $em->flush();
+            $this->addFlash( 'exito', 'La noticia se agregó exitosamente');
 
             return $this->redirectToRoute('noticia_show', array('id' => $noticia->getId()));
         }
@@ -159,6 +160,7 @@ class NoticiaController extends Controller
             }
 
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash( 'exito', 'La noticia se editó exitosamente');
 
             return $this->redirectToRoute('noticia_show', array('id' => $noticia->getId()));
         }
@@ -184,7 +186,7 @@ class NoticiaController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->remove($noticia);
         $em->flush();
-
+        $this->addFlash( 'exito', 'La noticia se eliminó exitósamente');
         return $this->redirectToRoute('noticia_index');
     }
 

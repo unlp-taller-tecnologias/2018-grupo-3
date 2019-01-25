@@ -152,11 +152,9 @@ class UsuarioController extends Controller
 
             $this->userManager->updateUser($usuario);
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash( 'exito', 'El usuario se ha editado exitosamente.');
 
-            return $this->render('usuario/show.html.twig', array(
-                'usuario' => $usuario,
-                'delete_form' => $deleteForm->createView(),
-            ));
+            return $this->redirectToRoute('usuario_index');
         }
 
         return $this->render('usuario/edit.html.twig', array(
@@ -181,6 +179,7 @@ class UsuarioController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->remove($usuario);
             $em->flush();
+            $this->addFlash( 'exito', 'El usuario se ha eliminado exitosamente.');
         }
         else{
             $this->addFlash( 'error', 'Error: El usuario posee publicaciones y/o noticias, no se puede eliminar');

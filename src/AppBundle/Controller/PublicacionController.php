@@ -189,6 +189,7 @@ class PublicacionController extends Controller
             $em->persist($modificacion);
 
             $em->flush();
+            $this->addFlash( 'exito', 'La publicación se editó exitósamente');
 
             return $this->redirectToRoute('publicacion_show', array('id' => $publicacion->getId()));
         }

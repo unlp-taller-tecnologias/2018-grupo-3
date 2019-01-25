@@ -75,6 +75,10 @@ header>div{
 	font-size: 25px;
 	font-weight: bold;
 }
+.titulo-noticia a{
+	color: #191F2E;
+	text-decoration: underline;
+}
 .titulo-publi a{
 	color: #191F2E;
 	font-weight: bold;
@@ -250,17 +254,15 @@ a.archivo{
 	font-weight: bold;
 	font-size: 14px;
 }
+.añadir-publicacion{
+	margin-top: 3%;
+	padding-left: 5%;
+}
 
 @media (max-width: 768px) {
 
 	.row{
 		flex-direction: row-reverse;
-	}
-	nav>.dropdown{
-		display: none;
-	}
-	nav>.dropdown{
-		display: block;
 	}
 	header{
 		height: 200px;
@@ -285,14 +287,18 @@ a.archivo{
 		font-size: 38px;
 	}
 	input.btn{
-		font-size: 34px;
+		font-size: 22px;
 		margin-top: 2%;
 	}
 	.formulario-login label {
     	font-size: 28px;
 	}
+	.nav-link {
+	    display: block;
+	    padding: 0.1rem 0.3rem;
+	}
 	a.nav-link{
-		font-size: 25px;
+		font-size: 12px;
 		font-weight: bold;
 	}
 	.titulo-catedras-home {
@@ -321,14 +327,11 @@ a.archivo{
 		padding: 1.5% 2% 1.5% 1%;
     	font-size: 20px;
 	}
-	.menu-desplegado{
-		display: none;
-	}
 	.formulario-login {
-	    margin: 10% 15% 3% 15%;
+	    margin: 10% 5% 3% 5%;
 	}
 	.formulario-login label {
-    	font-size: 30px;
+    	font-size: 20px;
 	}
 	.etiquetas{
 		margin-right: 20%;
@@ -369,5 +372,29 @@ a.archivo{
 	}
 	.home table a{
 		font-size: 20px;
-	} 
+	}
+	.formularios {
+	    margin: 2% 0% 5% 10%;
+	    width: 85%;
+	}
+	nav{
+		height: 25px;
+	}
+	h3.label-visado{
+		font-size: 18px;
+		font-weight: bold; 
+	}
+	h2.titulo-form {
+	    font-size: 25px;
+	}
+	.form-group {
+	    font-size: 18px;
+	}
+	.nombre-catedra{
+		font-weight: bold;
+		margin: 3% 0 0 0%;
+	}
+	.añadir-publicacion{
+		padding-left: 3.5rem;
+	}
 }

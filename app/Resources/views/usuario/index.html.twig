@@ -7,6 +7,11 @@
             {{ flash_message }}
         </div>
     {% endfor %}
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
     <section class="tablas">
         <a class="btn" href="{{ path('usuario_new') }}">Añadir usuario</a>
         <h3></h3>

@@ -29,7 +29,7 @@
 			{% for noticia in noticias %}
 				<section class="jumbotron">
 					<div class="fecha-noticia">{{ noticia.fechaPublicacion|date("d/m/Y") }}</div>
-		            <h6 class="titulo-noticia">{{ noticia.titulo }}</h6>
+		            <h6 class="titulo-noticia"><a href="{{ path('noticia_show', { 'id': noticia.id }) }}">{{ noticia.titulo }}</a></h6>
 		            <p class="bajada-noticia">{{ noticia.bajada }}</p>
 		            <p class="contenido-noticia">{{ noticia.contenido|raw }}</p>
 		            {% if noticia.archivo is not empty %}
