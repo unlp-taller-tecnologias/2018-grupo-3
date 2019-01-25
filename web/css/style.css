@@ -136,6 +136,10 @@ input.btn:hover, a.btn:hover{
 	font-weight: bold;
 	margin: 3% 0 2% 0%;
 }
+.nombre-mi-catedra{
+	font-weight: bold;
+	margin: 3% 0 2% 5%;
+}
 .info-catedra{
 	margin: 1% 0 0 5%;
 }
@@ -391,7 +395,8 @@ a.archivo{
 	.form-group {
 	    font-size: 18px;
 	}
-	.nombre-catedra{
+	.nombre-catedra,
+	.nombre-mi-catedra{
 		font-weight: bold;
 		margin: 3% 0 3% 3%;
 	}
