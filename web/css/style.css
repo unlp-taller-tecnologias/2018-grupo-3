@@ -134,7 +134,7 @@ input.btn:hover, a.btn:hover{
 }
 .nombre-catedra{
 	font-weight: bold;
-	margin: 3% 0 0 5%;
+	margin: 3% 0 2% 0%;
 }
 .info-catedra{
 	margin: 1% 0 0 5%;
@@ -340,6 +340,7 @@ a.archivo{
 @media (max-width: 480px){
 	.etiquetas {
 	    margin-right: 0%;
+	    margin-left: 0%;
 	}
 	header{
 		height: 100px;
@@ -392,7 +393,7 @@ a.archivo{
 	}
 	.nombre-catedra{
 		font-weight: bold;
-		margin: 3% 0 0 0%;
+		margin: 3% 0 3% 3%;
 	}
 	.añadir-publicacion{
 		padding-left: 3.5rem;

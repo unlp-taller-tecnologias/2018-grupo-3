@@ -2,17 +2,18 @@
 
 {% block body %}
 
-    <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
 
     <div class="container info-catedra">
-        <p><i class="fas fa-envelope"></i> {{ catedra.emailContacto }}</p>
-        {% if catedra.telefonoContacto is not empty %}
-        <i class="fas fa-phone"></i> {{ catedra.telefonoContacto }}
-        {% endif %}
-        {% if catedra.horarioAtencion is not empty %}
-            <p><i class="fas fa-user-alt"></i> {{ catedra.horarioAtencion }}</p>
-        {% endif %}
-        
+        <h1 class="nombre-catedra">{{ catedra.nombre }}</h1>
+        <div class="container">
+            <p><i class="fas fa-envelope"></i> {{ catedra.emailContacto }}</p>
+            {% if catedra.telefonoContacto is not empty %}
+            <i class="fas fa-phone"></i> {{ catedra.telefonoContacto }}
+            {% endif %}
+            {% if catedra.horarioAtencion is not empty %}
+                <p><i class="fas fa-user-alt"></i> {{ catedra.horarioAtencion }}</p>
+            {% endif %}
+        </div>
     </div>
 
     <div class="etiquetas">
