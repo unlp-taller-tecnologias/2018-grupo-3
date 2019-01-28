@@ -33,7 +33,7 @@
 		            <p class="bajada-noticia">{{ noticia.bajada }}</p>
 		            <p class="contenido-noticia">{{ noticia.contenido|raw }}</p>
 		            {% if noticia.archivo is not empty %}
-		            	<a class="archivo" href="{{ asset('pdf/'~noticia.archivo) }}">VER ARCHIVO</iframe></a>
+		            	<a class="" href="{{ asset('pdf/'~noticia.archivo) }}">ver adjunto</iframe></a>
 		            {% endif %}
 		            <div>
 		            	{{ noticia.firmante }}

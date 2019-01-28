@@ -2,7 +2,7 @@
 
 {% block body %}
     {% for flash_message in app.session.flashbag.get('exito') %}
-        <div class="flash-error">
+        <div class="alert alert-success">
             {{ flash_message }}
         </div>
     {% endfor %}
@@ -21,7 +21,7 @@
             <p>{{ noticia.contenido|raw }}</p>
 
             {% if noticia.archivo is not empty %}
-                <a class="archivo" href="{{ asset('pdf/'~noticia.archivo) }}">Ver archivo</a>
+                <a class="" target="_blank" href="{{ asset('pdf/'~noticia.archivo) }}">ver adjunto</a>
             {% endif %}
 
             <div>

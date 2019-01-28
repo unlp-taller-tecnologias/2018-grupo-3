@@ -5,14 +5,12 @@
         <h2 class="titulo-form">Ingrese nueva cátedra:</h2>
 
         {{ form_start(form) }}
-            {{ form_widget(form) }}
+            {{ form_row(form.nombre, {'label': 'Nombre:' }) }}
+            {{ form_row(form.emailContacto, {'label': 'Email de contacto:' }) }}
+            {{ form_row(form.horarioAtencion, {'label': 'Horario de atención:' }) }}
+            {{ form_row(form.telefonoContacto, {'label': 'Teléfono de contacto:' }) }}
+            {{ form_row(form.secretario, {'label': 'Secretario:' }) }}
             <input class="btn" type="submit" value="Crear cátedra" />
         {{ form_end(form) }}
     </section>
-
-<!--     <ul>
-        <li>
-            <a href="{{ path('catedra_index') }}">Back to the list</a>
-        </li>
-    </ul> -->
 {% endblock %}

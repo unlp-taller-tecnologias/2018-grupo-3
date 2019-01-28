@@ -5,7 +5,16 @@
         <h2 class="titulo-form"> Ingrese nueva publicación:</h2>
 
         {{ form_start(form) }}
-            {{ form_widget(form) }}
+        	{{ form_row( form.titulo, { 'label': 'Título:' } ) }}
+        	{{ form_row( form.bajada, { 'label': 'Bajada:' } ) }}
+        	{{ form_row( form.fechaPublicacion, { 'label': 'Fecha de publicación:' } ) }}
+        	{{ form_row( form.contenido, { 'label': 'Contenido:' } ) }}
+        	{{ form_row( form.fechaCaducidad, { 'label': 'Fecha de caducidad:' } ) }}
+        	{{ form_row( form.firmante, { 'label': 'Firmante:' } ) }}
+        	{{ form_row( form.archivo, { 'label': 'Archivo:' } ) }}
+        	{{ form_row( form.etiqueta, { 'label': 'Etiqueta:' } ) }}
+        	{{ form_row( form.usuarioPublicacion, { 'label': 'Usuario que está publicando:' } ) }}
+        	{{ form_row( form.catedra, { 'label': 'Cátedra:' } ) }}
             <input class="btn" type="submit" value="Crear Publicación" />
         {{ form_end(form) }}
 

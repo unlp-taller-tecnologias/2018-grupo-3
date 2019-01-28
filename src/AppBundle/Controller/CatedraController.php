@@ -57,6 +57,7 @@ class CatedraController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($catedra);
                 $em->flush();
+                $this->addFlash( 'exito', 'La catedra se agregó exitósamente');
 
                 return $this->redirectToRoute('catedra_show', array('id' => $catedra->getId()));
             }
@@ -147,8 +148,9 @@ class CatedraController extends Controller
 
             if ($editForm->isSubmitted() && $editForm->isValid()) {
                 $this->getDoctrine()->getManager()->flush();
+                $this->addFlash( 'exito', 'La catedra ha sido actualizada exitósamente.');
 
-                return $this->redirectToRoute('catedra_edit', array('id' => $catedra->getId()));
+                return $this->redirectToRoute('catedra_show', array('id' => $catedra->getId()));
             }
 
             return $this->render('catedra/edit.html.twig', array(
@@ -204,6 +206,7 @@ class CatedraController extends Controller
                 $em = $this->getDoctrine()->getManager();
                 $em->remove($catedra);
                 $em->flush();
+                $this->addFlash( 'exito', 'La catedra ha sido eliminada exitósamente');
             }
             else{
                 $this->addFlash( 'error', 'La catedra posee publicaciones y/o usuarios asociadxs');

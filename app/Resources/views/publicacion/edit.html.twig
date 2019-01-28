@@ -3,12 +3,20 @@
 {% block body %}
 
     <section class="formularios">
-        <h1>Editar publicación</h1>
+        <h2 class="titulo-form">Editar publicación</h2>
 
         {{ form_start(edit_form) }}
-        	{{ form_row(edit_form.archivo) }}
+        	{{ form_row( edit_form.titulo, { 'label': 'Título:' } ) }}
+        	{{ form_row( edit_form.bajada, { 'label': 'Bajada:' } ) }}
+        	{{ form_row( edit_form.fechaPublicacion, { 'label': 'Fecha de publicación:' } ) }}
+        	{{ form_row( edit_form.contenido, { 'label': 'Contenido:' } ) }}
+        	{{ form_row( edit_form.fechaCaducidad, { 'label': 'Fecha de caducidad:' } ) }}
+        	{{ form_row( edit_form.firmante, { 'label': 'Firmante:' } ) }}
+        	{{ form_row( edit_form.archivo, { 'label': 'Archivo:' } ) }}
         	<p>Archivo actual: <a href="{{ asset('pdf/'~publicacion.archivo) }}">{{ publicacion.archivo }}</a></p>
-            {{ form_widget(edit_form) }}
+        	{{ form_row( edit_form.etiqueta, { 'label': 'Etiqueta:' } ) }}
+        	{{ form_row( edit_form.usuarioPublicacion, { 'label': 'Usuario que está publicando:' } ) }}
+        	{{ form_row( edit_form.catedra, { 'label': 'Cátedra:' } ) }}
             <input class="btn" type="submit" value="Edit" />
         {{ form_end(edit_form) }}
     </section>

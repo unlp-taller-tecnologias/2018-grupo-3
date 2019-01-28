@@ -18,10 +18,8 @@ nav{
 }
 nav .nav-link{
 	color: #000;
+	letter-spacing: 0.5mm;
 }
-/*div{ //ESTO ROMPE LAS TABLES RESPONSIVE - HAY QUE DELIMITARLO
-	word-break: break-all;
-}*/
 h6{
 	font-weight: bold;
 }
@@ -31,14 +29,18 @@ h6{
 .logo-unlp{
 	width: 18%;
 }
+.subtitulo{
+	font-size: 18px;
+}
 header a, header a:hover{
 	text-decoration: none;
 	color: #fff;
-	font-size: 25px;
-	width: 25%;
+	font-size: 23px;
+	width: 40%;
 	line-height: 1;
 	padding-left: 1%;
 	word-break: normal;
+	align-self: flex-end;
 }
 header>div{
 	width: 84%;
@@ -262,6 +264,9 @@ a.archivo{
 	margin-top: 3%;
 	padding-left: 5%;
 }
+a{
+	word-wrap: break-word;
+}
 
 @media (max-width: 768px) {
 
@@ -272,7 +277,7 @@ a.archivo{
 		height: 200px;
 	}
 	header a{
-		width: 40%;
+		width: 100%;
 	}
 	.logo-unlp{
 		width: 30%;
@@ -302,7 +307,7 @@ a.archivo{
 	    padding: 0.1rem 0.3rem;
 	}
 	a.nav-link{
-		font-size: 12px;
+		font-size: 22px;
 		font-weight: bold;
 	}
 	.titulo-catedras-home {
@@ -366,7 +371,13 @@ a.archivo{
 	}
 	header a {
 	    width: 100%;
-	    font-size: 20px;
+	    font-size: 13px;
+	}
+	.subtitulo{
+		font-size: 12px;
+	}
+	a.nav-link{
+		font-size: 12px;
 	}
 	.titulo-catedras-home {
 	    padding-top: 2%;
@@ -376,7 +387,7 @@ a.archivo{
 		font-size: 32px;
 	}
 	.home table a{
-		font-size: 20px;
+		font-size: 18px;
 	}
 	.formularios {
 	    margin: 2% 0% 5% 10%;
@@ -384,6 +395,9 @@ a.archivo{
 	}
 	nav{
 		height: 25px;
+	}
+	nav .nav-link{
+		letter-spacing: inherit;
 	}
 	h3.label-visado{
 		font-size: 18px;
@@ -394,6 +408,7 @@ a.archivo{
 	}
 	.form-group {
 	    font-size: 18px;
+	    overflow: hidden;
 	}
 	.nombre-catedra,
 	.nombre-mi-catedra{
@@ -402,5 +417,22 @@ a.archivo{
 	}
 	.añadir-publicacion{
 		padding-left: 3.5rem;
+	}
+	.titulo-noticia{
+		font-size: 22px;
+	}
+	.bajada-noticia{
+		font-size: 16px;
+	}
+	.jumbotron{
+		padding: 1rem 1rem;
+	}
+}
+@media (max-width: 390px){
+	header a {
+	    font-size: 11px;
+	}
+	.subtitulo{
+		font-size: 10px;
 	}
 }

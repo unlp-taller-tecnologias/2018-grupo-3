@@ -22,7 +22,7 @@
             <p>{{ publicacion.contenido|raw }}</p>
 
             {% if publicacion.archivo is not empty %}
-                <a href="{{ asset('pdf/'~publicacion.archivo) }}">Ver pdf</a>
+                <a href="{{ asset('pdf/'~publicacion.archivo) }}">ver adjunto</a>
             {% endif %}
 
             <div>

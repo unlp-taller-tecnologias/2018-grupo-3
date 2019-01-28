@@ -6,9 +6,9 @@
 
         {{ form_start(form) }}
 
-        	{{ form_row(form.nombre) }}
+        	{{ form_row(form.nombre, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su nombre' }, 'label': 'Nombre:'}) }}
 
-        	{{ form_row(form.apellido) }}
+        	{{ form_row(form.apellido, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su apellido' }, 'label': 'Apellido:'}) }}
 
         	{{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese su e-mail' }, 'label': 'E-mail:'}) }}
 
@@ -18,19 +18,18 @@
 
         	{{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'Confirme su contraseña' }, 'label': 'Ingrese nuevamente la contraseña:'}) }}
 
-          {{ form_row(form.telefonoContacto, { 'label': 'Teléfono de contacto' }) }}
+            {{ form_row(form.telefonoContacto, {'attr': {'class': 'form-control', 'placeholder': 'Ingrese un teléfono' }, 'label': 'Teléfono de contacto:'}) }}
 
-          {{ form_row(form.rol, { 'label': 'Rol' }) }}
+            {{ form_row(form.rol, {'label': 'Seleccione rol:'} ) }}
 
-          <div id="input-catedra">
+            <div id="input-catedra">
             {{ form_row(form.catedra, {'label': 'Seleccione la cátedra'}) }}
-          </div>
+            </div>
 
-          <div id="input-visado">
+            <div id="input-visado">
             {{ form_row(form.visado, {'label': 'Seleccione si el usuario requiere visado'}) }}
-          </div>
+            </div>
 
-            {{ form_widget(form) }}
 
             <input class="btn" type="submit" value="Guardar" />
         {{ form_end(form) }}

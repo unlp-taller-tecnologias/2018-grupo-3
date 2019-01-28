@@ -1,10 +1,15 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% if error %}
-    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    <div class="alert alert-danger">
+        {% if error.messageKey == "Invalid credentials." %}
+             Error - El usuario y/o contraseña son inválidos
+        {% else %}
+            {{ error.messageKey }}
+        {% endif %}
+    </div>
 {% endif %}
 <section class="formulario-login jumbotron">
-    <h2 class="titulo-form"></h2>
     <form action="{{ path("fos_user_security_check") }}" method="post">
 
         {% if csrf_token %}

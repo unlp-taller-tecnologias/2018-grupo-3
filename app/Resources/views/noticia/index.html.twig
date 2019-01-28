@@ -5,7 +5,12 @@
     <a class="btn" href="{{ path('noticia_new') }}">Añadir noticia</a>
     <h3></h3>
     {% for flash_message in app.session.flashbag.get('error') %}
-        <div class="flash-error">
+        <div class="alert alert-danger">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="alert alert-success">
             {{ flash_message }}
         </div>
     {% endfor %}

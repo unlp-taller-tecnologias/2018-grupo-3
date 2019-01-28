@@ -6,6 +6,11 @@
             {{ flash_message }}
         </div>
     {% endfor %}
+    {% for flash_message in app.session.flashbag.get('exito') %}
+        <div class="alert alert-success">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
 <section class="tablas">
     {% if is_granted("ROLE_ADMIN") or is_granted("ROLE_CATEDRA") %}
         <a class="btn" href="{{ path('catedra_new') }}">Añadir cátedra</a>
