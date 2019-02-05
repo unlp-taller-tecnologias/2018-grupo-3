@@ -42,7 +42,7 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-        if ($('#appbundle_usuario_rol').val() != '1') {
+        if ($('#appbundle_usuario_rol').val() != '3') {
             $("#appbundle_usuario_visado").hide();
             $("#appbundle_usuario_catedra").hide();
             $("#input-catedra").hide();
@@ -52,7 +52,7 @@
     });
 
     $('#appbundle_usuario_rol').on('change', function() {
-        if ($('#appbundle_usuario_rol').val() == '1') {
+        if ($('#appbundle_usuario_rol').val() == '3') {
             $('#appbundle_usuario_visado').show();
             $('#appbundle_usuario_catedra').show();
             $("#input-catedra").show();
