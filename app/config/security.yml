@@ -46,3 +46,6 @@ security:
         - { path: ^/noticia/$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
         - { path: ^/noticia/+\d/edit$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
         - { path: ^/profile/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/catedra/new$, roles: [ROLE_ADMIN, ROLE_MODERADOR, ROLE_CATEDRA] }
+        - { path: ^/usuario/new$, roles: [ROLE_ADMIN, ROLE_MODERADOR, ROLE_CATEDRA] }
+        - { path: ^/noticia/new$, roles: [ROLE_ADMIN, ROLE_MODERADOR, ROLE_CATEDRA] }
