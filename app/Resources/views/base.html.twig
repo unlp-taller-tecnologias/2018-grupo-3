@@ -16,7 +16,7 @@
 						<img class="logo-medicina" src="{{ asset('logo-med.png') }}">
 						<a href="{{ path('homepage') }}">Facultad de Ciencias Médicas
 						<p class="subtitulo">La Plata | República Argentina</p></a>
-						
+
 				</div>
 				<img class="logo-unlp" src="{{ asset('logo-unlp.png') }}">
 		</header>
@@ -47,11 +47,13 @@
 						</a>
 					</li>
 				{% elseif is_granted("ROLE_CATEDRA") %}
+          {% if app.user.catedra != "" %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('adm_catedra', {'id': app.user.catedra.id}) }}">
 							{{ app.user.catedra }}
 						</a>
 					</li>
+          {% endif %}
 				{% else %}
 					<li class="nav-item ml-auto"><a class="nav-link btn-iniciar-sesion" href="{{ path('fos_user_security_login') }}">INICIAR SESIÓN</a></li>
 				{% endif %}
