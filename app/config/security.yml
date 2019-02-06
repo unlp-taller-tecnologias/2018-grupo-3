@@ -41,6 +41,7 @@ security:
         - { path: ^/usuario/*, role: ROLE_ADMIN }
         - { path: ^/publicacion/$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
         - { path: ^/publicacion/visar$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
+        - { path: ^/publicacion/+\d/edit$, roles: [ROLE_ADMIN, ROLE_MODERADOR, ROLE_CATEDRA] }
         - { path: ^/noticia/$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
         - { path: ^/noticia/+\d/edit$, roles: [ROLE_ADMIN, ROLE_MODERADOR] }
         - { path: ^/profile/$, role: IS_AUTHENTICATED_ANONYMOUSLY }
